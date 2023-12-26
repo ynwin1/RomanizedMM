@@ -7,7 +7,7 @@ const router = express.Router();
 router.get('/songs/search', async (req, res) => {
     try {
         const searchTerm = req.query.term;
-        const songs = await Song.find({ name: new RegExp(searchTerm, 'i') });
+        const songs = await Song.find({ songName: new RegExp(searchTerm, 'i') });
         res.json(songs);
     } catch (err) {
         console.error(err);
