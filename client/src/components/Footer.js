@@ -3,7 +3,7 @@ import { Typography } from '@mui/material';
 import { styled } from '@mui/system';
 
 const CustomFooter = styled(Typography) ({
-    margin: '2rem 2rem',
+    margin: '1rem 1rem',
     color: '#FFFFFF'
 })
 
