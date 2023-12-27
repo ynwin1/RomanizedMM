@@ -2,7 +2,6 @@ import React from "react"
 import { useState, useEffect } from "react";
 import { Typography, Autocomplete, TextField} from '@mui/material';
 import { styled } from '@mui/system';
-import debounce from 'lodash/debounce';
 
 const SloganTypography = styled(Typography)({
     color: '#FFFFFF',
@@ -27,9 +26,9 @@ const CustomAutocomplete = styled(Autocomplete)({
 const SERVER_URL = 'http://localhost:4321';
 const API_URL = '/api/songs/search'
 
-function SearchBar() {
+function SearchBar(props) {
     const [userInput, setUserInput] = useState("");
-    const [allSongs, setAllSongs] = useState([]);
+    const [matchingSongs, setMatchingSongs] = useState([]);
 
     useEffect(() => {
         fetchSongs();
@@ -47,22 +46,23 @@ function SearchBar() {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const data = await response.json();
-            setAllSongs(data);
+            setMatchingSongs(data);
         } catch (e) {
             console.log(e.message);
         }
     }
 
-    // const debouncedFetchSongs = debounce((input) => fetchSongs(input), 500);
-
     function filterSongs() {
-        return allSongs.map(song => song.songName);
+        return matchingSongs.map(song => song.songName);
     }
 
     function handleUserInput(event) {
         const newUserInput = event.target.value;
         setUserInput(newUserInput);
-        // debouncedFetchSongs(userInput);
+    }
+
+    function handleUserSelection(event, value) {
+        props.setSelectedSong(matchingSongs.find(song => song.songName === value));
     }
 
     return (
@@ -75,6 +75,7 @@ function SearchBar() {
                 id="combo-box-demo"
                 options={filterSongs()}
                 sx={{ width: 300 }}
+                onChange={handleUserSelection}
                 renderInput={(params) => (
                     <TextField
                         {...params}
