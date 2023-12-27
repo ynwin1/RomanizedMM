@@ -53,7 +53,7 @@ function SearchBar() {
         }
     }
 
-    const debouncedFetchSongs = debounce((input) => fetchSongs(input), 500);
+    // const debouncedFetchSongs = debounce((input) => fetchSongs(input), 500);
 
     function filterSongs() {
         return allSongs.map(song => song.songName);
@@ -62,7 +62,7 @@ function SearchBar() {
     function handleUserInput(event) {
         const newUserInput = event.target.value;
         setUserInput(newUserInput);
-        debouncedFetchSongs(userInput);
+        // debouncedFetchSongs(userInput);
     }
 
     return (
