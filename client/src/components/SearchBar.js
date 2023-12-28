@@ -14,13 +14,15 @@ const SloganTypography = styled(Typography)({
     padding: '1rem'
 })
 const CustomAutocomplete = styled(Autocomplete)({
-    fullWidth: true,
+    width: '40%',
     alignSelf: 'center',
     '& .MuiInputBase-root': {
         fontSize: '1rem',
         backgroundColor: 'white',
         borderRadius: '0.5rem'
-    }
+    },
+    marginTop: '1rem',
+    marginBottom: '1rem'
 })
 
 const SERVER_URL = 'http://localhost:4321';
@@ -74,7 +76,6 @@ function SearchBar(props) {
                 disablePortal
                 id="combo-box-demo"
                 options={filterSongs()}
-                sx={{ width: 300 }}
                 onChange={handleUserSelection}
                 renderInput={(params) => (
                     <TextField

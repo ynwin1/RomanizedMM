@@ -15,8 +15,6 @@ const AboutContainer = styled(Box) ({
     display: 'flex',
     flexDirection: 'column',
     marginTop: '2rem',
-    alignItems: 'right',
-    justifyContent: 'right'
 })
 
 function MusicBox(props) {

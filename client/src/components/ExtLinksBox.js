@@ -11,10 +11,10 @@ const ExtLinkCard = styled(Card) ({
     borderRadius: '1rem',
     borderBottom: '2px solid #FFF',
     background: "transparent",
+    justifyContent: "space-between",
     display: 'flex',
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
-    alignSelf: 'center'
+    alignSelf: 'center',
 });
 
 function openLink(url) {

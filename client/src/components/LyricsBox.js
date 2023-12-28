@@ -9,9 +9,7 @@ const LyricsContainer = styled(Box) ({
     flexDirection: 'column',
     alignItems: 'center',
     marginTop: '2rem',
-    marginRight: '12rem',
-    alignSelf: 'center',
-    maxWidth: '80%'
+    marginRight: '10rem',
 })
 
 const LyricsCard = styled(Card) ({
@@ -19,7 +17,7 @@ const LyricsCard = styled(Card) ({
     borderRadius: '1.25rem',
     border: '2px solid #FFF',
     background: 'rgba(217, 217, 217, 0.00)',
-    width: '25rem',
+    maxWidth: '100%',
     height: 'auto',
 })
 

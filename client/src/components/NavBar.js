@@ -5,6 +5,8 @@ import { styled } from '@mui/system';
 const CustomAppBar = styled(AppBar)({
     background: `linear-gradient(90deg, #434343 0%, #202020 53.2%, #000 100%)`,
     boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+    height: '5rem',
+    justifyContent: 'center'
 });
 
 const NavBarTypography = styled(Typography)({
