@@ -7,22 +7,23 @@ import LyricsBox from "./LyricsBox";
 
 const OverallContainer = styled(Box) ({
     display: 'flex',
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'center'
 })
 
 const AboutContainer = styled(Box) ({
     display: 'flex',
-    flexDirection: 'column',
-    marginTop: '2rem',
+    flexDirection: 'row',
+    marginTop: '1rem',
+    justifyContent: 'space-evenly'
 })
 
 function MusicBox(props) {
     const imageLink = props.song.imageLink;
     return (
         <OverallContainer>
+            {imageLink && <img src={imageLink} alt="albumPhoto" className="album-picture"/>}
             <AboutContainer>
-                {imageLink && <img src={imageLink} alt="albumPhoto" className="album-picture"/>}
                 <AboutBox song={props.song} />
                 <ExtLinksBox song={props.song} />
             </AboutContainer>

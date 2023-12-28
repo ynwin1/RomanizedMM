@@ -7,7 +7,7 @@ import spotifyIcon from '../logos/spotify.png';
 import appleMusicIcon from '../logos/appleMusic.png';
 
 const ExtLinkCard = styled(Card) ({
-    margin: '2rem 2rem',
+    margin: '1rem 1rem',
     borderRadius: '1rem',
     borderBottom: '2px solid #FFF',
     background: "transparent",
@@ -15,6 +15,7 @@ const ExtLinkCard = styled(Card) ({
     display: 'flex',
     flexDirection: 'row',
     alignSelf: 'center',
+    width: '20%'
 });
 
 function openLink(url) {

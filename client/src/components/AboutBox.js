@@ -5,13 +5,12 @@ import CardContent from '@mui/material/CardContent';
 import {styled} from "@mui/system";
 
 const AboutCard = styled(Card) ({
-    margin: '2rem 2rem',
+    margin: '1rem 1rem',
     borderRadius: '1.25rem',
     border: '2px solid #FFF',
     background: 'rgba(217, 217, 217, 0.00)',
-    maxWidth: '50%',
+    width: '40%',
     height: 'auto',
-    alignSelf: 'center',
 })
 
 const AboutTypography = styled(Typography) ({

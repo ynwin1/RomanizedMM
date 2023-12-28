@@ -63,7 +63,8 @@ body {
 }
 
 .album-picture {
-  width: 10rem;
+  margin: 2rem 2rem;
+  width: 12rem;
   height: auto;
   align-self: center;
   border-radius: 1rem;

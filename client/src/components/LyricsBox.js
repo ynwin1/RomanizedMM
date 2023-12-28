@@ -7,18 +7,17 @@ import {styled} from "@mui/system";
 const LyricsContainer = styled(Box) ({
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
     marginTop: '2rem',
-    marginRight: '10rem',
 })
 
 const LyricsCard = styled(Card) ({
-    margin: '2rem 2rem',
+    margin: '1rem 1rem',
     borderRadius: '1.25rem',
     border: '2px solid #FFF',
     background: 'rgba(217, 217, 217, 0.00)',
-    maxWidth: '100%',
+    width: '50%',
     height: 'auto',
+    alignSelf: 'center'
 })
 
 function formatLyrics(lyrics) {
