@@ -64,7 +64,13 @@ function SearchBar(props) {
     }
 
     function handleUserSelection(event, value) {
-        props.setSelectedSong(matchingSongs.find(song => song.songName === value));
+        const songSearched = matchingSongs.find(song => song.songName === value);
+        if (value === null || value === undefined) {
+            props.setSelectedSong(props.lastSong);
+        } else {
+            props.setSelectedSong(songSearched);
+            props.setLastSong(songSearched);
+        }
     }
 
     return (
