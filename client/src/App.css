@@ -52,3 +52,12 @@ body {
   align-items: center;
   width: 100%;
 }
+
+.extLinkButton {
+  transition: transform 0.3s ease;
+  transform: scale(1);
+}
+
+.extLinkButton:hover {
+  transform: scale(0.7)
+}

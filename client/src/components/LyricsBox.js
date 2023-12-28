@@ -1,20 +1,24 @@
 import React from 'react';
-import { Typography } from "@mui/material";
+import { Box, Typography } from "@mui/material";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import {styled} from "@mui/system";
 
+const LyricsContainer = styled(Box) ({
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    marginTop: '2rem',
+    marginRight: '12rem'
+})
+
 const LyricsCard = styled(Card) ({
     margin: '2rem 2rem',
     borderRadius: '1.25rem',
-    border: '5px solid #FFF',
+    border: '2px solid #FFF',
     background: 'rgba(217, 217, 217, 0.00)',
-    width: '30%',
-    maxWidth: '40%',
+    width: '25rem',
     height: 'auto',
-    '@media (max-width: 600px)': {
-        width: '100%'
-    }
 })
 
 function formatLyrics(lyrics) {
@@ -29,7 +33,7 @@ function formatLyrics(lyrics) {
 
 function LyricsBox(props) {
     return (
-        <div className="lyrics-box" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+        <LyricsContainer>
             <Typography sx={{fontFamily:'Fugaz One', color: '#FFFFFF', fontSize: '2rem'}}>Lyrics</Typography>
             <LyricsCard>
                 <CardContent>
@@ -38,7 +42,7 @@ function LyricsBox(props) {
                     </Typography>
                 </CardContent>
             </LyricsCard>
-        </div>
+        </LyricsContainer>
     )
 }
 

@@ -2,9 +2,9 @@ import './App.css';
 import { useState } from "react";
 import NavBar from "./components/NavBar";
 import SearchBar from "./components/SearchBar";
-import LyricsBox from "./components/LyricsBox";
+import MusicBox from "./components/MusicBox";
 import Footer from "./components/Footer";
-import AboutBox from "./components/AboutBox";
+
 
 function App() {
     const [selectedSong, setSelectedSong] = useState(undefined);
@@ -16,8 +16,7 @@ function App() {
         <div className="App">
             <NavBar />
             <SearchBar setSelectedSong={setSelectedSong}/>
-            {selectedSong && <AboutBox song={selectedSong} />}
-            {selectedSong && <LyricsBox song={selectedSong} />}
+            {selectedSong && <MusicBox song={selectedSong} />}
             <Footer />
         </div>
     );
