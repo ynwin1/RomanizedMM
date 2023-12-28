@@ -15,15 +15,16 @@ const AboutContainer = styled(Box) ({
     display: 'flex',
     flexDirection: 'column',
     marginTop: '2rem',
-    marginLeft: '12rem',
     alignItems: 'right',
     justifyContent: 'right'
 })
 
 function MusicBox(props) {
+    const imageLink = props.song.imageLink;
     return (
         <OverallContainer>
             <AboutContainer>
+                {imageLink && <img src={imageLink} alt="albumPhoto" className="album-picture"/>}
                 <AboutBox song={props.song} />
                 <ExtLinksBox song={props.song} />
             </AboutContainer>

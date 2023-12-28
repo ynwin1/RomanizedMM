@@ -61,3 +61,10 @@ body {
 .extLinkButton:hover {
   transform: scale(0.7)
 }
+
+.album-picture {
+  width: 10rem;
+  height: auto;
+  align-self: center;
+  border-radius: 1rem;
+}

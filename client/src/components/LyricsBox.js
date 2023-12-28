@@ -9,7 +9,9 @@ const LyricsContainer = styled(Box) ({
     flexDirection: 'column',
     alignItems: 'center',
     marginTop: '2rem',
-    marginRight: '12rem'
+    marginRight: '12rem',
+    alignSelf: 'center',
+    maxWidth: '80%'
 })
 
 const LyricsCard = styled(Card) ({

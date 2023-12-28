@@ -18,6 +18,7 @@ const SongSchema = new mongoose.Schema({
     spotifyLink: String,
     appleMusicLink: String,
     youtubeLink: String,
+    imageLink: String,
     about: {
         type: String,
         required: true

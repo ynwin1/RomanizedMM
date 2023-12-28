@@ -9,8 +9,9 @@ const AboutCard = styled(Card) ({
     borderRadius: '1.25rem',
     border: '2px solid #FFF',
     background: 'rgba(217, 217, 217, 0.00)',
-    maxWidth: '60%',
-    height: 'auto'
+    maxWidth: '50%',
+    height: 'auto',
+    alignSelf: 'center',
 })
 
 const AboutTypography = styled(Typography) ({
