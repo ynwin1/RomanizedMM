@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import {FormControl, InputLabel, Input, FormHelperText} from "@mui/material";
+import {FormControl, InputLabel, Input, Button, Typography} from "@mui/material";
 import {styled} from "@mui/system";
 
 function RequestForm() {
@@ -13,6 +13,18 @@ function RequestForm() {
         details: ''
     });
     const [apiResponse, setApiResponse] = useState("")
+
+    const CustomSubmitButton = styled(Button) ({
+        width: '5rem',
+        padding: '0.5rem 1rem',
+        borderRadius: '0.5rem',
+        background: 'white',
+        color: 'black',
+        cursor: 'pointer',
+        '&:hover': {
+            background: '#CCCCCC'
+        },
+    })
 
     function handleChange(event) {
         const {name, value} = event.target;
@@ -45,25 +57,19 @@ function RequestForm() {
         await submitForm();
     }
 
-    const CustomForm = styled(FormControl) ({
-        display:'flex', flexDirection:'column', justifyContent: 'center', alignItems:'center'
-    })
-
     function createFormControl(name, label, val, req) {
         return (
-            <div className="request-form">
-                <CustomForm required={req} sx={{}}>
-                    <InputLabel htmlFor={name}>{label}</InputLabel>
-                    <Input
-                        id={name}
-                        name={name}
-                        value={val}
-                        onChange={handleChange}
-                        sx={{background: '#FFFFFF'}}
-                    />
-                    {/*{req && <FormHelperText>Required(*)</FormHelperText>}*/}
-                </CustomForm>
-            </div>
+            <FormControl required={req} sx={
+                {display: 'flex', flexDirection: 'column', margin: '1rem 1rem'}}>
+                <InputLabel htmlFor={name}>{label}</InputLabel>
+                <Input
+                    id={name}
+                    name={name}
+                    value={val}
+                    onChange={handleChange}
+                    sx={{background: '#FFFFFF', width:'30rem', borderRadius: '1rem', paddingLeft: '1rem'}}
+                />
+            </FormControl>
         )
     }
 
@@ -77,13 +83,26 @@ function RequestForm() {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            {createFormControl("songName", "Song Name", formData.songName, true)}
-            {createFormControl("artist", "Artist", formData.artist, false)}
-            {createFormControl("youtubeLink", "Youtube Link", formData.youtubeLink, false)}
-            {createFormControl("details", "Details/Comments", formData.details, false)}
-            <button type="submit">Submit</button>
-        </form>
+        <div className="request-form">
+            <Typography sx={
+                {fontFamily: 'Fugaz One', fontSize: '3rem', color: '#FFFFFF', marginBottom: '2rem'}
+            }>
+                Request a song!
+            </Typography>
+            <Typography sx={
+                {fontFamily: 'Fugaz One', fontSize: '1rem', color: '#FFFFFF', marginBottom: '1rem'}
+            }>
+                Do you have a song that you want to sing along, but can't find it on this website?
+                Fill out the form below!
+            </Typography>
+            <form onSubmit={handleSubmit}>
+                {createFormControl("songName", "Song Name", formData.songName, true)}
+                {createFormControl("artist", "Artist", formData.artist, false)}
+                {createFormControl("youtubeLink", "Youtube Link", formData.youtubeLink, false)}
+                {createFormControl("details", "Details/Comments", formData.details, false)}
+                <CustomSubmitButton type="submit">Submit</CustomSubmitButton>
+            </form>
+        </div>
     )
 }
 
