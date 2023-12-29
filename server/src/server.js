@@ -2,16 +2,18 @@ import express from 'express';
 import cors from 'cors';
 import connectDB from './config/dbConnection.js';
 import songRoutes from './routes/songRoutes.js';
-
+import formRoutes from "./routes/formRoutes.js"
 
 const app = express();
 app.use(express.json());
 app.use(cors({
     origin: "http://localhost:3000"
 }))
-app.use('/api', songRoutes);
-const PORT = process.env.PORT || 4321;
 
+app.use('/api', songRoutes);
+app.use('/api', formRoutes);
+
+const PORT = process.env.PORT || 4321;
 try {
     await connectDB();
     app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
