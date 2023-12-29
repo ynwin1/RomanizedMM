@@ -1,0 +1,24 @@
+.song-request-styling {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 100vw;
+}
+
+.request-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 3px solid white;
+    padding: 1rem 1rem;
+    align-self: center;
+    margin-top: 1rem;
+    min-width: 80%;
+    min-height: 80%;
+    justify-content: space-evenly;
+}
+
+.form-response {
+    padding: 1rem;
+}

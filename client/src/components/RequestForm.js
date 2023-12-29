@@ -6,17 +6,21 @@ function RequestForm() {
     const SERVER_URL = 'http://localhost:4321';
     const API_URL = '/api/submitForm'
 
-    const [formData, setFormData] = useState({
+    const initialForm = {
         songName: '',
         artist: '',
         youtubeLink: '',
         details: ''
-    });
-    const [apiResponse, setApiResponse] = useState("")
+    }
+
+    const [formData, setFormData] = useState(initialForm);
+    const [apiResponse, setApiResponse] = useState("");
+    const [renderForm, setRenderForm] = useState(true);
 
     const CustomSubmitButton = styled(Button) ({
-        width: '5rem',
+        width: '15rem',
         marginTop: '1rem',
+        marginBottom: '1rem',
         padding: '0.5rem 1rem',
         borderRadius: '0.5rem',
         background: 'white',
@@ -25,6 +29,7 @@ function RequestForm() {
         '&:hover': {
             background: '#CCCCCC'
         },
+        alignSelf: 'center'
     })
 
     function handleChange(event) {
@@ -50,15 +55,23 @@ function RequestForm() {
             }
             const data = await response.json();
             setApiResponse(data.message);
+            setRenderForm(false);
         } catch (e) {
             console.log(e.message);
             setApiResponse(e.message);
+            setRenderForm(false);
         }
     }
 
     async function handleSubmit(event) {
         event.preventDefault();
+        setRenderForm(prevState => !prevState);
         await submitForm();
+    }
+
+    function handleResubmit() {
+        setFormData(initialForm);
+        setRenderForm(prevState => !prevState);
     }
 
     function createFormControl(name, label, val, req) {
@@ -77,19 +90,6 @@ function RequestForm() {
         )
     }
 
-    if (apiResponse !== "") {
-        // Render message
-        return (
-            <div>
-                <Typography sx={
-                    {fontFamily: 'Fugaz One', fontSize: '2rem', color: '#FFFFFF', marginTop: '2rem'}
-                }>
-                    {apiResponse}
-                </Typography>
-            </div>
-        )
-    }
-
     return (
         <div className="request-form">
             <Typography sx={
@@ -97,19 +97,32 @@ function RequestForm() {
             }>
                 Request a song!
             </Typography>
-            <Typography sx={
-                {fontFamily: 'Fugaz One', fontSize: '1rem', color: '#FFFFFF', marginBottom: '1rem'}
-            }>
-                Do you have a song that you want to sing along, but can't find it on this website?
-                Fill out the form below!
-            </Typography>
-            <form onSubmit={handleSubmit}>
-                {createFormControl("songName", "Song Name", formData.songName, true)}
-                {createFormControl("artist", "Artist", formData.artist, false)}
-                {createFormControl("youtubeLink", "Youtube Link", formData.youtubeLink, false)}
-                {createFormControl("details", "Details/Comments", formData.details, false)}
-                <CustomSubmitButton type="submit">Submit</CustomSubmitButton>
-            </form>
+            { renderForm &&
+                <>
+                    <Typography sx={
+                        {fontFamily: 'Fugaz One', fontSize: '1rem', color: '#FFFFFF', marginBottom: '1rem'}
+                    }>
+                        Do you have a song that you want to sing along, but can't find it on this website?
+                        Fill out the form below!
+                    </Typography>
+                    <form onSubmit={handleSubmit}>
+                        {createFormControl("songName", "Song Name", formData.songName, true)}
+                        {createFormControl("artist", "Artist", formData.artist, false)}
+                        {createFormControl("youtubeLink", "Youtube Link", formData.youtubeLink, false)}
+                        {createFormControl("details", "Details/Comments", formData.details, false)}
+                        <CustomSubmitButton type="submit">Submit</CustomSubmitButton>
+                    </form></>
+            }
+            { !renderForm &&
+                <>
+                    <Typography sx={
+                        {fontFamily: 'Fugaz One', fontSize: '1rem', color: '#FFFFFF', marginBottom: '1rem'}
+                    }>
+                        {apiResponse}
+                    </Typography>
+                    <CustomSubmitButton onClick={handleResubmit}>Request a new song</CustomSubmitButton>
+                </>
+            }
         </div>
     )
 }

@@ -1,10 +1,10 @@
-import './App.css';
+import './SongRequest.css';
 import RequestForm from "./components/RequestForm";
 import Footer from "./components/Footer";
 
 function SongRequest() {
     return (
-        <div>
+        <div className="song-request-styling">
             <RequestForm />
             <Footer />
         </div>
