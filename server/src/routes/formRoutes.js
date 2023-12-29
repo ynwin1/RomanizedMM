@@ -18,10 +18,10 @@ router.post("/submitForm", async (req, res) => {
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
-        res.status(200).json({ message: "Song requested successfully. Stay tuned!" });
+        res.status(200).json({ message: "Song requested successfully ✅. Stay tuned! 🤩" });
     } catch (e) {
         console.error('Error sending message to Discord:', e);
-        res.status(500).json({ message: 'Error when requesting song. Try again!' });
+        res.status(500).json({ message: 'Oops! there was an error 😩. Please try again! 🙏🏻' });
     }
 })
 
