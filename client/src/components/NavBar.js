@@ -1,5 +1,6 @@
 import React from "react";
 import { AppBar, Toolbar, Typography, Button } from '@mui/material';
+import { Link } from 'react-router-dom';
 import { styled } from '@mui/system';
 
 const CustomAppBar = styled(AppBar)({
@@ -19,7 +20,6 @@ const CustomButton = styled(Button)({
     borderRadius: '1rem',
     background: 'rgba(220, 20, 60, 0.80)',
     boxShadow: '2px 4px 8px 0px rgba(51, 51, 51, 0.30)',
-    marginLeft: "auto",
     padding: '10px 20px',
     fontSize: '1rem',
     textTransform: 'none',
@@ -29,17 +29,16 @@ const CustomButton = styled(Button)({
 })
 
 function NavBar() {
-    function songRequestPage() {
-        // TODO - need to use Router
-    }
 
     return (
         <CustomAppBar position="static">
-            <Toolbar>
+            <Toolbar sx={{justifyContent: "space-between", display: 'flex', flexDirection: 'row',}}>
                 <NavBarTypography variant="h5">
                     MeloMyan
                 </NavBarTypography>
-                <CustomButton onClick={songRequestPage}><NavBarTypography>Request a song</NavBarTypography></CustomButton>
+                <Link to="/song-request">
+                    <CustomButton><NavBarTypography>Request a song</NavBarTypography></CustomButton>
+                </Link>
             </Toolbar>
         </CustomAppBar>
     )

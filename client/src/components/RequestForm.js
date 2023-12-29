@@ -1,5 +1,6 @@
 import React, {useState} from "react"
 import {FormControl, InputLabel, Input, FormHelperText} from "@mui/material";
+import {styled} from "@mui/system";
 
 function RequestForm() {
     const SERVER_URL = 'http://localhost:4321';
@@ -44,18 +45,25 @@ function RequestForm() {
         await submitForm();
     }
 
+    const CustomForm = styled(FormControl) ({
+        display:'flex', flexDirection:'column', justifyContent: 'center', alignItems:'center'
+    })
+
     function createFormControl(name, label, val, req) {
         return (
-            <FormControl required={req}>
-                <InputLabel htmlFor={name}>{label}</InputLabel>
-                <Input
-                    id={name}
-                    name={name}
-                    value={val}
-                    onChange={handleChange}
-                />
-                {req && <FormHelperText>Required(*)</FormHelperText>}
-            </FormControl>
+            <div className="request-form">
+                <CustomForm required={req} sx={{}}>
+                    <InputLabel htmlFor={name}>{label}</InputLabel>
+                    <Input
+                        id={name}
+                        name={name}
+                        value={val}
+                        onChange={handleChange}
+                        sx={{background: '#FFFFFF'}}
+                    />
+                    {/*{req && <FormHelperText>Required(*)</FormHelperText>}*/}
+                </CustomForm>
+            </div>
         )
     }
 
@@ -71,9 +79,9 @@ function RequestForm() {
     return (
         <form onSubmit={handleSubmit}>
             {createFormControl("songName", "Song Name", formData.songName, true)}
-            {createFormControl("artist", "Artist", formData.songName, true)}
-            {createFormControl("youtubeLink", "Youtube Link", formData.songName, true)}
-            {createFormControl("details", "Details/Comments", formData.songName, true)}
+            {createFormControl("artist", "Artist", formData.artist, false)}
+            {createFormControl("youtubeLink", "Youtube Link", formData.youtubeLink, false)}
+            {createFormControl("details", "Details/Comments", formData.details, false)}
             <button type="submit">Submit</button>
         </form>
     )
