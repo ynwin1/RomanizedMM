@@ -4,7 +4,7 @@ import Footer from "./components/Footer";
 
 function SongRequest() {
     return (
-        <div className="App">
+        <div>
             <RequestForm />
             <Footer />
         </div>

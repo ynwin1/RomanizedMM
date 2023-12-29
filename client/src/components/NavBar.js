@@ -33,9 +33,11 @@ function NavBar() {
     return (
         <CustomAppBar position="static">
             <Toolbar sx={{justifyContent: "space-between", display: 'flex', flexDirection: 'row',}}>
-                <NavBarTypography variant="h5">
-                    MeloMyan
-                </NavBarTypography>
+                <Link to="/" sx={{ textDecoration: 'none' }}>
+                    <NavBarTypography variant="h5">
+                        MeloMyan
+                    </NavBarTypography>
+                </Link>
                 <Link to="/song-request">
                     <CustomButton><NavBarTypography>Request a song</NavBarTypography></CustomButton>
                 </Link>

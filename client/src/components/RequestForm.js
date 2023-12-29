@@ -16,6 +16,7 @@ function RequestForm() {
 
     const CustomSubmitButton = styled(Button) ({
         width: '5rem',
+        marginTop: '1rem',
         padding: '0.5rem 1rem',
         borderRadius: '0.5rem',
         background: 'white',
@@ -36,16 +37,19 @@ function RequestForm() {
 
     async function submitForm() {
         try {
+            console.log(`Data to be sent - ${JSON.stringify({formData})}`)
             const response = await fetch(SERVER_URL + API_URL, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({formData}),
             });
+            console.log(`Status - ${response.status}`);
+            console.log(`Response - ${response}`)
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
             const data = await response.json();
-            setApiResponse(data);
+            setApiResponse(data.message);
         } catch (e) {
             console.log(e.message);
             setApiResponse(e.message);
@@ -77,7 +81,11 @@ function RequestForm() {
         // Render message
         return (
             <div>
-                <h1>{apiResponse}</h1>
+                <Typography sx={
+                    {fontFamily: 'Fugaz One', fontSize: '2rem', color: '#FFFFFF', marginTop: '2rem'}
+                }>
+                    {apiResponse}
+                </Typography>
             </div>
         )
     }
