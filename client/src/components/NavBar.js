@@ -1,5 +1,5 @@
 import React from "react";
-import { AppBar, Toolbar, Typography, Button } from '@mui/material';
+import {AppBar, Toolbar, Typography, Button} from '@mui/material';
 import { Link } from 'react-router-dom';
 import { styled } from '@mui/system';
 
@@ -32,13 +32,13 @@ function NavBar() {
 
     return (
         <CustomAppBar position="static">
-            <Toolbar sx={{justifyContent: "space-between", display: 'flex', flexDirection: 'row',}}>
-                <Link to="/" sx={{ textDecoration: 'none' }}>
+            <Toolbar sx={{justifyContent: "space-between", display: 'flex', flexDirection: 'row'}}>
+                <Link to="/" style={{ color: 'inherit', textDecoration: 'inherit' }}>
                     <NavBarTypography variant="h5">
                         MeloMyan
                     </NavBarTypography>
                 </Link>
-                <Link to="/song-request">
+                <Link to="/song-request" style={{ color: 'inherit', textDecoration: 'inherit' }}>
                     <CustomButton><NavBarTypography>Request a song</NavBarTypography></CustomButton>
                 </Link>
             </Toolbar>
