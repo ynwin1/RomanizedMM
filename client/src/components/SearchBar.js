@@ -25,8 +25,8 @@ const CustomAutocomplete = styled(Autocomplete)({
     marginBottom: '1rem'
 })
 
-const SERVER_URL = 'http://localhost:4321';
-const API_URL = '/api/songs/search'
+const SERVER_URL = process.env.REACT_APP_BACKEND_URI;
+const API_URL = process.env.REACT_APP_SEARCH_SONG_API;
 
 function SearchBar(props) {
     const [userInput, setUserInput] = useState("");
@@ -38,6 +38,7 @@ function SearchBar(props) {
 
     async function fetchSongs() {
         try {
+            console.log(`Fetching songs via - ${SERVER_URL}${API_URL}`);
             const response = await fetch(SERVER_URL + API_URL + `?term=${userInput}`, {
                 method: 'GET',
                 headers: {

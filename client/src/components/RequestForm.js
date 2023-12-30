@@ -3,8 +3,8 @@ import {FormControl, InputLabel, Input, Button, Typography} from "@mui/material"
 import {styled} from "@mui/system";
 
 function RequestForm() {
-    const SERVER_URL = 'http://localhost:4321';
-    const API_URL = '/api/submitForm'
+    const SERVER_URL = process.env.REACT_APP_BACKEND_URI; //"http://localhost:4321"
+    const API_URL = process.env.REACT_APP_SUBMIT_FORM_API; //"/api/submitForm"
 
     const initialForm = {
         songName: '',
@@ -50,10 +50,10 @@ function RequestForm() {
             });
             console.log(`Status - ${response.status}`);
             console.log(`Response - ${response}`)
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
             const data = await response.json();
+            if (!response.ok) {
+                throw new Error(`${data.message}`);
+            }
             setApiResponse(data.message);
             setRenderForm(false);
         } catch (e) {
