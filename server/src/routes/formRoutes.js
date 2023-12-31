@@ -1,14 +1,12 @@
 import express from 'express';
 const router = express.Router();
 
-
 router.post("/submitForm", async (req, res) => {
     const discordWebhook = process.env.DISCORD_WEBHOOK;
     const formData = req.body.formData;
     const discordMessage = {
         content: `Song Name: ${formData.songName}\nArtist: ${formData.artist}\nYouTube Link: ${formData.youtubeLink}\nDetails: ${formData.details}`
     };
-    console.log(`DISCORD HOOK - ${discordWebhook}`);
     try {
         const response = await fetch(discordWebhook, {
             method: 'POST',
@@ -20,7 +18,7 @@ router.post("/submitForm", async (req, res) => {
         }
         res.status(200).json({ message: "Song requested successfully ✅. Stay tuned! 🤩" });
     } catch (e) {
-        console.error('Error sending message to Discord:', e);
+        console.error('Error sending message to Discord:', e.message);
         res.status(500).json({ message: 'Oops! there was an error 😩. Please try again! 🙏🏻' });
     }
 })
