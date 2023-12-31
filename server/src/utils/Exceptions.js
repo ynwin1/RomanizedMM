@@ -1,5 +1,4 @@
-
-class MongoDBConnectionError extends Error {
+export class MongoDBConnectionError extends Error {
     constructor(message) {
         super(message);
         this.name = this.constructor.name;
