@@ -2,8 +2,10 @@
   "scripts": {
     "start": "concurrently \"npm run start-fe\" \"npm run start-be\"",
     "start-fe": "cd client && npm start",
-    "start-be": "cd server && npm start"
+    "start-be": "cd server && npm start",
+    "check-lyrics": "node scripts/validateJSONFiles.js"
   },
+  "type": "module",
   "devDependencies": {
     "concurrently": "^8.2.2"
   }
