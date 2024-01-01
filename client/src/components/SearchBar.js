@@ -3,16 +3,17 @@ import { useState, useEffect } from "react";
 import { Typography, Autocomplete, TextField} from '@mui/material';
 import { styled } from '@mui/system';
 
-const SloganTypography = styled(Typography)({
+const SloganTypography = styled(Typography)(({ fontSize }) => ({
     color: '#FFFFFF',
     textAlign: 'center',
     fontFamily: 'Pacifico',
-    fontSize: '2.5rem',
+    fontSize: fontSize,
     fontStyle: 'normal',
     fontWeight: '400',
     lineHeight: 'normal',
     padding: '1rem'
-})
+}))
+
 const CustomAutocomplete = styled(Autocomplete)({
     width: '40%',
     alignSelf: 'center',
@@ -100,8 +101,9 @@ function SearchBar(props) {
 
     return (
         <div className="searchBar">
-            <SloganTypography>
-                Sing Myanmar, Globally!
+            <SloganTypography fontSize="2.5rem"> Sing Myanmar, Globally! </SloganTypography>
+            <SloganTypography fontSize="1rem" sx={{fontFamily: 'Fugaz One'}}>
+                Discover Romanized Lyrics of Myanmar Music
             </SloganTypography>
             <CustomAutocomplete
                 disablePortal
