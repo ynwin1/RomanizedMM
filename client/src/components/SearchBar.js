@@ -22,7 +22,7 @@ const CustomAutocomplete = styled(Autocomplete)({
         borderRadius: '0.5rem'
     },
     marginTop: '1rem',
-    marginBottom: '1rem'
+    marginBottom: '1rem',
 })
 
 const SERVER_URL = process.env.REACT_APP_BACKEND_URI;
@@ -56,7 +56,29 @@ function SearchBar(props) {
     }
 
     function filterSongs() {
-        return matchingSongs.map(song => song.songName);
+        if (!matchingSongs || matchingSongs.length === 0) {
+            return [];
+        }
+
+        const groupedSongs = matchingSongs.reduce((acc, song) => {
+            // use first letter as key to identify groups
+            const firstLetter = song.songName[0].toUpperCase();
+            if (!acc[firstLetter]) {
+                acc[firstLetter] = [];
+            }
+            acc[firstLetter].push({
+                title: song.songName,
+                firstLetter: firstLetter
+            });
+            return acc;
+        }, {});
+
+        // sort groups by key
+        const sortedGroups = Object.keys(groupedSongs).sort();
+        // sort songs in each group by title
+        return sortedGroups.flatMap(group => {
+            return groupedSongs[group].sort((a, b) => a.title.localeCompare(b.title));
+        });
     }
 
     function handleUserInput(event) {
@@ -83,6 +105,8 @@ function SearchBar(props) {
                 disablePortal
                 id="combo-box-demo"
                 options={filterSongs()}
+                groupBy={(option) => option.firstLetter}
+                getOptionLabel={(option) => option.title}
                 onChange={handleUserSelection}
                 renderInput={(params) => (
                     <TextField
