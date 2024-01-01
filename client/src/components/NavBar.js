@@ -28,12 +28,16 @@ const CustomButton = styled(Button)({
     },
 })
 
-function NavBar() {
+function NavBar(props) {
+    function cleanupHome() {
+        props.resetSong(undefined);
+        props.resetLastSong('');
+    }
 
     return (
         <CustomAppBar position="static">
             <Toolbar sx={{justifyContent: "space-between", display: 'flex', flexDirection: 'row'}}>
-                <Link to="/" style={{ color: 'inherit', textDecoration: 'inherit' }}>
+                <Link to="/" style={{ color: 'inherit', textDecoration: 'inherit' }} onClick={cleanupHome}>
                     <NavBarTypography variant="h5">
                         MeloMyan
                     </NavBarTypography>
