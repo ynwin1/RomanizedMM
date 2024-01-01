@@ -67,7 +67,7 @@ function SearchBar(props) {
                 acc[firstLetter] = [];
             }
             acc[firstLetter].push({
-                title: song.songName,
+                songName: song.songName,
                 firstLetter: firstLetter
             });
             return acc;
@@ -76,9 +76,11 @@ function SearchBar(props) {
         // sort groups by key
         const sortedGroups = Object.keys(groupedSongs).sort();
         // sort songs in each group by title
-        return sortedGroups.flatMap(group => {
-            return groupedSongs[group].sort((a, b) => a.title.localeCompare(b.title));
+        const sortedFinal = sortedGroups.flatMap(group => {
+            return groupedSongs[group].sort((a, b) => a.songName.localeCompare(b.songName));
         });
+        console.log(`Sorted songs - ${sortedFinal}`);
+        return sortedFinal;
     }
 
     function handleUserInput(event) {
@@ -87,10 +89,10 @@ function SearchBar(props) {
     }
 
     function handleUserSelection(event, value) {
-        const songSearched = matchingSongs.find(song => song.songName === value);
         if (value === null || value === undefined) {
             props.setSelectedSong(props.lastSong);
         } else {
+            const songSearched = matchingSongs.find(song => song.songName === value.songName);
             props.setSelectedSong(songSearched);
             props.setLastSong(songSearched);
         }
@@ -106,7 +108,7 @@ function SearchBar(props) {
                 id="combo-box-demo"
                 options={filterSongs()}
                 groupBy={(option) => option.firstLetter}
-                getOptionLabel={(option) => option.title}
+                getOptionLabel={(option) => option.songName}
                 onChange={handleUserSelection}
                 renderInput={(params) => (
                     <TextField
