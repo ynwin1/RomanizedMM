@@ -1,6 +1,7 @@
 import React, {useState} from "react"
 import {FormControl, InputLabel, Input, Button, Typography} from "@mui/material";
-import {styled} from "@mui/system";
+import {styled, useTheme} from "@mui/system";
+import {selectTextColor} from "../themes/ColorSelect";
 
 function RequestForm() {
     const SERVER_URL = process.env.REACT_APP_BACKEND_URI; //"http://localhost:4321"
@@ -13,24 +14,27 @@ function RequestForm() {
         details: ''
     }
 
+    const theme = useTheme();
+    const textColor = selectTextColor(theme.palette.mode);
+
     const [formData, setFormData] = useState(initialForm);
     const [apiResponse, setApiResponse] = useState("");
     const [renderForm, setRenderForm] = useState(true);
 
-    const CustomSubmitButton = styled(Button) ({
+    const CustomSubmitButton = styled(Button)(({theme}) => ({
         width: '15rem',
         marginTop: '1rem',
         marginBottom: '1rem',
         padding: '0.5rem 1rem',
         borderRadius: '0.5rem',
-        background: 'white',
-        color: 'black',
+        background: theme.palette.mode === 'light' ? "#000000" : "#FFFFFF",
+        color: theme.palette.mode === 'light' ? "#FFFFFF" : "#000000",
         cursor: 'pointer',
         '&:hover': {
             background: '#CCCCCC'
         },
         alignSelf: 'center'
-    })
+    }));
 
     function handleChange(event) {
         const {name, value} = event.target;
@@ -84,23 +88,23 @@ function RequestForm() {
                     name={name}
                     value={val}
                     onChange={handleChange}
-                    sx={{background: '#FFFFFF', width:'30rem', borderRadius: '1rem', paddingLeft: '1rem'}}
+                    sx={{ background: 'transparent', width:'30rem', paddingLeft: '1rem'}}
                 />
             </FormControl>
         )
     }
 
     return (
-        <div className="request-form">
+        <div className = {theme.palette.mode === 'light' ? "request-form-light" : "request-form-dark"}>
             <Typography sx={
-                {fontFamily: 'Fugaz One', fontSize: '3rem', color: '#FFFFFF', marginBottom: '2rem'}
+                {fontFamily: 'Fugaz One', fontSize: '3rem', color: textColor, marginBottom: '2rem'}
             }>
                 Request a song!
             </Typography>
             { renderForm &&
                 <>
                     <Typography sx={
-                        {fontFamily: 'Fugaz One', fontSize: '1rem', color: '#FFFFFF', marginBottom: '1rem'}
+                        {fontFamily: 'Fugaz One', fontSize: '1rem', color: textColor, marginBottom: '1rem'}
                     }>
                         Do you have a song that you want to sing along, but can't find it on this website?
                         Fill out the form below!
@@ -116,7 +120,7 @@ function RequestForm() {
             { !renderForm &&
                 <>
                     <Typography sx={
-                        {fontFamily: 'Fugaz One', fontSize: '1rem', color: '#FFFFFF', marginBottom: '1rem'}
+                        {fontFamily: 'Fugaz One', fontSize: '1rem', color: textColor, marginBottom: '1rem'}
                     }>
                         {apiResponse}
                     </Typography>

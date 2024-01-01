@@ -1,10 +1,11 @@
 import React from "react"
 import { useState, useEffect } from "react";
 import { Typography, Autocomplete, TextField} from '@mui/material';
-import { styled } from '@mui/system';
+import {styled, useTheme} from '@mui/system';
+import {selectTextColor} from "../themes/ColorSelect";
 
-const SloganTypography = styled(Typography)(({ fontSize }) => ({
-    color: '#FFFFFF',
+const SloganTypography = styled(Typography)(({ fontSize, theme }) => ({
+    color: selectTextColor(theme.palette.mode),
     textAlign: 'center',
     fontFamily: 'Pacifico',
     fontSize: fontSize,
@@ -14,17 +15,18 @@ const SloganTypography = styled(Typography)(({ fontSize }) => ({
     padding: '1rem'
 }))
 
-const CustomAutocomplete = styled(Autocomplete)({
+const CustomAutocomplete = styled(Autocomplete)(({theme}) => ({
     width: '40%',
     alignSelf: 'center',
     '& .MuiInputBase-root': {
         fontSize: '1rem',
-        backgroundColor: 'white',
-        borderRadius: '0.5rem'
+        backgroundColor: theme.palette.mode === 'light' ? "#FFFFFF" : "#000000",
+        color: selectTextColor(theme.palette.mode),
+        borderRadius: '0.5rem',
     },
     marginTop: '1rem',
     marginBottom: '1rem',
-})
+}))
 
 const SERVER_URL = process.env.REACT_APP_BACKEND_URI;
 const API_URL = process.env.REACT_APP_SEARCH_SONG_API;
@@ -32,6 +34,7 @@ const API_URL = process.env.REACT_APP_SEARCH_SONG_API;
 function SearchBar(props) {
     const [userInput, setUserInput] = useState("");
     const [matchingSongs, setMatchingSongs] = useState([]);
+    const theme = useTheme();
 
     useEffect(() => {
         fetchSongs();
@@ -101,17 +104,17 @@ function SearchBar(props) {
 
     return (
         <div className="searchBar">
-            <SloganTypography fontSize="2.5rem"> Sing Myanmar, Globally! </SloganTypography>
+            <SloganTypography fontSize="2.5rem" theme={theme}> Sing Myanmar, Globally! </SloganTypography>
             <SloganTypography fontSize="1rem" sx={{fontFamily: 'Fugaz One'}}>
                 Discover Romanized Lyrics of Myanmar Music
             </SloganTypography>
             <CustomAutocomplete
-                disablePortal
                 id="combo-box-demo"
                 options={filterSongs()}
                 groupBy={(option) => option.firstLetter}
                 getOptionLabel={(option) => option.songName}
                 onChange={handleUserSelection}
+                theme={theme}
                 renderInput={(params) => (
                     <TextField
                         {...params}

@@ -6,8 +6,13 @@
   justify-content: space-between;
 }
 
-body {
-  background: linear-gradient(180deg, #6A1B9A 1.34%, #0B3D91 34.33%, #4B0082 66.7%, #FF1493 100%) no-repeat;
+/*linear-gradient(180deg, #6A1B9A 1.34%, #0B3D91 34.33%, #4B0082 66.7%, #FF1493 100%) no-repeat*/
+.body-light {
+  background: #FFFFFF;
+}
+
+.body-dark {
+  background: #000000;
 }
 
 .App-logo {
