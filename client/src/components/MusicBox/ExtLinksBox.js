@@ -2,10 +2,10 @@ import React from 'react';
 import { Button } from '@mui/material';
 import Card from '@mui/material/Card';
 import {styled, useTheme} from "@mui/system";
-import youtubeIcon from '../logos/youtube.png';
-import spotifyIcon from '../logos/spotify.png';
-import appleMusicIcon from '../logos/appleMusic.png';
-import {selectTextColor} from "../themes/ColorSelect";
+import youtubeIcon from '../../logos/youtube.png';
+import spotifyIcon from '../../logos/spotify.png';
+import appleMusicIcon from '../../logos/appleMusic.png';
+import {selectTextColor} from "../../themes/ColorSelect";
 
 const ExtLinkCard = styled(Card)(({theme}) => ({
     margin: '1rem 1rem',

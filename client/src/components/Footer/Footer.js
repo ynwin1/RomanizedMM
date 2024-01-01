@@ -1,7 +1,7 @@
 import React from "react"
 import { Typography } from '@mui/material';
 import {styled, useTheme} from '@mui/system';
-import {selectTextColor} from "../themes/ColorSelect";
+import {selectTextColor} from "../../themes/ColorSelect";
 
 const CustomFooter = styled(Typography)(({theme}) => ({
     margin: '1rem 1rem',

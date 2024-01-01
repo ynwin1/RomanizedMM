@@ -3,7 +3,7 @@ import { Typography } from "@mui/material";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import {styled, useTheme} from "@mui/system";
-import {selectTextColor} from "../themes/ColorSelect";
+import {selectTextColor} from "../../themes/ColorSelect";
 
 const AboutCard = styled(Card)(({theme}) => ({
     margin: '1rem 1rem',

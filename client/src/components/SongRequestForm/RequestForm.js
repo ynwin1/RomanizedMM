@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 import {FormControl, InputLabel, Input, Button, Typography} from "@mui/material";
 import {styled, useTheme} from "@mui/system";
-import {selectTextColor} from "../themes/ColorSelect";
+import {selectTextColor} from "../../themes/ColorSelect";
 
 function RequestForm() {
     const SERVER_URL = process.env.REACT_APP_BACKEND_URI; //"http://localhost:4321"

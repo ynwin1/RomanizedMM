@@ -2,7 +2,7 @@ import React from "react"
 import { useState, useEffect } from "react";
 import { Typography, Autocomplete, TextField} from '@mui/material';
 import {styled, useTheme} from '@mui/system';
-import {selectTextColor} from "../themes/ColorSelect";
+import {selectTextColor} from "../../themes/ColorSelect";
 
 const SloganTypography = styled(Typography)(({ fontSize, theme }) => ({
     color: selectTextColor(theme.palette.mode),
