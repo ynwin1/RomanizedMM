@@ -27,6 +27,10 @@ const SongSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    whenToListen: {
+        type: String,
+        required: true
+    },
     lyrics: {
         type: String,
         required: true

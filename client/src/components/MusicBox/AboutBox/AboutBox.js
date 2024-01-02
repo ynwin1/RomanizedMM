@@ -16,7 +16,7 @@ function AboutBox(props) {
                     <AboutTypography>Artist: {props.song.artistName}</AboutTypography>
                     <AboutTypography>Album:  {props.song.albumName}</AboutTypography>
                     <AboutTypography>Genre: {props.song.genre}</AboutTypography>
-                    <AboutTypography>About: {props.song.about}</AboutTypography>
+                    <AboutTypography>When to listen: {props.song.whenToListen}</AboutTypography>
                 </CardContent>
             </AboutCard>
         </Slide>
