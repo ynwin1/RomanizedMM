@@ -1,7 +1,8 @@
 import React, {useState} from "react"
-import {FormControl, InputLabel, Input, Button, Typography} from "@mui/material";
-import {styled, useTheme} from "@mui/system";
+import {InputLabel, Input} from "@mui/material";
+import {useTheme} from "@mui/system";
 import {selectTextColor} from "../../themes/ColorSelect";
+import {CustomFormControl, CustomSubmitButton, SubtitleTypography, TitleTypography} from "./RequestFormStyling";
 
 function RequestForm() {
     const SERVER_URL = process.env.REACT_APP_BACKEND_URI; //"http://localhost:4321"
@@ -20,21 +21,6 @@ function RequestForm() {
     const [formData, setFormData] = useState(initialForm);
     const [apiResponse, setApiResponse] = useState("");
     const [renderForm, setRenderForm] = useState(true);
-
-    const CustomSubmitButton = styled(Button)(({theme}) => ({
-        width: '15rem',
-        marginTop: '1rem',
-        marginBottom: '1rem',
-        padding: '0.5rem 1rem',
-        borderRadius: '0.5rem',
-        background: theme.palette.mode === 'light' ? "#000000" : "#FFFFFF",
-        color: theme.palette.mode === 'light' ? "#FFFFFF" : "#000000",
-        cursor: 'pointer',
-        '&:hover': {
-            background: '#CCCCCC'
-        },
-        alignSelf: 'center'
-    }));
 
     function handleChange(event) {
         const {name, value} = event.target;
@@ -80,50 +66,44 @@ function RequestForm() {
 
     function createFormControl(name, label, val, req) {
         return (
-            <FormControl required={req} sx={
-                {display: 'flex', flexDirection: 'column', margin: '1rem 1rem'}}>
+            <CustomFormControl required={req}>
                 <InputLabel htmlFor={name}>{label}</InputLabel>
                 <Input
                     id={name}
                     name={name}
                     value={val}
                     onChange={handleChange}
-                    sx={{ background: 'transparent', width:'30rem', paddingLeft: '1rem'}}
+                    sx={{ width:'30rem', paddingLeft: '1rem'}}
                 />
-            </FormControl>
+            </CustomFormControl>
         )
     }
 
     return (
         <div className = {theme.palette.mode === 'light' ? "request-form-light" : "request-form-dark"}>
-            <Typography sx={
-                {fontFamily: 'Fugaz One', fontSize: '3rem', color: textColor, marginBottom: '2rem'}
-            }>
+            <TitleTypography textColor={textColor}>
                 Request a song!
-            </Typography>
+            </TitleTypography>
             { renderForm &&
                 <>
-                    <Typography sx={
-                        {fontFamily: 'Fugaz One', fontSize: '1rem', color: textColor, marginBottom: '1rem'}
-                    }>
+                    <SubtitleTypography textColor={textColor}>
                         Do you have a song that you want to sing along, but can't find it on this website?
                         Fill out the form below!
-                    </Typography>
+                    </SubtitleTypography>
                     <form onSubmit={handleSubmit}>
                         {createFormControl("songName", "Song Name", formData.songName, true)}
                         {createFormControl("artist", "Artist", formData.artist, false)}
                         {createFormControl("youtubeLink", "Youtube Link", formData.youtubeLink, false)}
                         {createFormControl("details", "Details/Comments", formData.details, false)}
                         <CustomSubmitButton type="submit">Submit</CustomSubmitButton>
-                    </form></>
+                    </form>
+                </>
             }
             { !renderForm &&
                 <>
-                    <Typography sx={
-                        {fontFamily: 'Fugaz One', fontSize: '1rem', color: textColor, marginBottom: '1rem'}
-                    }>
+                    <SubtitleTypography textColor={textColor}>
                         {apiResponse}
-                    </Typography>
+                    </SubtitleTypography>
                     <CustomSubmitButton onClick={handleResubmit}>Request a new song</CustomSubmitButton>
                 </>
             }
