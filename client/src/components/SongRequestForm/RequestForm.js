@@ -1,5 +1,5 @@
 import React, {useState} from "react"
-import {InputLabel, Input} from "@mui/material";
+import {InputLabel, Input, CircularProgress} from "@mui/material";
 import {useTheme} from "@mui/system";
 import {selectTextColor} from "../../themes/ColorSelect";
 import {CustomFormControl, CustomSubmitButton, SubtitleTypography, TitleTypography} from "./RequestFormStyling";
@@ -21,6 +21,7 @@ function RequestForm() {
     const [formData, setFormData] = useState(initialForm);
     const [apiResponse, setApiResponse] = useState("");
     const [renderForm, setRenderForm] = useState(true);
+    const [isLoading, setIsLoading] = useState(false);
 
     function handleChange(event) {
         const {name, value} = event.target;
@@ -32,6 +33,7 @@ function RequestForm() {
 
     async function submitForm() {
         try {
+            setIsLoading(true);
             console.log(`Data to be sent - ${JSON.stringify({formData})}`)
             const response = await fetch(SERVER_URL + API_URL, {
                 method: 'POST',
@@ -48,6 +50,8 @@ function RequestForm() {
             console.error(e.message);
             setApiResponse('Oops! there was an error 😩. Please try again! 🙏🏻');
             setRenderForm(false);
+        } finally {
+            setIsLoading(false);
         }
     }
 
@@ -59,6 +63,7 @@ function RequestForm() {
 
     function handleResubmit() {
         setFormData(initialForm);
+        setApiResponse("");
         setRenderForm(prevState => !prevState);
     }
 
@@ -99,10 +104,15 @@ function RequestForm() {
             }
             { !renderForm &&
                 <>
-                    <SubtitleTypography textColor={textColor}>
-                        {apiResponse}
-                    </SubtitleTypography>
-                    <CustomSubmitButton onClick={handleResubmit}>Request a new song</CustomSubmitButton>
+                    {isLoading ? <CircularProgress /> :
+                        <>
+                            <SubtitleTypography textColor={textColor}>
+                                {apiResponse}
+                            </SubtitleTypography>
+                            <CustomSubmitButton onClick={handleResubmit}>Request a new song</CustomSubmitButton>
+                        </>
+                    }
+
                 </>
             }
         </div>
