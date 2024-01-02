@@ -21,12 +21,12 @@ function LyricsBox(props) {
     return (
         <Fade in={true} timeout={2000}>
             <LyricsContainer>
-                <LyricsTitleTypography textColor={textColor}>
+                <LyricsTitleTypography textcolor={textColor}>
                     Lyrics
                 </LyricsTitleTypography>
-                <LyricsCard textColor={textColor}>
+                <LyricsCard textcolor={textColor}>
                     <CardContent>
-                        <LyricsTypography textColor={textColor}>
+                        <LyricsTypography textcolor={textColor}>
                             {formatLyrics(props.song.lyrics)}
                         </LyricsTypography>
                     </CardContent>

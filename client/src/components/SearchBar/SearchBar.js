@@ -1,5 +1,5 @@
 import React from "react"
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { TextField } from '@mui/material';
 import { useTheme} from '@mui/system';
 import { SloganTypography, CustomAutocomplete } from './SearchBarStyling';
@@ -31,7 +31,7 @@ function SearchBar(props) {
 
             return () => clearTimeout(timeout);
         }
-    }, [sloganIndex]);
+    }, [sloganText, sloganIndex]);
 
     async function fetchSongs() {
         try {
@@ -63,9 +63,10 @@ function SearchBar(props) {
             if (!acc[firstLetter]) {
                 acc[firstLetter] = [];
             }
+            // pass the whole song object so can use other attributes later
             acc[firstLetter].push({
-                songName: song.songName,
-                firstLetter: firstLetter
+                song: song,
+                firstLetter: firstLetter,
             });
             return acc;
         }, {});
@@ -74,7 +75,7 @@ function SearchBar(props) {
         const sortedGroups = Object.keys(groupedSongs).sort();
         // sort songs in each group by title
         const sortedFinal = sortedGroups.flatMap(group => {
-            return groupedSongs[group].sort((a, b) => a.songName.localeCompare(b.songName));
+            return groupedSongs[group].sort((a, b) => a.song.songName.localeCompare(b.song.songName));
         });
         console.log(`Sorted songs - ${sortedFinal}`);
         return sortedFinal;
@@ -89,7 +90,8 @@ function SearchBar(props) {
         if (value === null || value === undefined) {
             props.setSelectedSong(props.lastSong);
         } else {
-            const songSearched = matchingSongs.find(song => song.songName === value.songName);
+            console.log(`MMID of value - ${value.song.mmid}`);
+            const songSearched = matchingSongs.find(song => song.mmid === value.song.mmid);
             props.setSelectedSong(songSearched);
             props.setLastSong(songSearched);
         }
@@ -102,9 +104,10 @@ function SearchBar(props) {
                 {sloganText}
             </SloganTypography>
             <CustomAutocomplete
-                options={filterSongs()}
+                //useMemo to filter only when matchingSongs changes (sloganText can cause multiple filtering)
+                options={useMemo(() => filterSongs(), [matchingSongs])}
                 groupBy={(option) => option.firstLetter}
-                getOptionLabel={(option) => option.songName}
+                getOptionLabel={(option) => option.song.songName}
                 onChange={handleUserSelection}
                 theme={theme}
                 renderInput={(params) => (

@@ -8,11 +8,11 @@ export const LyricsContainer = styled(Box) ({
     marginTop: '2rem',
 });
 
-export const LyricsCard = styled(Card)(({textColor}) => ({
+export const LyricsCard = styled(Card)(({textcolor}) => ({
     margin: '1rem 1rem',
     paddingTop: '1rem',
     borderRadius: '1.25rem',
-    border: `2px solid ${textColor}`,
+    border: `2px solid ${textcolor}`,
     background: 'rgba(217, 217, 217, 0.00)',
     width: '50%',
     maxWidth: '70%',
@@ -20,10 +20,10 @@ export const LyricsCard = styled(Card)(({textColor}) => ({
     alignSelf: 'center'
 }));
 
-export const LyricsTitleTypography = styled(Typography)(({textColor}) => ({
-    fontFamily:'Fugaz One', color: textColor, fontSize: '2rem'
+export const LyricsTitleTypography = styled(Typography)(({textcolor}) => ({
+    fontFamily:'Fugaz One', color: textcolor, fontSize: '2rem'
 }))
 
-export const LyricsTypography = styled(Typography)(({textColor}) => ({
-    color: textColor, fontFamily: 'Lato'
+export const LyricsTypography = styled(Typography)(({textcolor}) => ({
+    color: textcolor, fontFamily: 'Lato'
 }));
