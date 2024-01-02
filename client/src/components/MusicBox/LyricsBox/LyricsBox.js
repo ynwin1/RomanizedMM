@@ -1,0 +1,36 @@
+import React from 'react';
+import CardContent from '@mui/material/CardContent';
+import {useTheme} from "@mui/system";
+import {selectTextColor} from "../../../themes/ColorSelect";
+import {LyricsCard, LyricsContainer, LyricsTitleTypography, LyricsTypography} from "./LyricsBoxStyling";
+
+function formatLyrics(lyrics) {
+    return lyrics.split('\n').map((line, index) => (
+        <React.Fragment key={index}>
+            {line}
+            <br />
+        </React.Fragment>
+    ))
+}
+
+function LyricsBox(props) {
+    const theme = useTheme();
+    const textColor = selectTextColor(theme.palette.mode);
+
+    return (
+        <LyricsContainer>
+            <LyricsTitleTypography textColor={textColor}>
+                Lyrics
+            </LyricsTitleTypography>
+            <LyricsCard textColor={textColor}>
+                <CardContent>
+                    <LyricsTypography textColor={textColor}>
+                        {formatLyrics(props.song.lyrics)}
+                    </LyricsTypography>
+                </CardContent>
+            </LyricsCard>
+        </LyricsContainer>
+    )
+}
+
+export default LyricsBox;

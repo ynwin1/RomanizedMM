@@ -1,9 +1,9 @@
 import React  from "react";
 import { Box } from "@mui/material";
 import { styled } from "@mui/system";
-import AboutBox from "./AboutBox";
-import ExtLinksBox from "./ExtLinksBox";
-import LyricsBox from "./LyricsBox";
+import AboutBox from "./AboutBox/AboutBox";
+import ExtLinksBox from "./ExternalLinksBox/ExtLinksBox";
+import LyricsBox from "./LyricsBox/LyricsBox";
 
 const OverallContainer = styled(Box) ({
     display: 'flex',

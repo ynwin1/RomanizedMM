@@ -1,23 +1,10 @@
 import React from 'react';
 import { Button } from '@mui/material';
-import Card from '@mui/material/Card';
-import {styled, useTheme} from "@mui/system";
-import youtubeIcon from '../../logos/youtube.png';
-import spotifyIcon from '../../logos/spotify.png';
-import appleMusicIcon from '../../logos/appleMusic.png';
-import {selectTextColor} from "../../themes/ColorSelect";
-
-const ExtLinkCard = styled(Card)(({theme}) => ({
-    margin: '1rem 1rem',
-    borderRadius: '1rem',
-    borderBottom: `2px solid ${selectTextColor(theme.palette.mode)}`,
-    background: "transparent",
-    justifyContent: "space-between",
-    display: 'flex',
-    flexDirection: 'row',
-    alignSelf: 'center',
-    width: '20%'
-}));
+import {useTheme} from "@mui/system";
+import youtubeIcon from '../../../logos/youtube.png';
+import spotifyIcon from '../../../logos/spotify.png';
+import appleMusicIcon from '../../../logos/appleMusic.png';
+import {ExtLinkCard} from "./ExtLinksBoxStyling";
 
 function openLink(url) {
     window.open(url, '_blank');

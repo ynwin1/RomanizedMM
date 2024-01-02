@@ -1,22 +1,8 @@
 import React from 'react';
-import { Typography } from "@mui/material";
-import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import {styled, useTheme} from "@mui/system";
-import {selectTextColor} from "../../themes/ColorSelect";
-
-const AboutCard = styled(Card)(({theme}) => ({
-    margin: '1rem 1rem',
-    borderRadius: '1.25rem',
-    border: `2px solid ${selectTextColor(theme.palette.mode)}`,
-    background: 'rgba(217, 217, 217, 0.00)',
-    width: '40%',
-    height: 'auto',
-}));
-
-const AboutTypography = styled(Typography) ({
-    fontFamily: 'Lato'
-})
+import {useTheme} from "@mui/system";
+import {selectTextColor} from "../../../themes/ColorSelect";
+import {AboutTypography, AboutCard} from "./AboutBoxStyling";
 
 function AboutBox(props) {
     const theme = useTheme();
