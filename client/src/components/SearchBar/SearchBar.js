@@ -1,32 +1,8 @@
 import React from "react"
 import { useState, useEffect } from "react";
-import { Typography, Autocomplete, TextField} from '@mui/material';
-import {styled, useTheme} from '@mui/system';
-import {selectTextColor} from "../../themes/ColorSelect";
-
-const SloganTypography = styled(Typography)(({ fontSize, theme }) => ({
-    color: selectTextColor(theme.palette.mode),
-    textAlign: 'center',
-    fontFamily: 'Pacifico',
-    fontSize: fontSize,
-    fontStyle: 'normal',
-    fontWeight: '400',
-    lineHeight: 'normal',
-    padding: '1rem'
-}))
-
-const CustomAutocomplete = styled(Autocomplete)(({theme}) => ({
-    width: '40%',
-    alignSelf: 'center',
-    '& .MuiInputBase-root': {
-        fontSize: '1rem',
-        backgroundColor: theme.palette.mode === 'light' ? "#FFFFFF" : "#000000",
-        color: selectTextColor(theme.palette.mode),
-        borderRadius: '0.5rem',
-    },
-    marginTop: '1rem',
-    marginBottom: '1rem',
-}))
+import { TextField } from '@mui/material';
+import { useTheme} from '@mui/system';
+import { SloganTypography, CustomAutocomplete } from './SearchBarStyling';
 
 const SERVER_URL = process.env.REACT_APP_BACKEND_URI;
 const API_URL = process.env.REACT_APP_SEARCH_SONG_API;
@@ -106,7 +82,7 @@ function SearchBar(props) {
         <div className="searchBar">
             <SloganTypography fontSize="2.5rem" theme={theme}> Sing Myanmar, Globally! </SloganTypography>
             <SloganTypography fontSize="1rem" sx={{fontFamily: 'Fugaz One'}}>
-                Discover Romanized Lyrics of Myanmar Music
+                Discover romanized lyrics of your favourite Myanmar songs
             </SloganTypography>
             <CustomAutocomplete
                 id="combo-box-demo"
@@ -120,7 +96,8 @@ function SearchBar(props) {
                         {...params}
                         label="Type a song title"
                         onChange={handleUserInput}
-                    />)}
+                    />
+                )}
             />
         </div>
     )
