@@ -11,7 +11,9 @@ function isValidJSONFile(content) {
         content.hasOwnProperty('artistName') && content.artistName.trim() !== '' &&
         content.hasOwnProperty('genre') && content.genre.trim() !== '' &&
         content.hasOwnProperty('about') && content.about.trim() !== '' &&
-        content.hasOwnProperty('lyrics') && content.lyrics.trim() !== ''
+        content.hasOwnProperty('lyrics') && content.lyrics.trim() !== '' &&
+        content.hasOwnProperty('whenToListen') && content.whenToListen.trim() !== '' &&
+        content.hasOwnProperty('mmid') && (!isNaN(content.mmid) && typeof content.mmid === 'number')
 }
 
 fs.readdir(directoryPath, (err, files) => {
