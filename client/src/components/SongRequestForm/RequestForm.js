@@ -5,8 +5,8 @@ import {selectTextColor} from "../../themes/ColorSelect";
 import {CustomFormControl, CustomSubmitButton, SubtitleTypography, TitleTypography} from "./RequestFormStyling";
 
 function RequestForm() {
-    const SERVER_URL = process.env.REACT_APP_BACKEND_URI; //"http://localhost:4321"
-    const API_URL = process.env.REACT_APP_SUBMIT_FORM_API; //"/api/submitForm"
+    const SERVER_URL = process.env.REACT_APP_BACKEND_URI;
+    const API_URL = process.env.REACT_APP_SUBMIT_FORM_API;
 
     const initialForm = {
         songName: '',
