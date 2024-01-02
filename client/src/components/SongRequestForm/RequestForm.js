@@ -38,8 +38,6 @@ function RequestForm() {
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({formData}),
             });
-            console.log(`Status - ${response.status}`);
-            console.log(`Response - ${response}`)
             const data = await response.json();
             if (!response.ok) {
                 throw new Error(`${data.message}`);
@@ -47,8 +45,8 @@ function RequestForm() {
             setApiResponse(data.message);
             setRenderForm(false);
         } catch (e) {
-            console.log(e.message);
-            setApiResponse(e.message);
+            console.error(e.message);
+            setApiResponse('Oops! there was an error 😩. Please try again! 🙏🏻');
             setRenderForm(false);
         }
     }
