@@ -1,5 +1,5 @@
 import React  from "react";
-import { Box } from "@mui/material";
+import {Box, Fade} from "@mui/material";
 import { styled } from "@mui/system";
 import AboutBox from "./AboutBox/AboutBox";
 import ExtLinksBox from "./ExternalLinksBox/ExtLinksBox";
@@ -22,7 +22,9 @@ function MusicBox(props) {
     const imageLink = props.song.imageLink;
     return (
         <OverallContainer>
-            {imageLink && <img src={imageLink} alt="albumPhoto" className="album-picture"/>}
+            <Fade in={true} timeout={1000}>
+                {imageLink && <img src={imageLink} alt="albumPhoto" className="album-picture"/>}
+            </Fade>
             <AboutContainer>
                 <AboutBox song={props.song} />
                 <ExtLinksBox song={props.song} />

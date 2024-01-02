@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '@mui/material';
+import {Button, Slide} from '@mui/material';
 import {useTheme} from "@mui/system";
 import youtubeIcon from '../../../logos/youtube.png';
 import spotifyIcon from '../../../logos/spotify.png';
@@ -18,23 +18,25 @@ function ExtLinksBox(props) {
     const theme = useTheme();
 
     return (
-        <ExtLinkCard theme={theme}>
-            {youtube &&
-                <Button>
-                    <img className="extLinkButton" src={youtubeIcon} alt="Youtube" onClick={() => openLink(youtube)} />
-                </Button>
-            }
-            {spotify &&
-                <Button>
-                    <img className="extLinkButton" src={spotifyIcon} alt="Spotify" onClick={() => openLink(spotify)} />
-                </Button>
-            }
-            {apple &&
-                <Button>
-                    <img className="extLinkButton" src={appleMusicIcon} alt="Apple Music" onClick={() => openLink(apple)} />
-                </Button>
-            }
-        </ExtLinkCard>
+        <Slide in={true} timeout={1000} direction="left">
+            <ExtLinkCard theme={theme}>
+                {youtube &&
+                    <Button>
+                        <img className="extLinkButton" src={youtubeIcon} alt="Youtube" onClick={() => openLink(youtube)} />
+                    </Button>
+                }
+                {spotify &&
+                    <Button>
+                        <img className="extLinkButton" src={spotifyIcon} alt="Spotify" onClick={() => openLink(spotify)} />
+                    </Button>
+                }
+                {apple &&
+                    <Button>
+                        <img className="extLinkButton" src={appleMusicIcon} alt="Apple Music" onClick={() => openLink(apple)} />
+                    </Button>
+                }
+            </ExtLinkCard>
+        </Slide>
     )
 }
 
