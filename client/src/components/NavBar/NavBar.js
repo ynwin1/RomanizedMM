@@ -21,7 +21,7 @@ function NavBar(props) {
             <CustomToolBar>
                 <Link to="/" style={{ color: 'inherit', textDecoration: 'inherit' }} onClick={cleanupHome}>
                     <NavBarTypography variant="h5" theme={theme}>
-                        MeloMyan
+                        RomanizedMM
                     </NavBarTypography>
                 </Link>
                 <IconButton onClick={colorMode.toggleColorMode} color="inherit">

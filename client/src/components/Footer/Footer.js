@@ -8,7 +8,7 @@ function Footer() {
 
     return (
         <CustomFooter theme={theme}>
-        © 2023 MeloMyan. All Rights Reserved.
+        © 2023 RomanizedMM. All Rights Reserved.
         </CustomFooter>
     )
 }
