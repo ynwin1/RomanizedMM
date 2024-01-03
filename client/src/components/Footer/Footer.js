@@ -8,7 +8,7 @@ function Footer() {
 
     return (
         <CustomFooter theme={theme}>
-        © 2023 RomanizedMM. All Rights Reserved.
+        © 2024 RomanizedMM. All Rights Reserved.
         </CustomFooter>
     )
 }
