@@ -5,7 +5,7 @@ import {selectTextColor} from "../../themes/ColorSelect";
 export const OverallContainer = styled(Box) ({
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'center'
 })
 
 export const AboutContainer = styled(Box) ({

@@ -22,7 +22,7 @@ function ExtLinksBox(props) {
             <ExtLinkCard theme={theme}>
                 {youtube &&
                     <Button>
-                        <img className="extLinkButton" src={youtubeIcon} alt="Youtube" onClick={() => openLink(youtube)} />
+                        <img className="extLinkButton" src={youtubeIcon} alt="Youtube" onClick={props.enableYoutube} />
                     </Button>
                 }
                 {spotify &&

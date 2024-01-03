@@ -5,6 +5,7 @@ import AboutBox from "./AboutBox/AboutBox";
 import ExtLinksBox from "./ExternalLinksBox/ExtLinksBox";
 import LyricsBox from "./LyricsBox/LyricsBox";
 import {OverallContainer, AboutContainer, AboutTypography} from "./MusicBoxStyling";
+import YoutubePlayer from "./YoutubePlayer";
 
 function MusicBox(props) {
     const imageLink = props.song.imageLink;
@@ -33,6 +34,17 @@ function MusicBox(props) {
         }
     }, [aboutIndex, about]);
 
+    const [renderYoutube, setRenderYoutube] = useState(false);
+
+    function enableYoutube() {
+        if (renderYoutube) {
+            console.log("Turning off Youtube");
+        } else {
+            console.log("Turning on Youtube");
+        }
+        setRenderYoutube(prevState => !prevState);
+    }
+
     return (
         <OverallContainer>
             <Fade in={true} timeout={1000}>
@@ -41,8 +53,9 @@ function MusicBox(props) {
             <AboutTypography theme={theme}>{aboutText}</AboutTypography>
             <AboutContainer>
                 <AboutBox song={props.song} />
-                <ExtLinksBox song={props.song} />
+                <ExtLinksBox song={props.song} enableYoutube={enableYoutube}/>
             </AboutContainer>
+            {props.song.youtubeLink && renderYoutube && <YoutubePlayer link={props.song.youtubeLink}/>}
             <LyricsBox song={props.song} />
         </OverallContainer>
     )
