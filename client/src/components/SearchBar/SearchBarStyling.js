@@ -24,4 +24,7 @@ export const CustomAutocomplete = styled(Autocomplete)(({theme}) => ({
     },
     marginTop: '1rem',
     marginBottom: '1rem',
+    '@media (max-width: 768px)': {
+        width: '80vw',
+    }
 }))

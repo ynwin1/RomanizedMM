@@ -11,5 +11,8 @@ export const ExtLinkCard = styled(Card)(({theme}) => ({
     display: 'flex',
     flexDirection: 'row',
     alignSelf: 'center',
-    width: '30%'
+    width: '30%',
+    '@media (max-width: 768px)': {
+        width: '70vw',
+    }
 }));

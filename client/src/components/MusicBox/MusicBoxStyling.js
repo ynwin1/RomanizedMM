@@ -21,7 +21,10 @@ export const AboutTypography = styled(Typography)(({theme}) => ({
     padding: '1.5rem',
     fontFamily: 'Caveat',
     fontSize: '1.3rem',
-    maxWidth: '60%',
+    width: '60%',
     wordWrap: 'break-word',
-    alignSelf: 'center'
+    alignSelf: 'center',
+    '@media (max-width: 768px)': {
+        width: '80vw',
+    }
 }));

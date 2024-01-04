@@ -12,7 +12,10 @@ export const AboutCard = styled(Card)(({theme}) => ({
     height: 'auto',
     selfAlign: 'center',
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    '@media (max-width: 768px)': {
+        width: '80vw',
+    }
 }));
 
 export const AboutTypography = styled(Typography) ({
