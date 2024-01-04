@@ -8,8 +8,11 @@ export const AboutCard = styled(Card)(({theme}) => ({
     borderRadius: '1.25rem',
     border: `2px solid ${selectTextColor(theme.palette.mode)}`,
     background: 'rgba(217, 217, 217, 0.00)',
-    width: '40%',
+    width: '45vw',
     height: 'auto',
+    selfAlign: 'center',
+    display: 'flex',
+    flexDirection: 'column'
 }));
 
 export const AboutTypography = styled(Typography) ({

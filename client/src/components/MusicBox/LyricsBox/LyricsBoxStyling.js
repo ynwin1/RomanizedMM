@@ -6,6 +6,7 @@ export const LyricsContainer = styled(Box) ({
     display: 'flex',
     flexDirection: 'column',
     marginTop: '2rem',
+    width: '90vw'
 });
 
 export const LyricsCard = styled(Card)(({textcolor}) => ({
@@ -14,8 +15,7 @@ export const LyricsCard = styled(Card)(({textcolor}) => ({
     borderRadius: '1.25rem',
     border: `2px solid ${textcolor}`,
     background: 'rgba(217, 217, 217, 0.00)',
-    width: '50%',
-    maxWidth: '70%',
+    width: '75%',
     height: 'auto',
     alignSelf: 'center'
 }));

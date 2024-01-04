@@ -51,10 +51,8 @@ function MusicBox(props) {
                 {imageLink && <img src={imageLink} alt="albumPhoto" className="album-picture"/>}
             </Fade>
             <AboutTypography theme={theme}>{aboutText}</AboutTypography>
-            <AboutContainer>
-                <AboutBox song={props.song} />
-                <ExtLinksBox song={props.song} enableYoutube={enableYoutube}/>
-            </AboutContainer>
+            <AboutBox song={props.song} />
+            <ExtLinksBox song={props.song} enableYoutube={enableYoutube}/>
             {props.song.youtubeLink && renderYoutube && <YoutubePlayer link={props.song.youtubeLink}/>}
             <LyricsBox song={props.song} />
         </OverallContainer>
