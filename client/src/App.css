@@ -81,21 +81,21 @@
   justify-content: center;
   align-items: center;
   width: 40vw;
-  height: 22.5vw;
+  height: 25vw;
   margin: 0 auto;
 }
 
 @media (max-width: 768px) {
   .youtube-player {
-    width: 90vw;
-    height: 50.625vw;
+    width: 81vw;
+    height: 53vw;
   }
 }
 
 @media (max-width: 480px) {
   .youtube-player {
-    width: 95vw;
-    height: 53.4375vw;
+    width: 75vw;
+    height: 58vw;
   }
 }
 

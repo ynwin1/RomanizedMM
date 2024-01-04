@@ -14,7 +14,7 @@ export const AboutCard = styled(Card)(({theme}) => ({
     display: 'flex',
     flexDirection: 'column',
     '@media (max-width: 768px)': {
-        width: '80vw',
+        width: '85vw',
     }
 }));
 
