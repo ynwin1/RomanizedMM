@@ -75,3 +75,27 @@
   border-radius: 1rem;
 }
 
+.youtube-player {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40vw;
+  height: 22.5vw;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .youtube-player {
+    width: 90vw;
+    height: 50.625vw;
+  }
+}
+
+@media (max-width: 480px) {
+  .youtube-player {
+    width: 95vw;
+    height: 53.4375vw;
+  }
+}
+
