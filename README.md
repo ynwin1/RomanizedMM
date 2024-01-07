@@ -1,7 +1,5 @@
 # RomanizedMM
-Official Website - www.romanizedmm.com (TBD - waiting for DNS propagation)
-
-Current website - https://romanized-mm-frontend.onrender.com
+Official Website - www.romanizedmm.com
 
 Demo - https://www.youtube.com/watch?v=9P4RoPcO_RM
 ## About
