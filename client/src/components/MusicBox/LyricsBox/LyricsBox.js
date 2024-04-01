@@ -19,20 +19,18 @@ function LyricsBox(props) {
     const textColor = selectTextColor(theme.palette.mode);
 
     return (
-        <Fade in={true} timeout={2000}>
-            <LyricsContainer>
-                <LyricsTitleTypography textcolor={textColor}>
-                    Lyrics
-                </LyricsTitleTypography>
-                <LyricsCard textcolor={textColor}>
-                    <CardContent>
-                        <LyricsTypography textcolor={textColor}>
-                            {formatLyrics(props.song.lyrics)}
-                        </LyricsTypography>
-                    </CardContent>
-                </LyricsCard>
-            </LyricsContainer>
-        </Fade>
+        <LyricsContainer>
+            <LyricsTitleTypography textcolor={textColor}>
+                Lyrics
+            </LyricsTitleTypography>
+            <LyricsCard textcolor={textColor}>
+                <CardContent>
+                    <LyricsTypography textcolor={textColor}>
+                        {formatLyrics(props.song.lyrics)}
+                    </LyricsTypography>
+                </CardContent>
+            </LyricsCard>
+        </LyricsContainer>
     )
 }
 

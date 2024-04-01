@@ -1,6 +1,6 @@
 import './SongRequest.css';
-import RequestForm from "./components/SongRequestForm/RequestForm";
-import Footer from "./components/Footer/Footer";
+import RequestForm from "../components/SongRequestForm/RequestForm";
+import Footer from "../components/Footer/Footer";
 
 function SongRequest() {
     return (

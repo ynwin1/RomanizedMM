@@ -3,18 +3,31 @@ import { useState, useEffect, useMemo } from "react";
 import { TextField } from '@mui/material';
 import { useTheme} from '@mui/system';
 import { SloganTypography, CustomAutocomplete } from './SearchBarStyling';
+import {useNavigate} from "react-router-dom";
+import allSongs from "./SongHost";
 
-const SERVER_URL = process.env.REACT_APP_BACKEND_URI;
-const API_URL = process.env.REACT_APP_SEARCH_SONG_API;
-
-function SearchBar(props) {
-    const [userInput, setUserInput] = useState("");
+function SearchBar() {
     const [matchingSongs, setMatchingSongs] = useState([]);
     const theme = useTheme();
+    const navigate = useNavigate();
 
     useEffect(() => {
-        fetchSongs();
+        loadSongs();
     }, []);
+
+    function loadSongs() {
+        const combinedSongData = allSongs();
+        setMatchingSongs(combinedSongData);
+    }
+
+    function handleUserSelection(event, value) {
+        if (value !== null && value !== undefined) {
+            const songSearched = matchingSongs.find(song => song.mmid === value.song.mmid);
+            const englishSongName = songSearched.songName.split('(')[0].trim().replace(/\s/g, '');
+            console.log(`English song name - ${englishSongName}`);
+            navigate(`/song/${englishSongName}`);
+        }
+    }
 
     // slogan animation
     const slogan = "Discover romanized lyrics of your favourite Myanmar songs";
@@ -32,25 +45,6 @@ function SearchBar(props) {
             return () => clearTimeout(timeout);
         }
     }, [sloganText, sloganIndex]);
-
-    async function fetchSongs() {
-        try {
-            console.log(`Fetching songs via - ${SERVER_URL}${API_URL}`);
-            const response = await fetch(SERVER_URL + API_URL + `?term=${userInput}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
-            }
-            const data = await response.json();
-            setMatchingSongs(data);
-        } catch (e) {
-            console.log(e.message);
-        }
-    }
 
     function filterSongs() {
         if (!matchingSongs || matchingSongs.length === 0) {
@@ -81,21 +75,16 @@ function SearchBar(props) {
         return sortedFinal;
     }
 
-    function handleUserInput(event) {
-        const newUserInput = event.target.value;
-        setUserInput(newUserInput);
-    }
-
-    function handleUserSelection(event, value) {
-        if (value === null || value === undefined) {
-            props.setSelectedSong(props.lastSong);
-        } else {
-            console.log(`MMID of value - ${value.song.mmid}`);
-            const songSearched = matchingSongs.find(song => song.mmid === value.song.mmid);
-            props.setSelectedSong(songSearched);
-            props.setLastSong(songSearched);
-        }
-    }
+    // function handleUserSelection(event, value) {
+    //     if (value === null || value === undefined) {
+    //         props.setSelectedSong(props.lastSong);
+    //     } else {
+    //         console.log(`MMID of value - ${value.song.mmid}`);
+    //         const songSearched = matchingSongs.find(song => song.mmid === value.song.mmid);
+    //         props.setSelectedSong(songSearched);
+    //         props.setLastSong(songSearched);
+    //     }
+    // }
 
     return (
         <div className="searchBar">
@@ -114,7 +103,6 @@ function SearchBar(props) {
                     <TextField
                         {...params}
                         label="Type a song title"
-                        onChange={handleUserInput}
                     />
                 )}
             />
