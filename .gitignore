@@ -131,6 +131,3 @@ dist
 .pnp.*
 
 .idea/
-
-# Hide lyrics files
-lyricsJSON/
