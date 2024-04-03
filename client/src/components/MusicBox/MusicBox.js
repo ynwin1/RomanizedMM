@@ -6,6 +6,8 @@ import ExtLinksBox from "./ExternalLinksBox/ExtLinksBox";
 import LyricsBox from "./LyricsBox/LyricsBox";
 import {OverallContainer, AboutContainer, AboutTypography} from "./MusicBoxStyling";
 import YoutubePlayer from "./YoutubePlayer";
+import SearchBar from "../SearchBar/SearchBar";
+import AutoCompleteSearchBar from "../SearchBar/AutoCompleteSearch";
 
 function MusicBox(props) {
     const imageLink = props.song.imageLink;
@@ -47,9 +49,10 @@ function MusicBox(props) {
 
     return (
         <OverallContainer>
-            <Fade in={true} timeout={1000}>
-                {imageLink && <img src={imageLink} alt="albumPhoto" className="album-picture"/>}
-            </Fade>
+            <div style={{marginTop: '1rem', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                <AutoCompleteSearchBar />
+            </div>
+            {imageLink && <img src={imageLink} alt="albumPhoto" className="album-picture"/>}
             <AboutTypography theme={theme}>{aboutText}</AboutTypography>
             <AboutBox song={props.song} />
             <ExtLinksBox song={props.song} enableYoutube={enableYoutube}/>
