@@ -2,9 +2,10 @@ import {styled} from "@mui/system";
 import Card from "@mui/material/Card";
 import {selectTextColor} from "../../../themes/ColorSelect";
 
-export const ExtLinkCard = styled(Card)(({theme}) => ({
-    margin: '1rem 0rem',
+export const CheckBoxCard = styled(Card)(({theme}) => ({
+    margin: '2rem 0rem',
     borderRadius: '1rem',
+    paddingLeft: '1rem',
     border: `2px solid ${selectTextColor(theme.palette.mode)}`,
     background: "transparent",
     justifyContent: "center",
@@ -12,8 +13,8 @@ export const ExtLinkCard = styled(Card)(({theme}) => ({
     flexDirection: 'row',
     alignSelf: 'center',
     width: '30%',
-    gap: '3rem',
+    gap: '1rem',
     '@media (max-width: 768px)': {
-        width: '70vw',
+        width: '80vw',
     }
 }));
