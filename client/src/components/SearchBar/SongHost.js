@@ -12,11 +12,12 @@ import songData11 from '../../lyricsJSON/SaungTwinNway.json';
 import songData12 from '../../lyricsJSON/SSYMS.json';
 import songData13 from '../../lyricsJSON/ThanYawZin.json';
 import songData14 from '../../lyricsJSON/LatePyar.json';
+import songData15 from '../../lyricsJSON/GaBarASetSet.json';
 
 
 function allSongs() {
     const combinedSongData = [
-        songData1, songData2, songData3, songData4, songData5, songData6, songData7, songData8, songData9, songData10, songData11, songData12, songData13, songData14];
+        songData1, songData2, songData3, songData4, songData5, songData6, songData7, songData8, songData9, songData10, songData11, songData12, songData13, songData14, songData15];
     return combinedSongData;
 }
 
