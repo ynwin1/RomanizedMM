@@ -108,4 +108,10 @@
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
+    <url>
+        <loc>https://www.romanizedmm.com/song/KyayZuuParKwal</loc>
+        <lastmod>2024-05-30</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
 </urlset>
