@@ -1,15 +1,14 @@
 import React from "react";
-import { useParams } from "react-router-dom";
 import MusicBox from "../components/MusicBox/MusicBox";
 import Footer from "../components/Footer/Footer";
+import { SongContext } from "../SongContext";
 
 function MusicPage() {
-    const { songName } = useParams();
-    const songData = require(`../lyricsJSON/${songName}.json`);
+    const { selectedSong } = React.useContext(SongContext);
 
     return (
         <div>
-            <MusicBox song={songData} />
+            <MusicBox song={selectedSong} />
             <Footer />
         </div>
     );
