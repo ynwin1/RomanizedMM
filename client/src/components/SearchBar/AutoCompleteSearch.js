@@ -3,7 +3,6 @@ import { TextField } from '@mui/material';
 import { useTheme } from '@mui/system';
 import { CustomAutocomplete } from './SearchBarStyling';
 import { useNavigate } from "react-router-dom";
-import allSongs from "./SongHost";
 import { SongContext } from "../../SongContext";
 
 function AutoCompleteSearchBar() {
@@ -39,11 +38,6 @@ function AutoCompleteSearchBar() {
             console.log(e.message);
         }
     }
-
-    // function loadSongs() {
-    //     const combinedSongData = allSongs();
-    //     setMatchingSongs(combinedSongData);
-    // }
 
     function handleUserInput(event) {
         const newUserInput = event.target.value;
