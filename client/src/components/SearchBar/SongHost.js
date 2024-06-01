@@ -15,12 +15,13 @@ import songData14 from '../../lyricsJSON/LatePyar.json';
 import songData15 from '../../lyricsJSON/GaBarASetSet.json';
 import songData16 from '../../lyricsJSON/BarLoNayThayLal.json';
 import songData17 from '../../lyricsJSON/KyayZuuParKwal.json';
+import songData18 from '../../lyricsJSON/Accident.json';
 
 
 function allSongs() {
     const combinedSongData = [
         songData1, songData2, songData3, songData4, songData5, songData6, songData7, songData8, songData9, songData10, songData11, songData12, songData13, songData14, songData15, songData16,
-    songData17];
+    songData17, songData18];
     return combinedSongData;
 }
 
