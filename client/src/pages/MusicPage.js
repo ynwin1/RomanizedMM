@@ -14,7 +14,7 @@ function MusicPage() {
                 <title>{songData.songName} - {songData.artistName}</title>
                 <meta
                     name="description"
-                    content={`${songData.songName} - ${songData.artistName}, ${songData.lyrics.slice(0, 250) + "..."}`}
+                    content={`${songData.songName} lyrics - ${songData.artistName}, ${songData.lyrics.slice(0, 250) + "..."}`}
                 />
             </Helmet>
             <MusicBox song={songData} />
