@@ -8,13 +8,16 @@ function MusicPage() {
     const { songName } = useParams();
     const songData = require(`../lyricsJSON/${songName}.json`);
 
+    // English song name is guaranteed to be in
+    const songNameSplit = songData.songName.split('(');
+
     return (
         <div>
             <Helmet>
                 <title>{songData.songName} - {songData.artistName}</title>
                 <meta
                     name="description"
-                    content={`${songData.songName} lyrics - ${songData.artistName}, ${songData.lyrics.slice(0, 250) + "..."}`}
+                    content={`${songNameSplit[0]}Lyrics - ${songData.artistName}, ${songData.lyrics.slice(0, 250) + "..."}`}
                 />
             </Helmet>
             <MusicBox song={songData} />
