@@ -12,6 +12,10 @@ function MusicPage() {
         <div>
             <Helmet>
                 <title>{songData.songName} - {songData.artistName}</title>
+                <meta
+                    name="description"
+                    content={songData.lyrics.slice(0, 100) + "..."}
+                />
             </Helmet>
             <MusicBox song={songData} />
             <Footer />
