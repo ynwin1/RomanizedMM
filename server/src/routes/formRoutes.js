@@ -30,7 +30,7 @@ router.post("/submitForm", async (req, res) => {
         if (!response.ok) {
             throw new WebhookSendError(`Sending to webhook failed with ${response.status} error`);
         }
-        res.status(200).json({ message: "Song requested successfully ✅. Stay tuned! 🤩" });
+        res.status(200).json({ message: "Song requested successfully ✅. It may take 1-2 days, so stay tuned! 🤩" });
     } catch (e) {
         console.error('Error sending message to Discord:', e.message);
         res.status(e.status || 500).json({ message: tryAgainMessage});
