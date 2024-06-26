@@ -55,10 +55,12 @@ function AutoCompleteSearchBar() {
     }
 
     function filterSongs() {
+        // return empty array if no songs match
         if (!matchingSongs || matchingSongs.length === 0) {
             return [];
         }
 
+        // group songs by first letter. Songs in each group may not be sorted yet.
         const groupedSongs = matchingSongs.reduce((acc, song) => {
             const firstLetter = song.songName[0].toUpperCase();
             if (!acc[firstLetter]) {
@@ -71,7 +73,9 @@ function AutoCompleteSearchBar() {
             return acc;
         }, {});
 
+        // rearrange groups in ascending alphabetical order
         const sortedGroups = Object.keys(groupedSongs).sort();
+        // sort songs in each group in ascending alphabetical order
         const sortedFinal = sortedGroups.flatMap(group => {
             return groupedSongs[group].sort((a, b) => a.song.songName.localeCompare(b.song.songName));
         });
