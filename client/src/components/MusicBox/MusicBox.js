@@ -21,8 +21,8 @@ function MusicBox(props) {
     const [aboutIndex, setAboutIndex] = useState(0);
 
     const [showRomanized, setShowRomanized] = useState(true);
-    const [showBurmese, setShowBurmese] = useState(true);
-    const [showTranslated, setShowTranslated] = useState(true);
+    const [showBurmese, setShowBurmese] = useState(false);
+    const [showTranslated, setShowTranslated] = useState(false);
 
     // reset upon change in song
     useEffect(() => {
