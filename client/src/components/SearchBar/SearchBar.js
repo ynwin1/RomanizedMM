@@ -1,10 +1,7 @@
 import React from "react"
-import { useState, useEffect, useMemo } from "react";
-import { TextField } from '@mui/material';
+import { useState, useEffect } from "react";
 import { useTheme} from '@mui/system';
-import { SloganTypography, CustomAutocomplete } from './SearchBarStyling';
-import {useNavigate} from "react-router-dom";
-import allSongs from "./SongHost";
+import { SloganTypography} from './SearchBarStyling';
 import AutoCompleteSearchBar from "./AutoCompleteSearch";
 
 function SearchBar() {
