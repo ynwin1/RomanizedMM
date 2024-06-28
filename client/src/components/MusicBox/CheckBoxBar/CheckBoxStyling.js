@@ -1,5 +1,6 @@
 import {styled} from "@mui/system";
 import Card from "@mui/material/Card";
+import {FormControlLabel} from "@mui/material";
 import {selectTextColor} from "../../../themes/ColorSelect";
 
 export const CheckBoxCard = styled(Card)(({theme}) => ({
@@ -18,3 +19,9 @@ export const CheckBoxCard = styled(Card)(({theme}) => ({
         width: '80vw',
     }
 }));
+
+export const ControlLabel = styled(FormControlLabel)(({show}) => ({
+    opacity: show ? 1 : 0.5,
+    transition: 'opacity 0.5s',
+}));
+

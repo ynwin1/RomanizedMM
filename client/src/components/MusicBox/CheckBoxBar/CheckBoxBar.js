@@ -1,39 +1,51 @@
 import React from 'react';
 import {Checkbox, FormControlLabel} from "@mui/material";
-import {CheckBoxCard} from "./CheckBoxCard";
+import {CheckBoxCard, ControlLabel} from "./CheckBoxStyling";
 
 function CheckBoxBar(props) {
+    const burmese = "Burmese";
+    const romanized = "Romanized";
+    const translated = "Translated";
+
+    const {showRomanized, showBurmese, showTranslated, setShowRomanized, setShowBurmese, setShowTranslated} = props;
+
+    const handleCheckBox = (type) => {
+        setShowBurmese(type === burmese);
+        setShowRomanized(type === romanized);
+        setShowTranslated(type === translated);
+    }
+
     return (
         <CheckBoxCard>
-            <FormControlLabel
-                control={<Checkbox checked={props.showRomanized} onChange={() => {
-                    console.log("showRomanized: ", !props.showRomanized)
-                    props.setShowRomanized(!props.showRomanized)
-                    props.setShowBurmese(false);
-                    props.setShowTranslated(false);
-                }} />}
-                disabled={props.showRomanized}
-                label="Romanized"
+            <ControlLabel
+                control={
+                    <Checkbox
+                        checked={showRomanized}
+                        onChange={() => handleCheckBox(romanized)}
+                    />
+                }
+                label={romanized}
+                show ={showRomanized}
             />
-            <FormControlLabel
-                control={<Checkbox checked={props.showBurmese} onChange={() => {
-                    console.log("showBurmese: ", !props.showBurmese)
-                    props.setShowBurmese(!props.showBurmese);
-                    props.setShowRomanized(false);
-                    props.setShowTranslated(false);
-                }} />}
-                disabled={props.showBurmese}
-                label="Burmese"
+            <ControlLabel
+                control={
+                    <Checkbox
+                        checked={showBurmese}
+                        onChange={() => handleCheckBox(burmese)}
+                    />
+                }
+                label={burmese}
+                show ={showBurmese}
             />
-            <FormControlLabel
-                control={<Checkbox checked={props.showTranslated} onChange={() => {
-                    console.log("showTranslated: ", !props.showTranslated);
-                    props.setShowTranslated(!props.showTranslated);
-                    props.setShowRomanized(false);
-                    props.setShowBurmese(false);
-                }} />}
-                disabled={props.showTranslated}
-                label="Translated"
+            <ControlLabel
+                control={
+                    <Checkbox
+                        checked={showTranslated}
+                        onChange={() => handleCheckBox(translated)}
+                    />
+                }
+                label={translated}
+                show ={showTranslated}
             />
         </CheckBoxCard>
     )
