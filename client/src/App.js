@@ -38,22 +38,20 @@ function App() {
     })
 
     return (
-        <SongContext.Provider value={{ selectedSong, setSelectedSong }}>
-            <ColorModeContext.Provider value={colorMode}>
-                <ThemeProvider theme={theme}>
-                    <Router>
-                        <div className="App">
-                            <NavBar/>
-                            <Routes>
-                                <Route path="/" element={<HomePage />}/>
-                                <Route path="/song-request" element={<SongRequest />} />
-                                <Route path="/song/:songName" element={<MusicPage />} />
-                            </Routes>
-                        </div>
-                    </Router>
-                </ThemeProvider>
-            </ColorModeContext.Provider>
-        </SongContext.Provider>
+        <ColorModeContext.Provider value={colorMode}>
+            <ThemeProvider theme={theme}>
+                <Router>
+                    <div className="App">
+                        <NavBar/>
+                        <Routes>
+                            <Route path="/" element={<HomePage/>}/>
+                            <Route path="/song-request" element={<SongRequest/>}/>
+                            <Route path="/song/:songName" element={<MusicPage/>}/>
+                        </Routes>
+                    </div>
+                </Router>
+            </ThemeProvider>
+        </ColorModeContext.Provider>
     );
 }
 

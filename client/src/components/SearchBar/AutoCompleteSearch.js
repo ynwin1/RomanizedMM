@@ -1,16 +1,14 @@
-import React, { useState, useEffect, useMemo, useContext } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { TextField } from '@mui/material';
 import { useTheme } from '@mui/system';
 import { CustomAutocomplete } from './SearchBarStyling';
 import { useNavigate } from "react-router-dom";
-import { SongContext } from "../../SongContext";
 
 function AutoCompleteSearchBar() {
     const [userInput, setUserInput] = useState("");
     const [matchingSongs, setMatchingSongs] = useState([]);
     const theme = useTheme();
     const navigate = useNavigate();
-    const { setSelectedSong } = useContext(SongContext);
 
     const SERVER_URL = process.env.REACT_APP_BACKEND_URI;
     const API_URL = process.env.REACT_APP_SEARCH_SONG_API;
@@ -49,7 +47,6 @@ function AutoCompleteSearchBar() {
             const songSearched = matchingSongs.find(song => song.mmid === value.song.mmid);
             const englishSongName = songSearched.songName.split('(')[0].trim().replace(/\s/g, '');
             console.log(`English song name - ${englishSongName}`);
-            setSelectedSong(songSearched);
             navigate(`/song/${englishSongName}`);
         }
     }
@@ -79,7 +76,6 @@ function AutoCompleteSearchBar() {
         const sortedFinal = sortedGroups.flatMap(group => {
             return groupedSongs[group].sort((a, b) => a.song.songName.localeCompare(b.song.songName));
         });
-        console.log(`Sorted songs - ${sortedFinal}`);
         return sortedFinal;
     }
 

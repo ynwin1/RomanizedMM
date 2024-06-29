@@ -1,5 +1,5 @@
 import React from 'react';
-import {Checkbox, FormControlLabel} from "@mui/material";
+import {Checkbox} from "@mui/material";
 import {CheckBoxCard, ControlLabel} from "./CheckBoxStyling";
 
 function CheckBoxBar(props) {
