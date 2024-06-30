@@ -5,7 +5,7 @@ import Card from "@mui/material/Card";
 export const LyricsContainer = styled(Box) ({
     display: 'flex',
     flexDirection: 'column',
-    marginTop: '2rem',
+    marginTop: '1rem',
     width: '70vw'
 });
 

@@ -7,7 +7,7 @@ function YoutubePlayer(props) {
             <ReactPlayer url={props.link}
                          width='100%'
                          height='100%'
-                         style={{marginTop: '3rem'}}
+                         style={{marginTop: '1rem'}}
                          controls={true}/>
         </div>
     )

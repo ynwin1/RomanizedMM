@@ -34,6 +34,18 @@ const SongSchema = new mongoose.Schema({
     lyrics: {
         type: String,
         required: true
+    },
+    romanized: {
+        type: String,
+        required: true
+    },
+    burmese: {
+        type: String,
+        required: true
+    },
+    translated: {
+        type: String,
+        required: true
     }
 });
 

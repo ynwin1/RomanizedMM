@@ -7,10 +7,12 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ColorModeContext from "./themes/ThemeContext";
 import HomePage from "./pages/HomePage";
 import MusicPage from "./pages/MusicPage";
+import { SongContext } from './SongContext';
 
 
 function App() {
     const [mode, setMode] = useState('light');
+    const [selectedSong, setSelectedSong] = useState(null);
 
     const colorMode = useMemo(
         () => ({
@@ -42,9 +44,9 @@ function App() {
                     <div className="App">
                         <NavBar/>
                         <Routes>
-                            <Route path="/" element={<HomePage />}/>
-                            <Route path="/song-request" element={<SongRequest />} />
-                            <Route path="/song/:songName" element={<MusicPage />} />
+                            <Route path="/" element={<HomePage/>}/>
+                            <Route path="/song-request" element={<SongRequest/>}/>
+                            <Route path="/song/:songName" element={<MusicPage/>}/>
                         </Routes>
                     </div>
                 </Router>
