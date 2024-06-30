@@ -14,7 +14,6 @@ function AutoCompleteSearchBar() {
     const API_URL = process.env.REACT_APP_SEARCH_SONG_API;
 
     useEffect(() => {
-        // loadSongs();
         fetchSongs();
     }, []);
 
@@ -44,15 +43,16 @@ function AutoCompleteSearchBar() {
 
     function handleUserSelection(event, value) {
         if (value !== null && value !== undefined) {
-            const songSearched = matchingSongs.find(song => song.mmid === value.song.mmid);
+            const songSearched = value.song;
             const englishSongName = songSearched.songName.split('(')[0].trim().replace(/\s/g, '');
             console.log(`English song name - ${englishSongName}`);
             navigate(`/song/${englishSongName}`);
         }
     }
 
-    function filterSongs() {
+    function groupAndSortSongs() {
         // return empty array if no songs match
+        console.log(`Matching songs - ${matchingSongs.length}`);
         if (!matchingSongs || matchingSongs.length === 0) {
             return [];
         }
@@ -81,7 +81,7 @@ function AutoCompleteSearchBar() {
 
     return (
         <CustomAutocomplete
-            options={useMemo(() => filterSongs(), [matchingSongs])}
+            options={useMemo(() => groupAndSortSongs(), [matchingSongs])}
             groupBy={(option) => option.firstLetter}
             getOptionLabel={(option) => option.song.songName}
             onChange={handleUserSelection}
