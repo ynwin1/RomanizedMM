@@ -8,7 +8,7 @@ import {OverallContainer, AboutContainer, AboutTypography} from "./MusicBoxStyli
 import YoutubePlayer from "./YoutubePlayer";
 import SearchBar from "../SearchBar/SearchBar";
 import AutoCompleteSearchBar from "../SearchBar/AutoCompleteSearch";
-import CheckBoxBar from "./CheckBoxBar/CheckBoxBar";
+import RadioBoxBar from "./RadioBoxBar/RadioBoxBar";
 
 function MusicBox(props) {
     const imageLink = props.song.imageLink;
@@ -62,7 +62,7 @@ function MusicBox(props) {
             <AboutBox song={props.song} />
             <ExtLinksBox song={props.song} enableYoutube={enableYoutube}/>
             {props.song.youtubeLink && renderYoutube && <YoutubePlayer link={props.song.youtubeLink}/>}
-            <CheckBoxBar
+            <RadioBoxBar
                 showRomanized={showRomanized}
                 setShowRomanized={setShowRomanized}
                 showBurmese={showBurmese}

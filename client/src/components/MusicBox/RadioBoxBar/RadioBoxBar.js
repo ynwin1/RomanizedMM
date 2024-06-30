@@ -1,27 +1,27 @@
 import React from 'react';
-import {Checkbox} from "@mui/material";
-import {CheckBoxCard, ControlLabel} from "./CheckBoxStyling";
+import {Radio} from "@mui/material";
+import {RadioBoxCard, ControlLabel} from "./RadioBoxStyling";
 
-function CheckBoxBar(props) {
+function RadioBoxBar(props) {
     const burmese = "Burmese";
     const romanized = "Romanized";
     const translated = "Translated";
 
     const {showRomanized, showBurmese, showTranslated, setShowRomanized, setShowBurmese, setShowTranslated} = props;
 
-    const handleCheckBox = (type) => {
+    const handleRadio = (type) => {
         setShowBurmese(type === burmese);
         setShowRomanized(type === romanized);
         setShowTranslated(type === translated);
     }
 
     return (
-        <CheckBoxCard>
+        <RadioBoxCard>
             <ControlLabel
                 control={
-                    <Checkbox
+                    <Radio
                         checked={showRomanized}
-                        onChange={() => handleCheckBox(romanized)}
+                        onChange={() => handleRadio(romanized)}
                     />
                 }
                 label={romanized}
@@ -29,9 +29,9 @@ function CheckBoxBar(props) {
             />
             <ControlLabel
                 control={
-                    <Checkbox
+                    <Radio
                         checked={showBurmese}
-                        onChange={() => handleCheckBox(burmese)}
+                        onChange={() => handleRadio(burmese)}
                     />
                 }
                 label={burmese}
@@ -39,16 +39,16 @@ function CheckBoxBar(props) {
             />
             <ControlLabel
                 control={
-                    <Checkbox
+                    <Radio
                         checked={showTranslated}
-                        onChange={() => handleCheckBox(translated)}
+                        onChange={() => handleRadio(translated)}
                     />
                 }
                 label={translated}
                 show ={showTranslated}
             />
-        </CheckBoxCard>
+        </RadioBoxCard>
     )
 }
 
-export default CheckBoxBar;
+export default RadioBoxBar;

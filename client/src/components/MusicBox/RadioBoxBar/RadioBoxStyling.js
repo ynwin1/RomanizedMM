@@ -3,7 +3,7 @@ import Card from "@mui/material/Card";
 import {FormControlLabel} from "@mui/material";
 import {selectTextColor} from "../../../themes/ColorSelect";
 
-export const CheckBoxCard = styled(Card)(({theme}) => ({
+export const RadioBoxCard = styled(Card)(({theme}) => ({
     margin: '2rem 0rem',
     borderRadius: '1rem',
     paddingLeft: '1rem',
