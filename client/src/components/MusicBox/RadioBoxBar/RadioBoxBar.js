@@ -5,14 +5,14 @@ import {RadioBoxCard, ControlLabel} from "./RadioBoxStyling";
 function RadioBoxBar(props) {
     const burmese = "Burmese";
     const romanized = "Romanized";
-    const translated = "Translated";
+    const meaning = "Meaning";
 
-    const {showRomanized, showBurmese, showTranslated, setShowRomanized, setShowBurmese, setShowTranslated} = props;
+    const {showRomanized, showBurmese, showMeaning, setShowRomanized, setShowBurmese, setShowMeaning} = props;
 
     const handleRadio = (type) => {
         setShowBurmese(type === burmese);
         setShowRomanized(type === romanized);
-        setShowTranslated(type === translated);
+        setShowMeaning(type === meaning);
     }
 
     return (
@@ -40,12 +40,12 @@ function RadioBoxBar(props) {
             <ControlLabel
                 control={
                     <Radio
-                        checked={showTranslated}
-                        onChange={() => handleRadio(translated)}
+                        checked={showMeaning}
+                        onChange={() => handleRadio(meaning)}
                     />
                 }
-                label={translated}
-                show ={showTranslated}
+                label={meaning}
+                show ={showMeaning}
             />
         </RadioBoxCard>
     )

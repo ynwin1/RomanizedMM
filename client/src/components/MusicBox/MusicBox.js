@@ -22,7 +22,7 @@ function MusicBox(props) {
 
     const [showRomanized, setShowRomanized] = useState(true);
     const [showBurmese, setShowBurmese] = useState(false);
-    const [showTranslated, setShowTranslated] = useState(false);
+    const [showMeaning, setShowMeaning] = useState(false);
 
     // reset upon change in song
     useEffect(() => {
@@ -67,14 +67,14 @@ function MusicBox(props) {
                 setShowRomanized={setShowRomanized}
                 showBurmese={showBurmese}
                 setShowBurmese={setShowBurmese}
-                showTranslated={showTranslated}
-                setShowTranslated={setShowTranslated}
+                showMeaning={showMeaning}
+                setShowMeaning={setShowMeaning}
             />
             <LyricsBox
                 song={props.song}
                 showRomanized={showRomanized}
                 showBurmese={showBurmese}
-                showTranslated={showTranslated}
+                showMeaning={showMeaning}
             />
         </OverallContainer>
     )

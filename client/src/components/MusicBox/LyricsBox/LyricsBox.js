@@ -27,7 +27,7 @@ function LyricsBox(props) {
                     <LyricsTypography textcolor={textColor}>
                         {props.showRomanized && formatLyrics(props.song.romanized)}
                         {props.showBurmese && formatLyrics(props.song.burmese)}
-                        {props.showTranslated && formatLyrics(props.song.translated)}
+                        {props.showMeaning && formatLyrics(props.song.translated)}
                     </LyricsTypography>
                 </CardContent>
             </LyricsCard>
