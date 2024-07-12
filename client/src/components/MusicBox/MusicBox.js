@@ -8,6 +8,7 @@ import {OverallContainer, AboutContainer, AboutTypography} from "./MusicBoxStyli
 import YoutubePlayer from "./YoutubePlayer";
 import SearchBar from "../SearchBar/SearchBar";
 import AutoCompleteSearchBar from "../SearchBar/AutoCompleteSearch";
+import RadioBoxBar from "./RadioBoxBar/RadioBoxBar";
 
 function MusicBox(props) {
     const imageLink = props.song.imageLink;
@@ -18,6 +19,10 @@ function MusicBox(props) {
     const aboutDelay = 50;
     const [aboutText, setAboutText] = useState('');
     const [aboutIndex, setAboutIndex] = useState(0);
+
+    const [showRomanized, setShowRomanized] = useState(true);
+    const [showBurmese, setShowBurmese] = useState(false);
+    const [showMeaning, setShowMeaning] = useState(false);
 
     // reset upon change in song
     useEffect(() => {
@@ -57,7 +62,20 @@ function MusicBox(props) {
             <AboutBox song={props.song} />
             <ExtLinksBox song={props.song} enableYoutube={enableYoutube}/>
             {props.song.youtubeLink && renderYoutube && <YoutubePlayer link={props.song.youtubeLink}/>}
-            <LyricsBox song={props.song} />
+            <RadioBoxBar
+                showRomanized={showRomanized}
+                setShowRomanized={setShowRomanized}
+                showBurmese={showBurmese}
+                setShowBurmese={setShowBurmese}
+                showMeaning={showMeaning}
+                setShowMeaning={setShowMeaning}
+            />
+            <LyricsBox
+                song={props.song}
+                showRomanized={showRomanized}
+                showBurmese={showBurmese}
+                showMeaning={showMeaning}
+            />
         </OverallContainer>
     )
 }

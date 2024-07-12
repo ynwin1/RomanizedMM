@@ -1,22 +1,21 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import CardContent from '@mui/material/CardContent';
 import {useTheme} from "@mui/system";
 import {selectTextColor} from "../../../themes/ColorSelect";
 import {LyricsCard, LyricsContainer, LyricsTitleTypography, LyricsTypography} from "./LyricsBoxStyling";
-import {Fade} from "@mui/material";
-
-function formatLyrics(lyrics) {
-    return lyrics.split('\n').map((line, index) => (
-        <React.Fragment key={index}>
-            {line}
-            <br/>
-        </React.Fragment>
-    ))
-}
 
 function LyricsBox(props) {
     const theme = useTheme();
     const textColor = selectTextColor(theme.palette.mode);
+
+    function formatLyrics(lyrics) {
+        return lyrics.split('\n').map((line, index) => (
+            <React.Fragment key={index}>
+                {line}
+                <br/>
+            </React.Fragment>
+        ))
+    }
 
     return (
         <LyricsContainer>
@@ -26,7 +25,9 @@ function LyricsBox(props) {
             <LyricsCard textcolor={textColor}>
                 <CardContent>
                     <LyricsTypography textcolor={textColor}>
-                        {formatLyrics(props.song.lyrics)}
+                        {props.showRomanized && formatLyrics(props.song.romanized)}
+                        {props.showBurmese && formatLyrics(props.song.burmese)}
+                        {props.showMeaning && formatLyrics(props.song.translated)}
                     </LyricsTypography>
                 </CardContent>
             </LyricsCard>
