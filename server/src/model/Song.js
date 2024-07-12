@@ -43,7 +43,7 @@ const SongSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    translated: {
+    meaning: {
         type: String,
         required: true
     }
