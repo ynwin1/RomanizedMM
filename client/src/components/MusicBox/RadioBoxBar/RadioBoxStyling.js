@@ -13,7 +13,6 @@ export const RadioBoxCard = styled(Card)(({theme}) => ({
     display: 'flex',
     flexDirection: 'row',
     alignSelf: 'center',
-    width: '30%',
     gap: '1rem',
     '@media (max-width: 768px)': {
         width: '80vw',
