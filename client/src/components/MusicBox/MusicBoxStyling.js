@@ -26,6 +26,6 @@ export const AboutTypography = styled(Typography)(({theme}) => ({
     alignSelf: 'center',
     '@media (max-width: 768px)': {
         width: '80vw',
-        fontSize: '1rem'
+        fontSize: '1.2rem'
     }
 }));

@@ -21,6 +21,6 @@ export const AboutCard = styled(Card)(({theme}) => ({
 export const AboutTypography = styled(Typography) ({
     fontFamily: 'Lato',
     '@media (max-width: 768px)': {
-        fontSize: '0.75rem',
+        fontSize: '0.85rem',
     }
 })

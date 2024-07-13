@@ -32,6 +32,6 @@ export const LyricsTypography = styled(Typography)(({textcolor}) => ({
     color: textcolor,
     fontFamily: 'Lato',
     '@media (max-width: 768px)': {
-        fontSize: '0.75rem',
+        fontSize: '0.85rem',
     }
 }));
