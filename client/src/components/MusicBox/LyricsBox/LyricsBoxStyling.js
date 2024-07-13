@@ -20,6 +20,7 @@ export const LyricsCard = styled(Card)(({textcolor}) => ({
     alignSelf: 'center',
     '@media (max-width: 768px)': {
         width: '85vw',
+        textAlign: 'left'
     }
 }));
 
@@ -28,5 +29,9 @@ export const LyricsTitleTypography = styled(Typography)(({textcolor}) => ({
 }))
 
 export const LyricsTypography = styled(Typography)(({textcolor}) => ({
-    color: textcolor, fontFamily: 'Lato'
+    color: textcolor,
+    fontFamily: 'Lato',
+    '@media (max-width: 768px)': {
+        fontSize: '0.75rem',
+    }
 }));
