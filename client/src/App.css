@@ -90,6 +90,10 @@
     width: 81vw;
     height: 53vw;
   }
+
+  .extLinkButton {
+    width: 3rem
+  }
 }
 
 @media (max-width: 480px) {

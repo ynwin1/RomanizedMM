@@ -13,7 +13,6 @@ export const RadioBoxCard = styled(Card)(({theme}) => ({
     display: 'flex',
     flexDirection: 'row',
     alignSelf: 'center',
-    width: '30%',
     gap: '1rem',
     '@media (max-width: 768px)': {
         width: '80vw',
@@ -23,5 +22,13 @@ export const RadioBoxCard = styled(Card)(({theme}) => ({
 export const ControlLabel = styled(FormControlLabel)(({show}) => ({
     opacity: show ? 1 : 0.5,
     transition: 'opacity 0.5s',
+    '@media (max-width: 768px)': {
+        '.MuiFormControlLabel-label': {
+            fontSize: '0.75rem'
+        },
+        '.MuiRadio-root': {
+            padding: '0.25rem',
+        },
+    }
 }));
 

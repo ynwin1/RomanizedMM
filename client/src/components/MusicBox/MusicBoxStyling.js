@@ -20,11 +20,12 @@ export const AboutTypography = styled(Typography)(({theme}) => ({
     color: selectTextColor(theme.palette.mode),
     padding: '1.5rem',
     fontFamily: 'Caveat',
-    fontSize: '1.3rem',
+    fontSize: '1.2rem',
     width: '60%',
     wordWrap: 'break-word',
     alignSelf: 'center',
     '@media (max-width: 768px)': {
         width: '80vw',
+        fontSize: '1.2rem'
     }
 }));
