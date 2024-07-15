@@ -22,8 +22,9 @@ router.get('/songs/search', async (req, res) => {
 router.post('/songs/add', async (req, res) => {
    try {
        const songData = req.body;
-       const song = Song.create(songData);
-       res.status(201).json({ message: `Song successfully saved - ${song}` });
+       const song = await Song.create(songData);
+       console.log(`Song successfully saved - ${song.songName}`);
+       res.status(201).json({ message: `Song successfully saved - ${song.songName}` });
    } catch (err) {
        console.error(err);
        res.status(400).json({ message: `Failed to create song - ${err.message}`});
