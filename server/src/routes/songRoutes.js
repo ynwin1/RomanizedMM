@@ -19,7 +19,7 @@ router.get('/songs/search', async (req, res) => {
     }
 });
 
-router.post('songs/addSong', async (req, res) => {
+router.post('songs/add', async (req, res) => {
    try {
        const songData = req.body;
        const song = Song.create(songData);
