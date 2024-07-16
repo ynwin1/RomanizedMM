@@ -5,10 +5,11 @@ import {expect} from "chai";
 import mongoose from "mongoose";
 import Song from "../../src/model/Song.js";
 
-describe("GET /songs/search", () => {
+describe ("Songs TestSuite", () => {
     let mongoServer;
     let app;
-    const search_API = "/api/songs/search"
+    const search_API = "/api/songs/search";
+    const add_song_API = "/api/songs"
 
     before(async () => {
         app = createApp();
@@ -18,10 +19,16 @@ describe("GET /songs/search", () => {
         const mongoURI = (await mongoServer).getUri();
         await mongoose.connect(mongoURI);
 
-        await Song.create({ songName: 'happySong', artistName: 'Tom', genre: 'Rock', about: 'Happy', lyrics: 'A' });
-        await Song.create({ songName: 'Happy Home', artistName: 'Morris', genre: 'Disco', about: 'Happy', lyrics: 'C' });
-        await Song.create({ songName: 'new Day $', artistName: 'Tom', genre: 'Jazz', about: 'Mood', lyrics: 'E' });
-        await Song.create({ songName: 'old 1 2Day :(', artistName: 'James', genre: 'Blues', about: 'Mood', lyrics: 'F' });
+        try {
+            await Song.create([
+                { mmid: '1', songName: 'happySong', artistName: 'Tom', genre: 'Rock', about: 'Happy', whenToListen: 'now', lyrics: 'A', romanized: 'r1', burmese: 'စကား', meaning: 'y1' },
+                { mmid: '2', songName: 'Happy Home', artistName: 'Morris', genre: 'Disco', about: 'Happy', whenToListen: 'now', lyrics: 'C', romanized: 'r2', burmese: 'နှင်းတွေ', meaning: 'y2' },
+                { mmid: '3', songName: 'new Day $', artistName: 'Tom', genre: 'Jazz', about: 'Mood', whenToListen: 'now', lyrics: 'E', romanized: 'r3', burmese: 'ဘဝ', meaning: 'y3' },
+                { mmid: '4', songName: 'old 1 2Day :(', artistName: 'James', genre: 'Blues', about: 'Mood', whenToListen: 'now', lyrics: 'F', romanized: 'r4', burmese: 'မင်းမျက်နှာလေး', meaning: 'y4' }
+            ])
+        } catch (e) {
+            console.error("Error inserting documents:", e);
+        }
     });
 
     after(async () => {
@@ -29,7 +36,16 @@ describe("GET /songs/search", () => {
         await mongoServer.stop();
     });
 
-    async function checkAPIRequest(searchTerm, statusCode, expectedNumOfSongs) {
+    async function addSong(body, statusCode, respMsg) {
+        const resp = await request(app)
+            .post(add_song_API)
+            .send(body)
+
+        expect(resp.status).equals(statusCode);
+        expect(resp.text).contains(respMsg);
+    }
+
+    async function verifySearch(searchTerm, statusCode, expectedNumOfSongs) {
         const resp = await request(app)
             .get(search_API)
             .query({ term: searchTerm })
@@ -42,29 +58,100 @@ describe("GET /songs/search", () => {
         }
     }
 
-    it ('should return one song only matching search term', async() => {
-        const searchTerm = "new";
-        await checkAPIRequest(searchTerm, 200, 1);
-    });
+    describe("GET /songs/search", () => {
+        it ('should return one song only matching search term', async() => {
+            const searchTerm = "new";
+            await verifySearch(searchTerm, 200, 1);
+        });
 
-    it ('should return one song with search term containing non-alphabetical characters', async() => {
-        const searchTerm = "$";
-        await checkAPIRequest(searchTerm, 200, 1);
-    });
+        it ('should return one song with search term containing non-alphabetical characters', async() => {
+            const searchTerm = "$";
+            await verifySearch(searchTerm, 200, 1);
+        });
 
-    it ('should return one song with search term containing number', async() => {
-        const searchTerm = "2Day";
-        await checkAPIRequest(searchTerm, 200, 1);
-    });
+        it ('should return one song with search term containing number', async() => {
+            const searchTerm = "2Day";
+            await verifySearch(searchTerm, 200, 1);
+        });
 
-    it ('should return a list of songs matching search term', async() => {
-        const searchTerm = "happy";
-        await checkAPIRequest(searchTerm, 200, 2);
-    });
+        it ('should return a list of songs matching search term', async() => {
+            const searchTerm = "happy";
+            await verifySearch(searchTerm, 200, 2);
+        });
 
-    // successful search but did not find any matching songs
-    it ('should still return 200 if no matching songs found', async() => {
-        const searchTerm = "nonExisting";
-        await checkAPIRequest(searchTerm, 200, 0);
+        // successful search but did not find any matching songs
+        it ('should still return 200 if no matching songs found', async() => {
+            const searchTerm = "nonExisting";
+            await verifySearch(searchTerm, 200, 0);
+        })
     })
-})
+
+    describe ("POST /songs", () => {
+        const songAddSuccessMsg = "Song successfully saved";
+        const songAddFailedMsg = "Failed to create song";
+        const addSuccessStatus = 201;
+        const addFailedStatus = 400;
+
+        it("should create a song with all required fields filled in",  async() => {
+            const body =
+                {
+                    mmid: '5', songName: 'newPopSong', artistName: 'Jey', genre: 'R&B', about: 'Nostalgia', whenToListen: 'now',
+                    lyrics: 'E', romanized: 'r5', burmese: 'စကား', meaning: 'y5'
+                };
+            try {
+                await addSong(body, addSuccessStatus, songAddSuccessMsg);
+                // verify document is already in the database
+                await verifySearch(body.songName, 200, 1);
+            } catch (e) {
+                expect.fail(`Should not have failed with ${e}`);
+            }
+        });
+
+        it("should not create a song with missing mmid",  async () => {
+            const body =
+                {
+                    songName: 'newPopSong1', artistName: 'Jey', genre: 'R&B', about: 'Nostalgia', whenToListen: 'now',
+                    lyrics: 'E', romanized: 'r5', burmese: 'စကား', meaning: 'y5'
+                };
+            try {
+                await addSong(body, addFailedStatus, songAddFailedMsg);
+                // verify document is already in the database
+                await verifySearch(body.songName, 200, 0);
+            } catch (e) {
+                expect.fail(`Should not have failed with ${e}`);
+            }
+        });
+
+        it("should not create a song with missing songName",  async() => {
+            const intendedSongName = "newPopSong1";
+            const body =
+                {
+                    mmid: '5', artistName: 'Jey', genre: 'R&B', about: 'Nostalgia', whenToListen: 'now',
+                    lyrics: 'E', romanized: 'r5', burmese: 'စကား', meaning: 'y5'
+                };
+            try {
+                await addSong(body, addFailedStatus, songAddFailedMsg);
+                // verify document is already in the database
+                await verifySearch(intendedSongName, 200, 0);
+            } catch (e) {
+                expect.fail(`Should not have failed with ${e}`);
+            }
+        });
+
+        it("should create a song with optional value",  async() => {
+            // optional Youtube link
+            const body =
+                {
+                    mmid: '5', songName: 'newPopSong2', artistName: 'Jey', genre: 'R&B', about: 'Nostalgia', whenToListen: 'now',
+                    lyrics: 'E', romanized: 'r5', burmese: 'စကား', meaning: 'y5', youtubeLink: 'https://www.youtube.com/watch?v=uvLOvCNIthE'
+                };
+            try {
+                await addSong(body, addSuccessStatus, songAddSuccessMsg);
+                // verify document is already in the database
+                await verifySearch(body.songName, 200, 1);
+            } catch (e) {
+                expect.fail(`Should not have failed with ${e}`);
+            }
+        });
+    });
+});
