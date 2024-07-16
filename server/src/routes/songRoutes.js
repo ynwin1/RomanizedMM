@@ -31,4 +31,25 @@ router.post('/songs', async (req, res) => {
    }
 });
 
+router.delete('/songs/:mmid', async (req, res) => {
+    try {
+        const {mmid} = req.params;
+        // Find song in the database
+        const song = await Song.findOne({ mmid : mmid});
+
+        // Song not found
+        if (!song) {
+            return res.status(404).json({ message: `Song not found`});
+        }
+
+        // Delete song
+        await Song.deleteOne({ mmid : mmid});
+        console.log(`Song successfully deleted - ${song.songName}`);
+        res.status(204).json({ message: `Song successfully deleted - ${song.songName}` });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Failed to delete song due to server error' });
+    }
+});
+
 export default router;
