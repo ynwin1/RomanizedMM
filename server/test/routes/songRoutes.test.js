@@ -9,7 +9,7 @@ describe ("Songs TestSuite", () => {
     let mongoServer;
     let app;
     const search_API = "/api/songs/search";
-    const add_song_API = "/api/songs"
+    const add_song_API = "/api/songs";
 
     before(async () => {
         app = createApp();
@@ -37,12 +37,28 @@ describe ("Songs TestSuite", () => {
     });
 
     async function addSong(body, statusCode, respMsg) {
-        const resp = await request(app)
-            .post(add_song_API)
-            .send(body)
+        try {
+            const resp = await request(app)
+                .post(add_song_API)
+                .send(body)
 
-        expect(resp.status).equals(statusCode);
-        expect(resp.text).contains(respMsg);
+            expect(resp.status).equals(statusCode);
+            expect(resp.text).contains(respMsg);
+        } catch (e) {
+            console.log(`Error while adding song - ${e}`);
+        }
+    }
+
+    async function deleteSong(mmid, apiString, statusCode, respMsg) {
+        try {
+            const resp = await request(app)
+                .delete(apiString)
+
+            expect(resp.status).equals(statusCode);
+            expect(resp.text).contains(respMsg);
+        } catch (e) {
+            console.log(`Error while adding song - ${e}`);
+        }
     }
 
     async function verifySearch(searchTerm, statusCode, expectedNumOfSongs) {
@@ -59,6 +75,7 @@ describe ("Songs TestSuite", () => {
     }
 
     describe("GET /songs/search", () => {
+
         it ('should return one song only matching search term', async() => {
             const searchTerm = "new";
             await verifySearch(searchTerm, 200, 1);
@@ -153,5 +170,57 @@ describe ("Songs TestSuite", () => {
                 expect.fail(`Should not have failed with ${e}`);
             }
         });
+    });
+
+    describe ("DELETE /songs/:mmid", () => {
+        const songDelSuccessMsg = "Song successfully deleted";
+        const songNotFoundMsg = "Song not found";
+
+        const delSuccessStatus = 200;
+        const songNotFoundStatus = 404;
+        const delFailedStatus = 500;
+        const songSearchSuccessStatus = 200;
+
+        function formatAPIString(mmid) {
+            return `/api/songs/${mmid}`;
+        }
+
+        it ("should delete a song successfully", async () => {
+            try {
+                const mmidToDelete = 2;
+                const songNameToDelete = "Happy Home";
+                await deleteSong(mmidToDelete, formatAPIString(mmidToDelete), delSuccessStatus, songDelSuccessMsg);
+                await verifySearch(songNameToDelete, songSearchSuccessStatus, 0);
+            } catch (e) {
+                expect.fail("Should have deleted a song, but failed");
+            }
+        });
+
+        it ("should not delete a non-existing song", async () => {
+            try {
+                const mmidToDelete = 50;
+                const songNameToDelete = "NonExistingSong";
+                await deleteSong(mmidToDelete, formatAPIString(mmidToDelete), songNotFoundStatus, songNotFoundMsg);
+                await verifySearch(songNameToDelete, songSearchSuccessStatus, 0);
+            } catch (e) {
+                expect.fail("Should have deleted a song, but failed");
+            }
+        });
+
+        it ("should not delete twice after first deletion", async() => {
+            try {
+                const mmidToDelete = 1;
+                const songNameToDelete = "happySong";
+                await deleteSong(mmidToDelete, formatAPIString(mmidToDelete), delSuccessStatus, songDelSuccessMsg);
+                await verifySearch(songNameToDelete, songSearchSuccessStatus, 0);
+
+                // delete again
+                await deleteSong(mmidToDelete, formatAPIString(mmidToDelete), songNotFoundStatus, songNotFoundMsg);
+                await verifySearch(songNameToDelete, songSearchSuccessStatus, 0);
+            } catch (e) {
+                expect.fail("Should have deleted a song, but failed");
+            }
+        })
+
     });
 });

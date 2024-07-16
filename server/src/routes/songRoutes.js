@@ -45,7 +45,7 @@ router.delete('/songs/:mmid', async (req, res) => {
         // Delete song
         await Song.deleteOne({ mmid : mmid});
         console.log(`Song successfully deleted - ${song.songName}`);
-        res.status(204).json({ message: `Song successfully deleted - ${song.songName}` });
+        res.status(200).json({ message: `Song successfully deleted - ${song.songName}` });
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Failed to delete song due to server error' });
