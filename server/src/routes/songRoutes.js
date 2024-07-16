@@ -19,7 +19,7 @@ router.get('/songs/search', async (req, res) => {
     }
 });
 
-router.post('/songs/add', async (req, res) => {
+router.post('/songs', async (req, res) => {
    try {
        const songData = req.body;
        const song = await Song.create(songData);
@@ -27,7 +27,7 @@ router.post('/songs/add', async (req, res) => {
        res.status(201).json({ message: `Song successfully saved - ${song.songName}` });
    } catch (err) {
        console.error(err);
-       res.status(400).json({ message: `Failed to create song - ${err.message}`});
+       res.status(400).json({ message: `Failed to create song`});
    }
 });
 

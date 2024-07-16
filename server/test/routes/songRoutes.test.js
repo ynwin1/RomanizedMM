@@ -9,7 +9,7 @@ describe ("Songs TestSuite", () => {
     let mongoServer;
     let app;
     const search_API = "/api/songs/search";
-    const add_song_API = "/api/songs/add"
+    const add_song_API = "/api/songs"
 
     before(async () => {
         app = createApp();
@@ -19,10 +19,16 @@ describe ("Songs TestSuite", () => {
         const mongoURI = (await mongoServer).getUri();
         await mongoose.connect(mongoURI);
 
-        await Song.create({ mmid: '1', songName: 'happySong', artistName: 'Tom', genre: 'Rock', about: 'Happy', whenToListen: 'now', lyrics: 'A', romanized: 'r1', burmese: 'စကား', meaning: 'y1' });
-        await Song.create({ mmid: '2', songName: 'Happy Home', artistName: 'Morris', genre: 'Disco', about: 'Happy', whenToListen: 'now', lyrics: 'C', romanized: 'r2', burmese: 'နှင်းတွေ', meaning: 'y2' });
-        await Song.create({ mmid: '3', songName: 'new Day $', artistName: 'Tom', genre: 'Jazz', about: 'Mood', whenToListen: 'now', lyrics: 'E', romanized: 'r3', burmese: 'ဘဝ', meaning: 'y3' });
-        await Song.create({ mmid: '4', songName: 'old 1 2Day :(', artistName: 'James', genre: 'Blues', about: 'Mood', whenToListen: 'now', lyrics: 'F', romanized: 'r4', burmese: 'မင်းမျက်နှာလေး', meaning: 'y4' });
+        try {
+            await Song.create([
+                { mmid: '1', songName: 'happySong', artistName: 'Tom', genre: 'Rock', about: 'Happy', whenToListen: 'now', lyrics: 'A', romanized: 'r1', burmese: 'စကား', meaning: 'y1' },
+                { mmid: '2', songName: 'Happy Home', artistName: 'Morris', genre: 'Disco', about: 'Happy', whenToListen: 'now', lyrics: 'C', romanized: 'r2', burmese: 'နှင်းတွေ', meaning: 'y2' },
+                { mmid: '3', songName: 'new Day $', artistName: 'Tom', genre: 'Jazz', about: 'Mood', whenToListen: 'now', lyrics: 'E', romanized: 'r3', burmese: 'ဘဝ', meaning: 'y3' },
+                { mmid: '4', songName: 'old 1 2Day :(', artistName: 'James', genre: 'Blues', about: 'Mood', whenToListen: 'now', lyrics: 'F', romanized: 'r4', burmese: 'မင်းမျက်နှာလေး', meaning: 'y4' }
+            ])
+        } catch (e) {
+            console.error("Error inserting documents:", e);
+        }
     });
 
     after(async () => {
@@ -37,7 +43,7 @@ describe ("Songs TestSuite", () => {
 
         expect(resp.status).equals(statusCode);
         expect(resp.text).contains(respMsg);
-    };
+    }
 
     async function verifySearch(searchTerm, statusCode, expectedNumOfSongs) {
         const resp = await request(app)
@@ -80,21 +86,72 @@ describe ("Songs TestSuite", () => {
         })
     })
 
-    describe ("POST /songs/add", () => {
-        const songAddSuccess = "Song successfully saved";
-        const songAddFailed = "Failed to create song";
-
+    describe ("POST /songs", () => {
+        const songAddSuccessMsg = "Song successfully saved";
+        const songAddFailedMsg = "Failed to create song";
         const addSuccessStatus = 201;
         const addFailedStatus = 400;
 
-        it("should create a song with all required fields filled in", () => {
+        it("should create a song with all required fields filled in",  async() => {
             const body =
                 {
                     mmid: '5', songName: 'newPopSong', artistName: 'Jey', genre: 'R&B', about: 'Nostalgia', whenToListen: 'now',
                     lyrics: 'E', romanized: 'r5', burmese: 'စကား', meaning: 'y5'
                 };
-            addSong(body, addSuccessStatus, songAddSuccess);
-            verifySearch(body.songName, 200, 1);
-        })
+            try {
+                await addSong(body, addSuccessStatus, songAddSuccessMsg);
+                // verify document is already in the database
+                await verifySearch(body.songName, 200, 1);
+            } catch (e) {
+                expect.fail(`Should not have failed with ${e}`);
+            }
+        });
+
+        it("should not create a song with missing mmid",  async () => {
+            const body =
+                {
+                    songName: 'newPopSong1', artistName: 'Jey', genre: 'R&B', about: 'Nostalgia', whenToListen: 'now',
+                    lyrics: 'E', romanized: 'r5', burmese: 'စကား', meaning: 'y5'
+                };
+            try {
+                await addSong(body, addFailedStatus, songAddFailedMsg);
+                // verify document is already in the database
+                await verifySearch(body.songName, 200, 0);
+            } catch (e) {
+                expect.fail(`Should not have failed with ${e}`);
+            }
+        });
+
+        it("should not create a song with missing songName",  async() => {
+            const intendedSongName = "newPopSong1";
+            const body =
+                {
+                    mmid: '5', artistName: 'Jey', genre: 'R&B', about: 'Nostalgia', whenToListen: 'now',
+                    lyrics: 'E', romanized: 'r5', burmese: 'စကား', meaning: 'y5'
+                };
+            try {
+                await addSong(body, addFailedStatus, songAddFailedMsg);
+                // verify document is already in the database
+                await verifySearch(intendedSongName, 200, 0);
+            } catch (e) {
+                expect.fail(`Should not have failed with ${e}`);
+            }
+        });
+
+        it("should create a song with optional value",  async() => {
+            // optional Youtube link
+            const body =
+                {
+                    mmid: '5', songName: 'newPopSong2', artistName: 'Jey', genre: 'R&B', about: 'Nostalgia', whenToListen: 'now',
+                    lyrics: 'E', romanized: 'r5', burmese: 'စကား', meaning: 'y5', youtubeLink: 'https://www.youtube.com/watch?v=uvLOvCNIthE'
+                };
+            try {
+                await addSong(body, addSuccessStatus, songAddSuccessMsg);
+                // verify document is already in the database
+                await verifySearch(body.songName, 200, 1);
+            } catch (e) {
+                expect.fail(`Should not have failed with ${e}`);
+            }
+        });
     });
 });
