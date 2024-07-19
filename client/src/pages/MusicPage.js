@@ -23,7 +23,9 @@ function MusicPage() {
         return null;
     }
 
-    const songNameSplit = song.songName.split('(');
+    const songNameSplit = song.songName.split('(')[0];
+    // Remove space from song name and rejoin them
+    const fullURL = `https://www.romanizedmm.com/song/${songNameSplit.split(" ").join("")}`;
 
     return (
         <div>
@@ -31,8 +33,9 @@ function MusicPage() {
                 <title>{song.songName} - {song.artistName}</title>
                 <meta
                     name="description"
-                    content={`${songNameSplit[0]}Lyrics - ${song.artistName}, ${song.lyrics.slice(0, 250) + "..."}`}
+                    content={`${songNameSplit}Lyrics - ${song.artistName}, ${song.lyrics.slice(0, 250) + "..."}`}
                 />
+                <link rel="canonical" href={fullURL}/>
             </Helmet>
             <MusicBox song={song} />
             <Footer />
