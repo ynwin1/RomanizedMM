@@ -18,7 +18,7 @@ function LyricsBox(props) {
     }
 
     return (
-        <LyricsContainer>
+        <LyricsContainer component={"main"}>
             <LyricsTitleTypography textcolor={textColor}>
                 Lyrics
             </LyricsTitleTypography>

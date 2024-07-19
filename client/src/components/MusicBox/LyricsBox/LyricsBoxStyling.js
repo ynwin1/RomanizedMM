@@ -19,7 +19,7 @@ export const LyricsCard = styled(Card)(({textcolor}) => ({
     height: 'auto',
     alignSelf: 'center',
     '@media (max-width: 768px)': {
-        width: '85vw',
+        width: '90vw',
         textAlign: 'left'
     }
 }));
