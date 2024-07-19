@@ -11,6 +11,7 @@ describe ("Songs TestSuite", () => {
     const search_API = "/api/songs/search";
     const add_song_API = "/api/songs";
 
+
     before(async () => {
         app = createApp();
 
@@ -44,6 +45,19 @@ describe ("Songs TestSuite", () => {
 
             expect(resp.status).equals(statusCode);
             expect(resp.text).contains(respMsg);
+        } catch (e) {
+            console.log(`Error while adding song - ${e}`);
+        }
+    }
+
+    async function updateSong(body, apiString, statusCode) {
+        try {
+            const resp = await request(app)
+                .put(apiString)
+                .send(body)
+
+            expect(resp.status).equals(statusCode);
+            return resp.body;
         } catch (e) {
             console.log(`Error while adding song - ${e}`);
         }
@@ -172,6 +186,38 @@ describe ("Songs TestSuite", () => {
         });
     });
 
+    describe ("PUT /songs/:mmid", () => {
+        const updateSuccessStatus = 200;
+        const updateServerErrorStatus = 500;
+
+        it ("should update a song successfully", async () => {
+            const body = {
+                songName: "happySongUpdated", //updated
+                artistName: "Tom",
+                genre: "Rock",
+                about: "Happy",
+                whenToListen: "now",
+                lyrics: "A",
+                romanized: "this is romanized", //updated
+                burmese: "စကား",
+                meaning: "y1"
+            };
+            try {
+                const mmidToUpdate = 1;
+                const apiString = `/api/songs/${mmidToUpdate}`;
+
+                const resp = await updateSong(body, apiString, updateSuccessStatus);
+                if (resp == undefined) {
+                    expect.fail("Should have updated a song, but failed");
+                }
+                expect(resp.songName).equals(body.songName);
+                expect(resp.romanized).equals(body.romanized);
+            } catch (e) {
+                expect.fail("Should have updated a song, but failed");
+            }
+        });
+    });
+
     describe ("DELETE /songs/:mmid", () => {
         const songDelSuccessMsg = "Song successfully deleted";
         const songNotFoundMsg = "Song not found";
@@ -223,4 +269,6 @@ describe ("Songs TestSuite", () => {
         })
 
     });
+
+
 });
