@@ -23,7 +23,7 @@ const createApp = () => {
     app.get('*', async (req, res, next) => {
         // only for bots that crawl
         const userAgent = req.headers['user-agent'];
-        if (isBot(userAgent) && req.url.includes('romanizedmm.com')) {
+        if (isBot(userAgent) && req.url.includes('song')) {
             console.log('Bot detected, rendering static page:', userAgent);
             console.log(`Request ${req}`);
             console.log(`URL - ${req.url}`);
