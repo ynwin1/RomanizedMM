@@ -31,7 +31,7 @@ const createApp = () => {
             const fullUrl = "https://www.romanizedmm.com" + req.originalUrl;
             console.log(`Full request URL: ${fullUrl}`);
 
-            const html = await preRender(req.url);
+            const html = await preRender(fullUrl);
             return res.status(200).send(html);
         } else {
             next();
