@@ -3,6 +3,7 @@ dotenv.config( {path: "C:\\Users\\User\\OneDrive - UBC\\My Projects\\RomanizedMM
 import express from 'express';
 import cors from 'cors';
 import {preRender} from "./ssr/prerender.js";
+import isBot from "../src/ssr/botcheck.js"
 import songRoutes from './routes/songRoutes.js';
 import formRoutes from "./routes/formRoutes.js";
 
@@ -18,9 +19,6 @@ const createApp = () => {
     app.use('/api', formRoutes);
 
     // Serve SSR content to bots
-    function isBot(userAgent) {
-        return userAgent.includes('bot') || userAgent.includes('preview') || userAgent.includes('crawler');
-    }
 
     app.get('*', async (req, res, next) => {
         // only for bots that crawl
