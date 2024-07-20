@@ -23,12 +23,12 @@ const createApp = () => {
     app.get('*', async (req, res, next) => {
         // only for bots that crawl
         const userAgent = req.headers['user-agent'];
-        if (isBot(userAgent) && req.url.includes('song')) {
+        if (isBot(userAgent) && !req.url.includes('robots.txt')) {
             console.log('Bot detected, rendering static page:', userAgent);
             console.log(`Request ${req}`);
             console.log(`URL - ${req.url}`);
 
-            const fullUrl = "https://www.romanizedmm.com" + req.originalUrl;
+            const fullUrl = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
             console.log(`Full request URL: ${fullUrl}`);
 
             const html = await preRender(fullUrl);
