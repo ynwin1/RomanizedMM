@@ -23,6 +23,7 @@ const createApp = () => {
     app.get('*', async (req, res, next) => {
         // only for bots that crawl
         const userAgent = req.headers['user-agent'];
+        console.log(`URL - ${req.url}`);
         if (isBot(userAgent) && !req.url.includes('robots.txt')) {
             console.log('Bot detected, rendering static page:', userAgent);
             console.log(`Request ${req}`);
