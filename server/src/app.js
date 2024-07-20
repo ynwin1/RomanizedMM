@@ -25,6 +25,12 @@ const createApp = () => {
         const userAgent = req.headers['user-agent'];
         if (isBot(userAgent)) {
             console.log('Bot detected, rendering static page:', userAgent);
+            console.log(`Request ${req}`);
+            console.log(`URL - ${req.url}`);
+
+            const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+            console.log(`Full request URL: ${fullUrl}`);
+
             const html = await preRender(req.url);
             return res.status(200).send(html);
         } else {
