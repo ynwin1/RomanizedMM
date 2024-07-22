@@ -1,5 +1,6 @@
 import express from 'express';
 import Song from '../model/Song.js';
+import {checkRequiredFields, createUpdateOperation} from "../controller/songController.js";
 
 const router = express.Router();
 
@@ -15,7 +16,7 @@ router.get('/songs/search', async (req, res) => {
         res.status(200).json(songs);
     } catch (err) {
         console.error(err);
-        res.status(500).json({ message: 'Server Error' });
+        res.status(500).json({ message: 'Failed to get song due to server error' });
     }
 });
 
@@ -27,7 +28,7 @@ router.post('/songs', async (req, res) => {
        res.status(201).json({ message: `Song successfully saved - ${song.songName}` });
    } catch (err) {
        console.error(err);
-       res.status(400).json({ message: `Failed to create song`});
+       res.status(400).json({ message: `Failed to create song due to server error`});
    }
 });
 
@@ -49,6 +50,32 @@ router.delete('/songs/:mmid', async (req, res) => {
     } catch (err) {
         console.error(err);
         res.status(500).json({ message: 'Failed to delete song due to server error' });
+    }
+});
+
+router.put('/songs/:mmid', async (req, res) => {
+
+    try {
+        const {mmid} = req.params;
+        const songUpdate = req.body;
+
+        // Check if required fields are present
+        if (!checkRequiredFields(songUpdate)) {
+            return res.status(400).json({ message: 'Missing required fields' });
+        }
+
+        const updateOperation = createUpdateOperation(songUpdate);
+        const updatedDoc = await Song.findOneAndUpdate({ mmid: mmid }, updateOperation, { new: true });
+
+        // Song isn't found
+        if (!updatedDoc) {
+            return res.status(404).json({ message: `Song not found` });
+        }
+
+        res.status(200).json(updatedDoc);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Failed to update song due to server error' });
     }
 });
 

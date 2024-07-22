@@ -3,7 +3,9 @@ import mongoose from "mongoose";
 const SongSchema = new mongoose.Schema({
     mmid: {
         type: Number,
-        required: true
+        required: true,
+        unique: true,
+        index: true
     },
     songName: {
         type: String,
