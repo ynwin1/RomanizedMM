@@ -3,6 +3,7 @@ import {Helmet} from "react-helmet";
 import {LyricsTitleTypography} from "../components/MusicBox/LyricsBox/LyricsBoxStyling";
 import {useTheme} from "@mui/system";
 import {selectTextColor} from "../themes/ColorSelect";
+import webLogo from "../logos/WebLogo.png";
 
 function AboutPage() {
     const theme = useTheme();
@@ -11,7 +12,7 @@ function AboutPage() {
 return (
         <div style={{ color: textColor }}>
             <Helmet>
-                <title>About RomanizedMM</title>
+                <title>About</title>
                 <meta
                     name="description"
                     content="RomanizedMM is a website that provides Romanized lyrics for Myanmar songs."
@@ -20,6 +21,7 @@ return (
             </Helmet>
             <main className="aboutBox">
                 <LyricsTitleTypography>About</LyricsTitleTypography>
+                <img src={webLogo} alt="RomanizedMM Logo" style={{width: "10rem", height: "auto"}}/>
                 <div className="aboutText">
                     <p>Welcome to RomanizedMM 😍!</p>
                     <p>I created this website for people who love Myanmar songs. I have seen our neighboring countries having their own website to service romanized lyrics for their songs, but when I searched ours, I found none. We do seem to have some audience from around the world 🌏, and comments in Youtube MVs are the pieces of evidence. Thus, was the birth of RomanizedMM. My goal 🏁 is to provide lyrics for Myanmar music in one stop - to browse through in Burmese language or to sing along even if you do not understand Burmese.</p>
