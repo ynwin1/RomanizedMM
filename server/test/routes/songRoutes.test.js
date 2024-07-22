@@ -173,7 +173,7 @@ describe ("Songs TestSuite", () => {
             // optional Youtube link
             const body =
                 {
-                    mmid: '5', songName: 'newPopSong2', artistName: 'Jey', genre: 'R&B', about: 'Nostalgia', whenToListen: 'now',
+                    mmid: '6', songName: 'newPopSong2', artistName: 'Jey', genre: 'R&B', about: 'Nostalgia', whenToListen: 'now',
                     lyrics: 'E', romanized: 'r5', burmese: 'စကား', meaning: 'y5', youtubeLink: 'https://www.youtube.com/watch?v=uvLOvCNIthE'
                 };
             try {
@@ -188,12 +188,14 @@ describe ("Songs TestSuite", () => {
 
     describe ("PUT /songs/:mmid", () => {
         const updateSuccessStatus = 200;
-        const updateServerErrorStatus = 500;
+        const songReqFieldMissingStatus = 400;
+        const songNotFoundStatus = 404;
 
         it ("should update a song successfully", async () => {
             const body = {
                 songName: "happySongUpdated", //updated
                 artistName: "Tom",
+                albumName: "Happy Album",
                 genre: "Rock",
                 about: "Happy",
                 whenToListen: "now",
@@ -207,11 +209,140 @@ describe ("Songs TestSuite", () => {
                 const apiString = `/api/songs/${mmidToUpdate}`;
 
                 const resp = await updateSong(body, apiString, updateSuccessStatus);
-                if (resp == undefined) {
+                if (resp.isUndefined) {
                     expect.fail("Should have updated a song, but failed");
                 }
                 expect(resp.songName).equals(body.songName);
                 expect(resp.romanized).equals(body.romanized);
+            } catch (e) {
+                expect.fail("Should have updated a song, but failed");
+            }
+        });
+
+        it ("should still update with unchanged data", async () => {
+            const body = { songName: 'old 1 2Day :(', artistName: 'James', genre: 'Blues', about: 'Mood', whenToListen: 'now', lyrics: 'F', romanized: 'r4', burmese: 'မင်းမျက်နှာလေး', meaning: 'y4' }
+            try {
+                const mmidToUpdate = 4;
+                const apiString = `/api/songs/${mmidToUpdate}`;
+
+                const resp = await updateSong(body, apiString, updateSuccessStatus);
+                if (resp.isUndefined) {
+                    expect.fail("Should have updated a song, but failed");
+                }
+                // iterate through all fields to check if they are the same
+                for (let field in body) {
+                    expect(resp[field]).equals(body[field]);
+                }
+            } catch (e) {
+                expect.fail("Should have updated a song, but failed");
+            }
+        });
+
+        it ("should update a song with new optional attribute", async () => {
+            const body = {
+                songName: "Happy Home",
+                artistName: "Tom",
+                genre: "Rock",
+                about: "Happy",
+                whenToListen: "now",
+                lyrics: "A",
+                romanized: "r2",
+                burmese: "စကား",
+                meaning: "y1",
+                youtubeLink: "https://www.youtube.com/watch?v=uvLOvCNIthE" //new
+            };
+            try {
+                const mmidToUpdate = 2;
+                const apiString = `/api/songs/${mmidToUpdate}`;
+
+                const resp = await updateSong(body, apiString, updateSuccessStatus);
+                if (resp.isUndefined) {
+                    expect.fail("Should have updated a song, but failed");
+                }
+                // youtube link added to doc
+                expect(resp.youtubeLink).equals(body.youtubeLink);
+            } catch (e) {
+                expect.fail("Should have updated a song, but failed");
+            }
+        });
+
+        it ("should update a song with optional attribute removed", async () => {
+            const body = {
+                songName: "Happy Home",
+                artistName: "Tom",
+                genre: "Rock",
+                about: "Happy",
+                whenToListen: "now",
+                lyrics: "A",
+                romanized: "r2",
+                burmese: "စကား",
+                meaning: "y2",
+                youtubeLink: "" // youtubeLink removed
+            };
+            try {
+                const mmidToUpdate = 2;
+                const apiString = `/api/songs/${mmidToUpdate}`;
+
+                const resp = await updateSong(body, apiString, updateSuccessStatus);
+                if (resp.isUndefined) {
+                    expect.fail("Should have updated a song, but failed");
+                }
+                // youtube link removed from doc
+                expect(resp.youtubeLink).equals(undefined);
+            } catch (e) {
+                expect.fail("Should have updated a song, but failed");
+            }
+        });
+
+        it ("should not update a non-existing song", async () => {
+            const body = {
+                songName: "Happy Home",
+                artistName: "Tom",
+                genre: "Rock",
+                about: "Happy",
+                whenToListen: "now",
+                lyrics: "A",
+                romanized: "r2",
+                burmese: "စကား",
+                meaning: "y2"
+            };
+            try {
+                // non-existing mmid
+                const mmidToUpdate = 50;
+                const apiString = `/api/songs/${mmidToUpdate}`;
+
+                const resp = await updateSong(body, apiString, songNotFoundStatus);
+                if (resp.isUndefined) {
+                    expect.fail("Should have ret a song, but failed");
+                }
+                expect(resp.message).equals("Song not found");
+            } catch (e) {
+                expect.fail("Should have updated a song, but failed");
+            }
+        });
+
+        it ("should not update a song with missing required field", async () => {
+            const body = {
+                // missing songName
+                songName: "",
+                artistName: "Tom",
+                genre: "Rock",
+                about: "Happy",
+                whenToListen: "now",
+                lyrics: "A",
+                romanized: "r2",
+                burmese: "စကား",
+                meaning: "y2"
+            };
+            try {
+                const mmidToUpdate = 2;
+                const apiString = `/api/songs/${mmidToUpdate}`;
+
+                const resp = await updateSong(body, apiString, songReqFieldMissingStatus);
+                if (resp.isUndefined) {
+                    expect.fail("Should have ret a song, but failed");
+                }
+                expect(resp.message).equals("Missing required fields");
             } catch (e) {
                 expect.fail("Should have updated a song, but failed");
             }
