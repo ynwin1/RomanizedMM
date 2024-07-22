@@ -8,11 +8,11 @@ import ColorModeContext from "./themes/ThemeContext";
 import HomePage from "./pages/HomePage";
 import MusicPage from "./pages/MusicPage";
 import { SongContext } from './SongContext';
+import AboutPage from "./pages/AboutPage";
 
 
 function App() {
     const [mode, setMode] = useState('light');
-    const [selectedSong, setSelectedSong] = useState(null);
 
     const colorMode = useMemo(
         () => ({
@@ -47,6 +47,7 @@ function App() {
                             <Route path="/" element={<HomePage/>}/>
                             <Route path="/song-request" element={<SongRequest/>}/>
                             <Route path="/song/:songName" element={<MusicPage/>}/>
+                            <Route path="/about" element={<AboutPage/>}/>
                         </Routes>
                     </div>
                 </Router>
