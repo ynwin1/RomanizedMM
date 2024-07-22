@@ -37,7 +37,7 @@
         <priority>0.8</priority>
     </url>
     <url>
-        <loc>https://www.romanizedmm.com/song/MinNehNiiPhuh</loc>
+        <loc>https://www.romanizedmm.com/song/MinNaeNeePho</loc>
         <lastmod>2024-04-01</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
@@ -152,13 +152,19 @@
     </url>
     <url>
         <loc>https://www.romanizedmm.com/song/NeeNeeLayNaeWay</loc>
-        <lastmod>2024-06-17</lastmod>
+        <lastmod>2024-07-17</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
     <url>
         <loc>https://www.romanizedmm.com/song/SpaceDream</loc>
-        <lastmod>2024-06-17</lastmod>
+        <lastmod>2024-07-17</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.romanizedmm.com/song/MaMyint</loc>
+        <lastmod>2024-07-20</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
