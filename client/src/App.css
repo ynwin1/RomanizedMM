@@ -85,6 +85,20 @@
   margin: 0 auto;
 }
 
+.aboutBox {
+  width: 75vw;
+    margin: 1rem auto;
+}
+
+.aboutText {
+  border-radius: 1rem;
+  border-color: red;
+  border-style: solid;
+  margin-top: 1rem;
+  padding: 1rem 2rem;
+  line-height: 1.5rem;
+}
+
 @media (max-width: 768px) {
   .youtube-player {
     width: 81vw;
