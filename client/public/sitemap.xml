@@ -13,6 +13,12 @@
         <priority>0.8</priority>
     </url>
     <url>
+        <loc>https://www.romanizedmm.com/about</loc>
+        <lastmod>2024-07-22</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
         <loc>https://www.romanizedmm.com/song/ASinPyayParTal</loc>
         <lastmod>2024-04-01</lastmod>
         <changefreq>monthly</changefreq>
@@ -165,6 +171,12 @@
     <url>
         <loc>https://www.romanizedmm.com/song/DearCrush</loc>
         <lastmod>2024-07-21</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.romanizedmm.com/song/EainPyanChain</loc>
+        <lastmod>2024-07-23</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.8</priority>
     </url>
