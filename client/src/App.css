@@ -87,7 +87,7 @@
 
 .aboutBox {
   width: 75vw;
-    margin: 1rem auto;
+  margin: 1rem auto;
 }
 
 .aboutText {
@@ -107,6 +107,10 @@
 
   .extLinkButton {
     width: 3rem
+  }
+
+  .aboutBox {
+    width: 90vw;
   }
 }
 
