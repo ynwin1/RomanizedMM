@@ -1,6 +1,5 @@
 import React from 'react';
 import { useInView } from "react-intersection-observer";
-import Draggable from "react-draggable";
 import ReactPlayer from "react-player";
 
 function YoutubePlayer(props) {
