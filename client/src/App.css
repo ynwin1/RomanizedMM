@@ -105,8 +105,7 @@
   right: 2rem;
   width: 400px;
   height: 226px;
-  z-index: 500;
-  overflow: hidden;
+  z-index: 1000;
 }
 
 @media (max-width: 768px) {
@@ -129,7 +128,8 @@
     right: 2rem;
     width: 200px;
     height: 113px;
-    zIndex: 3000;
+    zIndex: 1000;
+    overflow: hidden;
   }
 }
 

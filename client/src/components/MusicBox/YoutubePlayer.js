@@ -15,7 +15,7 @@ function YoutubePlayer(props) {
                     width='100%'
                     height='100%'
                     style={{marginTop: '1rem'}}
-                    controls={true}
+                    controls={inView ? true : false}
                 />
             </div>
         </div>
