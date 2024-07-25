@@ -8,13 +8,13 @@ function YoutubePlayer(props) {
     });
 
     return (
-        <div style={{ overflow: 'hidden' }} ref={ref}>
-            <div className={inView ? "youtube-player":"draggable-player-container"}>
+        <div ref={ref} style={{ minHeight: inView ? 'auto' : '226px', transition: 'min-height 0.3s' }}>
+            <div className={inView ? "youtube-player" : "draggable-player-container"}>
                 <ReactPlayer
                     url={props.link}
                     width='100%'
                     height='100%'
-                    style={{marginTop: '1rem'}}
+                    style={{ marginTop: '1rem' }}
                     controls={inView ? true : false}
                 />
             </div>
