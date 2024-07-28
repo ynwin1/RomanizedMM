@@ -4,11 +4,16 @@ import express from 'express';
 import cors from 'cors';
 import {preRender} from "./ssr/prerender.js";
 import isBot from "../src/ssr/botcheck.js"
+import prerender from 'prerender-node';
 import songRoutes from './routes/songRoutes.js';
 import formRoutes from "./routes/formRoutes.js";
 
 const createApp = () => {
     const app = express();
+
+    const prerenderToken = process.env.PRE_RENDER_TOKEN;
+    prerender.set('prerenderToken', prerenderToken);
+    app.use(prerender);
 
     app.use(express.json());
     app.use(cors({
@@ -19,7 +24,6 @@ const createApp = () => {
     app.use('/api', formRoutes);
 
     // Serve SSR content to bots
-
     app.get('*', async (req, res, next) => {
         // only for bots that crawl
         const userAgent = req.headers['user-agent'];
