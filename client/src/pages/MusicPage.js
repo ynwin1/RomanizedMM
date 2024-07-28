@@ -44,17 +44,21 @@ function MusicPage() {
 }
 
 async function fetchSongData(songName) {
-    const response  = await fetch(SERVER_URL + API_URL + `?term=${songName}`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    });
-    if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+    try {
+        const response  = await fetch(SERVER_URL + API_URL + `?term=${songName}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        return data[0];
+    } catch (e) {
+        console.log(`Error while fetching song data - ${e.message}`);
     }
-    const data = await response.json();
-    return data[0];
 }
 
 export default MusicPage;
