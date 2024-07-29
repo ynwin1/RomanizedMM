@@ -1,0 +1,141 @@
+.App {
+  text-align: center;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+/*linear-gradient(180deg, #6A1B9A 1.34%, #0B3D91 34.33%, #4B0082 66.7%, #FF1493 100%) no-repeat*/
+.body-light {
+  background: #FFFFFF;
+}
+
+.body-dark {
+  background: #000000;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.searchBar {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.extLinkButton {
+  transition: transform 0.3s ease;
+  transform: scale(1);
+}
+
+.extLinkButton:hover {
+  transform: scale(0.7)
+}
+
+.album-picture {
+  margin: 2rem 2rem;
+  width: 12rem;
+  height: auto;
+  align-self: center;
+  border-radius: 1rem;
+}
+
+.youtube-player {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40vw;
+  height: 25vw;
+  margin: 0 auto;
+}
+
+.aboutBox {
+  width: 75vw;
+  margin: 1rem auto;
+}
+
+.aboutText {
+  border-radius: 1rem;
+  border-color: red;
+  border-style: solid;
+  margin-top: 1rem;
+  padding: 1rem 2rem;
+  line-height: 1.5rem;
+}
+
+.draggable-player-container {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 400px;
+  height: 226px;
+  z-index: 1000;
+}
+
+@media (max-width: 768px) {
+  .youtube-player {
+    width: 81vw;
+    height: 53vw;
+  }
+
+  .extLinkButton {
+    width: 3rem
+  }
+
+  .aboutBox {
+    width: 90vw;
+  }
+
+  .draggable-player-container {
+    position: fixed;
+    bottom: 4rem;
+    right: 2rem;
+    width: 200px;
+    height: 113px;
+    zIndex: 1000;
+  }
+}
+
+@media (max-width: 480px) {
+  .youtube-player {
+    width: 75vw;
+    height: 58vw;
+  }
+}
+
