@@ -1,13 +1,12 @@
 import React from 'react';
-import Footer from '../src/components/Footer/Footer';
 import Head from 'next/head';
 import { LyricsTitleTypography } from '@/components/MusicBox/LyricsBox/LyricsBoxStyling';
 import { useTheme } from '@mui/system';
 import { selectTextColor } from '@/themes/ColorSelect';
 import Image from 'next/image';
-import webLogo from '../public/logos/WebLogo.png'; // Ensure the logo is in the public/logos directory
+import webLogo from '../../../public/webLogo.png';
 
-function AboutPage() {
+export default function AboutPage() {
     const theme = useTheme();
     const textColor = selectTextColor(theme.palette.mode);
 
@@ -99,9 +98,6 @@ function AboutPage() {
                     <p>ဒီ website လေးကို အားပေးလို့ ကျေးဇူးတင်ပါတယ်။ မြန်မာ သီချင်းတွေကို ကမ္ဘာက သိအောင် လုပ်ကြမယ် ✌️</p>
                 </div>
             </main>
-            <Footer />
         </div>
     );
 }
-
-export default AboutPage;

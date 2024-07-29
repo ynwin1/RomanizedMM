@@ -1,5 +1,5 @@
-import React from "react"
-import { useState, useEffect } from "react";
+'use client';
+import React from "react";
 import { useTheme} from '@mui/system';
 import { SloganTypography} from './SearchBarStyling';
 import AutoCompleteSearchBar from "./AutoCompleteSearch";

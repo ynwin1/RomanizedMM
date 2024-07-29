@@ -1,7 +1,7 @@
 import React from 'react';
 import '../src/styles/SongRequest.css
-import RequestForm from '../src/components/SongRequestForm/RequestForm';
-import Footer from '../src/components/Footer/Footer';
+import RequestForm from '../../components/SongRequestForm/RequestForm';
+import Footer from '../../components/Footer/Footer';
 
 function SongRequest() {
     return (

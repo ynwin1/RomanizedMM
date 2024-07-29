@@ -1,3 +1,5 @@
+'use client'; // Ensures this file is treated as a client component
+
 import React, { useState } from "react";
 import { useTheme } from "@mui/system";
 import AboutBox from "./AboutBox/AboutBox";
