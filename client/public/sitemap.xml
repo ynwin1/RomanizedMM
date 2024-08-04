@@ -210,4 +210,22 @@
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
     </url>
+    <url>
+        <loc>https://www.romanizedmm.com/song/Don'tYouKnow</loc>
+        <lastmod>2024-08-01</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.romanizedmm.com/song/MyawNayMalSaung</loc>
+        <lastmod>2024-08-03</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.romanizedmm.com/song/Telepunk</loc>
+        <lastmod>2024-08-03</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+    </url>
 </urlset>
