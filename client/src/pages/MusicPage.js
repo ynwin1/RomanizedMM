@@ -9,19 +9,20 @@ const API_URL = process.env.REACT_APP_SEARCH_SONG_API;
 
 function MusicPage() {
     const { songName } = useParams();
-    const [song, setSong] = useState(null);
+    const song = require(`../lyricsJSON/${songName}.json`);
+    // const [song, setSong] = useState(null);
 
     // for when user directly navigates to a song page/refreshes
-    useEffect(() => {
-        // add space after every capital letter in song name
-        const songNameFormatted = songName.replace(/([A-Z])/g, ' $1').trim();
-        fetchSongData(songNameFormatted).then(data => setSong(data));
-    }, [songName]);
+    // useEffect(() => {
+    //     // add space after every capital letter in song name
+    //     const songNameFormatted = songName.replace(/([A-Z])/g, ' $1').trim();
+    //     fetchSongData(songNameFormatted).then(data => setSong(data));
+    // }, [songName]);
 
     // return null while waiting for song data (nothing really happens)
-    if (!song) {
-        return null;
-    }
+    // if (!song) {
+    //     return null;
+    // }
 
     const songNameSplit = song.songName.split('(')[0];
     // Remove space from song name and rejoin them

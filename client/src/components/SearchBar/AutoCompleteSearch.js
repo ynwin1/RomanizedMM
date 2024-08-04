@@ -3,6 +3,7 @@ import { TextField } from '@mui/material';
 import { useTheme } from '@mui/system';
 import { CustomAutocomplete } from './SearchBarStyling';
 import { useNavigate } from "react-router-dom";
+import allSongs from "./SongHost";
 
 function AutoCompleteSearchBar() {
     const [userInput, setUserInput] = useState("");
@@ -14,8 +15,14 @@ function AutoCompleteSearchBar() {
     const API_URL = process.env.REACT_APP_SEARCH_SONG_API;
 
     useEffect(() => {
-        fetchSongs();
+        loadSongs();
     }, []);
+
+    // temporary measure to load all songs
+    function loadSongs() {
+        const combinedSongData = allSongs();
+        setMatchingSongs(combinedSongData);
+    }
 
     async function fetchSongs() {
         try {
