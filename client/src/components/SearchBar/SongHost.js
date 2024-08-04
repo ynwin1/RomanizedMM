@@ -30,16 +30,15 @@ import songData29 from '../../lyricsJSON/SuicideLove.json';
 import songData30 from '../../lyricsJSON/Flashback.json';
 import songData31 from '../../lyricsJSON/TheSein.json';
 import songData32 from '../../lyricsJSON/EainMetYaeAThet.json';
-// import songData33 from '../../lyricsJSON/Don'tYouKnow.json';
+import songData33 from "../../lyricsJSON/Don'tYouKnow.json";
 import songData34 from '../../lyricsJSON/MyawNayMalSaung.json';
 import songData35 from '../../lyricsJSON/Telepunk.json';
-
 
 function allSongs() {
     const combinedSongData = [
         songData1, songData2, songData3, songData4, songData5, songData6, songData7, songData8, songData9, songData10, songData11, songData12, songData13, songData14, songData15, songData16,
         songData17, songData18, songData19, songData20, songData21, songData22, songData23, songData24, songData25, songData26, songData27, songData28, songData29, songData30, songData31,
-    songData32, songData34, songData35];
+    songData32, songData33, songData34, songData35];
     return combinedSongData;
 }
 
