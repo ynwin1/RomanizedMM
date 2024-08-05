@@ -228,4 +228,10 @@
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
     </url>
+    <url>
+        <loc>https://www.romanizedmm.com/song/AChitThiChin</loc>
+        <lastmod>2024-08-05</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+    </url>
 </urlset>
