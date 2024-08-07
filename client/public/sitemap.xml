@@ -234,4 +234,16 @@
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
     </url>
+    <url>
+        <loc>https://www.romanizedmm.com/song/NgeChitPonePyin</loc>
+        <lastmod>2024-08-06</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.romanizedmm.com/song/KaungMaLay</loc>
+        <lastmod>2024-08-06</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+    </url>
 </urlset>
