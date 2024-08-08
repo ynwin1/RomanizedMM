@@ -36,12 +36,14 @@ import songData35 from '../../lyricsJSON/Telepunk.json';
 import songData36 from '../../lyricsJSON/AChitThiChin.json';
 import songData37 from '../../lyricsJSON/NgeChitPonePyin.json';
 import songData38 from '../../lyricsJSON/KaungMaLay.json';
+import songData39 from '../../lyricsJSON/YangonAsBefore.json';
+import songData40 from '../../lyricsJSON/ThaDiYaDal.json';
 
 function allSongs() {
     const combinedSongData = [
         songData1, songData2, songData3, songData4, songData5, songData6, songData7, songData8, songData9, songData10, songData11, songData12, songData13, songData14, songData15, songData16,
         songData17, songData18, songData19, songData20, songData21, songData22, songData23, songData24, songData25, songData26, songData27, songData28, songData29, songData30, songData31,
-    songData32, songData33, songData34, songData35, songData36, songData37, songData38];
+    songData32, songData33, songData34, songData35, songData36, songData37, songData38, songData39, songData40];
     return combinedSongData;
 }
 

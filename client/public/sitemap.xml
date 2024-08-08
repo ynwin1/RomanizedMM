@@ -246,4 +246,17 @@
         <changefreq>yearly</changefreq>
         <priority>0.8</priority>
     </url>
+    <url>
+        <loc>https://www.romanizedmm.com/song/YangonAsBefore</loc>
+        <lastmod>2024-08-07</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://www.romanizedmm.com/song/ThaDiYaDal</loc>
+        <lastmod>2024-08-07</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.8</priority>
+    </url>
+
 </urlset>
