@@ -4,6 +4,7 @@ import express from 'express';
 import cors from 'cors';
 import songRoutes from './routes/songRoutes.js';
 import formRoutes from "./routes/formRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
 
 const createApp = () => {
     const app = express();
@@ -15,6 +16,7 @@ const createApp = () => {
 
     app.use('/api', songRoutes);
     app.use('/api', formRoutes);
+    app.use('/api', authRoutes);
 
     return app;
 }
