@@ -7,8 +7,11 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ColorModeContext from "./themes/ThemeContext";
 import HomePage from "./pages/HomePage";
 import MusicPage from "./pages/MusicPage";
-import { SongContext } from './SongContext';
 import AboutPage from "./pages/AboutPage";
+import LogInPage from "./pages/LogInPage";
+import Callback from "./components/Auth/Callback";
+import PrivateRoutes from "./components/Auth/PrivateRoutes";
+import AdminPage from "./pages/AdminPage";
 
 
 function App() {
@@ -48,6 +51,12 @@ function App() {
                             <Route path="/song-request" element={<SongRequest/>}/>
                             <Route path="/song/:songName" element={<MusicPage/>}/>
                             <Route path="/about" element={<AboutPage/>}/>
+                            <Route path="/login" element={<LogInPage/>} />
+                            <Route path="/callback" element={<Callback/>} />
+                            {/*https://medium.com/@dennisivy/creating-protected-routes-with-react-router-v6-2c4bbaf7bc1c*/}
+                            <Route element={<PrivateRoutes/>}>
+                                <Route path="/admin" element={<AdminPage />} />
+                            </Route>
                         </Routes>
                     </div>
                 </Router>
