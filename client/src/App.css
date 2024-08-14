@@ -108,6 +108,27 @@
   z-index: 1000;
 }
 
+.admin-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+}
+
+.admin-operations {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.admin-operations button {
+  flex: 1 1 30%; /* Allow buttons to grow and shrink, set a base width of 30% */
+  max-width: 5rem; /* Optional: Limit the maximum width of the buttons */
+  min-width: 3rem; /* Optional: Ensure buttons don't get too small */
+  box-sizing: border-box; /* Ensure padding and border are included in width */
+}
+
 @media (max-width: 768px) {
   .youtube-player {
     width: 81vw;
