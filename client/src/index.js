@@ -11,7 +11,11 @@ root.render(
       <Auth0Provider
           domain="dev-i5t7cfwxrdivttbu.us.auth0.com"
           clientId="3WbEnuTHrvEmjNcRs6gMA37hiBPz3Ajp"
-          redirectUri={'http://localhost:3000' + '/callback'}
+          authorizationParams={{
+              redirect_uri: 'http://localhost:3000/callback',
+              audience: 'https://dev-i5t7cfwxrdivttbu.us.auth0.com/api/v2/',
+              scope: 'openid profile email',
+          }}
       >
           <App />
       </Auth0Provider>
