@@ -5,7 +5,8 @@ const LogOutButton = () => {
     const { logout } = useAuth0();
     return <CustomNavButton
         onClick={() =>
-            logout({ returnTo: window.location.origin })}>
+            logout({ returnTo: window.location.origin })}
+    style={{marginTop : "2rem"}}>
         Log Out
     </CustomNavButton>;
 }

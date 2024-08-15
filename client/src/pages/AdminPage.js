@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
 import Footer from "../components/Footer/Footer";
 import LogOutButton from "../components/Auth/LogOutButton";
-import AutoCompleteSearchBar from "../components/SearchBar/AutoCompleteSearch";
 import {CustomNavButton} from "../components/NavBar/NavBarStyling";
 import {useTheme} from "@mui/system";
 import {selectTextColor} from "../themes/ColorSelect";
+import AddOperation from "../components/Auth/OperationComponents";
 
 const AdminPage = () => {
     const theme = useTheme();
@@ -18,6 +18,7 @@ const AdminPage = () => {
 
     return (
         <div className="admin-box" style={{ color: textColor }}>
+            <LogOutButton/>
             <h1>Admin Page</h1>
             <div className="admin-operations">
                 <CustomNavButton onClick={() => setOperation("Add")}>Add</CustomNavButton>
@@ -25,9 +26,14 @@ const AdminPage = () => {
                 <CustomNavButton onClick={() => setOperation("Delete")}>Delete</CustomNavButton>
             </div>
             {
-                operation === "Add" ? <h2>Add</h2> : operation === "Update" ? <h2>Update</h2> : <h2>Delete</h2>
+                operation === "Add" ?
+                    <AddOperation/>
+                    :
+                    operation === "Update" ?
+                        <h2>Update</h2>
+                        :
+                        <h2>Delete</h2>
             }
-            <LogOutButton/>
             <Footer/>
         </div>
     );

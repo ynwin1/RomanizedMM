@@ -122,6 +122,20 @@
   gap: 1.5rem;
 }
 
+.op-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.op-text-field {
+    display: flex;
+    flex-direction: row;
+    margin: 2rem;
+}
+
 .admin-operations button {
   flex: 1 1 30%; /* Allow buttons to grow and shrink, set a base width of 30% */
   max-width: 5rem; /* Optional: Limit the maximum width of the buttons */
