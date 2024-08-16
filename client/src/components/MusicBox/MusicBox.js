@@ -34,7 +34,7 @@ function MusicBox(props) {
 
     return (
         <OverallContainer>
-            <div style={{marginTop: '1rem', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <div className="searchbar-css">
                 <AutoCompleteSearchBar />
             </div>
             {imageLink && <img src={imageLink} alt="albumPhoto" className="album-picture"/>}

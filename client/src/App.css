@@ -122,25 +122,41 @@
   gap: 1.5rem;
 }
 
+.op-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70vw;
+}
+
 .op-box {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 100%;
+}
+
+.searchbar-css {
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .op-text-field {
     display: flex;
     flex-direction: row;
     margin: 2rem;
+    width: 100%;
 }
 
 .admin-operations button {
-  flex: 1 1 30%; /* Allow buttons to grow and shrink, set a base width of 30% */
-  max-width: 5rem; /* Optional: Limit the maximum width of the buttons */
-  min-width: 3rem; /* Optional: Ensure buttons don't get too small */
-  box-sizing: border-box; /* Ensure padding and border are included in width */
+  flex: 1 1 30%;
+  max-width: 5rem;
+  min-width: 3rem;
+  box-sizing: border-box;
 }
 
 @media (max-width: 768px) {

@@ -4,7 +4,7 @@ import LogOutButton from "../components/Auth/LogOutButton";
 import {CustomNavButton} from "../components/NavBar/NavBarStyling";
 import {useTheme} from "@mui/system";
 import {selectTextColor} from "../themes/ColorSelect";
-import AddOperation from "../components/Auth/OperationComponents";
+import {AddOperation, DeleteOperation, UpdateOperation} from "../components/Auth/OperationComponents";
 
 const AdminPage = () => {
     const theme = useTheme();
@@ -30,9 +30,9 @@ const AdminPage = () => {
                     <AddOperation/>
                     :
                     operation === "Update" ?
-                        <h2>Update</h2>
+                        <UpdateOperation/>
                         :
-                        <h2>Delete</h2>
+                        <DeleteOperation/>
             }
             <Footer/>
         </div>

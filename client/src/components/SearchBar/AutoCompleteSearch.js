@@ -5,7 +5,7 @@ import { CustomAutocomplete } from './SearchBarStyling';
 import { useNavigate } from "react-router-dom";
 import allSongs from "./SongHost";
 
-function AutoCompleteSearchBar() {
+function AutoCompleteSearchBar({ setCurrentSong }) {
     const [userInput, setUserInput] = useState("");
     const [matchingSongs, setMatchingSongs] = useState([]);
     const theme = useTheme();
@@ -53,7 +53,11 @@ function AutoCompleteSearchBar() {
             const songSearched = value.song;
             const englishSongName = songSearched.songName.split('(')[0].trim().replace(/\s/g, '');
             console.log(`English song name - ${englishSongName}`);
-            navigate(`/song/${englishSongName}`);
+            if (setCurrentSong) {
+                setCurrentSong(songSearched);
+            } else {
+                navigate(`/song/${englishSongName}`);
+            }
         }
     }
 
