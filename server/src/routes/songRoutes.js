@@ -28,7 +28,7 @@ router.post('/songs', async (req, res) => {
        res.status(201).json({ message: `Song successfully saved - ${song.songName}` });
    } catch (err) {
        console.error(err);
-       res.status(400).json({ message: `Failed to create song due to server error`});
+       res.status(400).json({ message: `Failed to create song due to server error - ${err.message}` });
    }
 });
 
