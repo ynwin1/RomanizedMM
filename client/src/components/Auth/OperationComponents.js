@@ -1,6 +1,6 @@
 import {TextField} from "@mui/material";
 import {CustomNavButton} from "../NavBar/NavBarStyling";
-import React from "react";
+import React, {useState} from "react";
 import AutoCompleteSearchBar from "../SearchBar/AutoCompleteSearch";
 
 const SERVER_URL = process.env.REACT_APP_BACKEND_URI;
@@ -24,22 +24,27 @@ export function AddOperation() {
         burmese: "",
         meaning: ""
     };
-    const [currentSong, setCurrentSong] = React.useState(song);
+    const [currentSong, setCurrentSong] = useState(() => song);
+    const [message, setMessage] = useState("");
 
     function validateSongData() {
-        return currentSong.mmid && currentSong.songName && currentSong.artistName && currentSong.genre && currentSong.about
-            && currentSong.whenToListen && currentSong.lyrics && currentSong.romanized && currentSong.burmese && currentSong.meaning;
+        const requiredFields = ["mmid", "songName", "artistName", "genre", "about", "whenToListen", "lyrics", "romanized", "burmese", "meaning"];
+        for (let field of requiredFields) {
+            if (!currentSong[field]) {
+                return false;
+            }
+        }
     }
 
     function handleInputChange(e, field) {
         const { value } = e.target;
         setCurrentSong({ ...currentSong, [field]: value });
-    };
+    }
 
     async function addSong() {
         console.log(currentSong);
         if (!validateSongData(currentSong)) {
-            document.getElementById("add-result").value = "Please fill all required fields";
+            setMessage("Please fill all required fields");
             return;
         }
         try {
@@ -54,10 +59,10 @@ export function AddOperation() {
                 throw new Error(`HTTP error! status: ${resp.status}`);
             }
             const data = await resp.json();
-            document.getElementById("add-result").value = data.message;
+            setMessage(data.message);
         } catch (e) {
             console.log(e.message);
-            document.getElementById("add-result").value = "Failed to add song";
+            setMessage(`Failed to add song - ${e.message}`);
         } finally {
             setCurrentSong(song);
         }
@@ -175,7 +180,8 @@ export function AddOperation() {
                 Add Song
             </CustomNavButton>
             <div className="op-text-field">
-                <TextField disabled fullWidth multiline id="add-result" label="Message" variant="filled" />
+                <TextField disabled fullWidth multiline id="add-result" label="Message" variant="filled"
+                value={message}/>
             </div>
         </div>
     );
