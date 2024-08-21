@@ -42,12 +42,13 @@ import songData41 from '../../lyricsJSON/HteeTaChaung.json';
 import songData42 from '../../lyricsJSON/AllINeedIsYou.json';
 import songData43 from '../../lyricsJSON/ChitTayThanThar.json';
 import songData44 from '../../lyricsJSON/ThayMaLoPal.json';
+import songData45 from '../../lyricsJSON/Gipsy.json';
 
 function allSongs() {
     const combinedSongData = [
         songData1, songData2, songData3, songData4, songData5, songData6, songData7, songData8, songData9, songData10, songData11, songData12, songData13, songData14, songData15, songData16,
         songData17, songData18, songData19, songData20, songData21, songData22, songData23, songData24, songData25, songData26, songData27, songData28, songData29, songData30, songData31,
-    songData32, songData33, songData34, songData35, songData36, songData37, songData38, songData39, songData40, songData41, songData42, songData43, songData44];
+    songData32, songData33, songData34, songData35, songData36, songData37, songData38, songData39, songData40, songData41, songData42, songData43, songData44, songData45];
     return combinedSongData;
 }
 
