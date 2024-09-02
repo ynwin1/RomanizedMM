@@ -45,7 +45,7 @@ import songData44 from '../../lyricsJSON/ThayMaLoPal.json';
 import songData45 from '../../lyricsJSON/Gipsy.json';
 import songData46 from '../../lyricsJSON/Hnin.json';
 import songData47 from '../../lyricsJSON/YinYinLayYue.json';
-import songData48 from '../../lyricsJSON/AHmatTaMae.json';
+import songData48 from '../../lyricsJSON/AMhatTaMae.json';
 
 function allSongs() {
     const combinedSongData = [
