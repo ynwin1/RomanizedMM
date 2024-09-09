@@ -3,7 +3,6 @@ import {CustomFormControl, CustomSubmitButton} from "../../SongRequestForm/Reque
 import {Input, InputLabel} from "@mui/material";
 
 function ReportForm({ song }) {
-    console.log(song);
 
     const initialForm = {
         songName: song.songName,
