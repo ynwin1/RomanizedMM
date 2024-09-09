@@ -45,8 +45,8 @@ function ReportForm({ song }) {
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                {createFormControl("songName", "Song Name", formData.songName, true, true)}
-                {createFormControl("artist", "Artist", formData.artist, true, true)}
+                {createFormControl("songName", "Song Name", formData.songName, false, true)}
+                {createFormControl("artist", "Artist", formData.artist, false, true)}
                 {createFormControl("report", "Report/Suggestions", formData.details, true)}
                 <CustomSubmitButton type="submit">Submit</CustomSubmitButton>
             </form>

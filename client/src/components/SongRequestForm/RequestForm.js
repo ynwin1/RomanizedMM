@@ -95,7 +95,7 @@ function RequestForm() {
                     </SubtitleTypography>
                     <form onSubmit={handleSubmit}>
                         {createFormControl("songName", "Song Name", formData.songName, true)}
-                        {createFormControl("artist", "Artist", formData.artist, false)}
+                        {createFormControl("artist", "Artist", formData.artist, true)}
                         {createFormControl("youtubeLink", "Youtube Link", formData.youtubeLink, false)}
                         {createFormControl("details", "Details/Comments", formData.details, false)}
                         <CustomSubmitButton type="submit">Submit</CustomSubmitButton>
