@@ -4,8 +4,6 @@ import {Input, InputLabel} from "@mui/material";
 
 function ReportForm({ song }) {
 
-    useEffect(() => {}, [song]);
-
     const initialForm = {
         songName: song.songName,
         artist: song.artistName,
