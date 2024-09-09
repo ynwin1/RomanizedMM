@@ -26,6 +26,11 @@ function MusicBox(props) {
     const [renderYoutube, setRenderYoutube] = useState(false);
     const [renderReport, setRenderReport] = useState(false);
 
+    useEffect(() => {
+        setRenderReport(false);
+        setRenderYoutube(false);
+    }, [props]);
+
     function enableYoutube() {
         if (renderYoutube) {
             console.log("Turning off Youtube");

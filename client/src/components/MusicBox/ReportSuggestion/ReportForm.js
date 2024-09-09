@@ -1,8 +1,10 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {CustomFormControl, CustomSubmitButton} from "../../SongRequestForm/RequestFormStyling";
 import {Input, InputLabel} from "@mui/material";
 
 function ReportForm({ song }) {
+
+    useEffect(() => {}, [song]);
 
     const initialForm = {
         songName: song.songName,
