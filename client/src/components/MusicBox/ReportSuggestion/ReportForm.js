@@ -34,7 +34,7 @@ function ReportForm({ song }) {
                     name={name}
                     value={val}
                     onChange={handleChange}
-                    sx={{ width:'50vw', paddingLeft: '1rem'}}
+                    className="form-input"
                     readOnly={readOnly}
                 />
             </CustomFormControl>

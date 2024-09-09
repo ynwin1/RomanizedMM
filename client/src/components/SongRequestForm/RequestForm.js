@@ -76,7 +76,7 @@ function RequestForm() {
                     name={name}
                     value={val}
                     onChange={handleChange}
-                    sx={{ width:'50vw', paddingLeft: '1rem'}}
+                    className="form-input"
                 />
             </CustomFormControl>
         )
