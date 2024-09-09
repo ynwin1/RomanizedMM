@@ -9,6 +9,8 @@ import YoutubePlayer from "./YoutubePlayer";
 import SearchBar from "../SearchBar/SearchBar";
 import AutoCompleteSearchBar from "../SearchBar/AutoCompleteSearch";
 import RadioBoxBar from "./RadioBoxBar/RadioBoxBar";
+import ReportSuggestionButton from "./ReportSuggestion/ReportSuggestionButton";
+import ReportForm from "./ReportSuggestion/ReportForm";
 
 function MusicBox(props) {
     const imageLink = props.song.imageLink;
@@ -22,6 +24,7 @@ function MusicBox(props) {
     const [showMeaning, setShowMeaning] = useState(false);
 
     const [renderYoutube, setRenderYoutube] = useState(false);
+    const [renderReport, setRenderReport] = useState(false);
 
     function enableYoutube() {
         if (renderYoutube) {
@@ -36,6 +39,10 @@ function MusicBox(props) {
         <OverallContainer>
             <div style={{marginTop: '1rem', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
                 <AutoCompleteSearchBar />
+            </div>
+            <div style={{marginTop: '1rem', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+                <ReportSuggestionButton render={setRenderReport} />
+                {renderReport && <ReportForm song={props.song}/>}
             </div>
             {imageLink && <img src={imageLink} alt="albumPhoto" className="album-picture"/>}
             <AboutTypography theme={theme}>{about}</AboutTypography>
