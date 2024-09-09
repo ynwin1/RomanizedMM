@@ -52,13 +52,14 @@ import songData51 from '../../lyricsJSON/HtarLitePar.json';
 import songData52 from '../../lyricsJSON/AMikeMaeSoneSu.json';
 import songData53 from '../../lyricsJSON/LostInUniverse.json';
 import songData54 from '../../lyricsJSON/FooFoo.json';
+import songData55 from '../../lyricsJSON/ALwanPyayANann.json';
 
 function allSongs() {
     const combinedSongData = [
         songData1, songData2, songData3, songData4, songData5, songData6, songData7, songData8, songData9, songData10, songData11, songData12, songData13, songData14, songData15, songData16,
         songData17, songData18, songData19, songData20, songData21, songData22, songData23, songData24, songData25, songData26, songData27, songData28, songData29, songData30, songData31,
     songData32, songData33, songData34, songData35, songData36, songData37, songData38, songData39, songData40, songData41, songData42, songData43, songData44, songData45, songData46, songData47,
-    songData48, songData49, songData50, songData51, songData52, songData53, songData54];
+    songData48, songData49, songData50, songData51, songData52, songData53, songData54, songData55];
     return combinedSongData;
 }
 
