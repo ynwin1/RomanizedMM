@@ -108,6 +108,11 @@
   z-index: 1000;
 }
 
+.form-input {
+  width: 50vw;
+  paddingLeft: 1rem;
+}
+
 @media (max-width: 768px) {
   .youtube-player {
     width: 81vw;
@@ -130,6 +135,10 @@
     height: 113px;
     zIndex: 1000;
   }
+
+    .form-input {
+        width: 80vw;
+    }
 }
 
 @media (max-width: 480px) {

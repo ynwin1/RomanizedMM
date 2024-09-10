@@ -17,7 +17,7 @@ export const CustomNavButton = styled(Button)({
     fontSize: '1rem',
     textTransform: 'none',
     '&:hover': {
-        background: '#3EB61A' // 'rgba(255, 105, 180, 0.80)'
+        background: '#FF0000' // 'rgba(255, 105, 180, 0.80)'
     },
     '@media (max-width:768px)': {
         padding: '8px 14px',
