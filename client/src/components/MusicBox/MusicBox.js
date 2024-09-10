@@ -7,8 +7,8 @@ import {OverallContainer, AboutContainer, AboutTypography} from "./MusicBoxStyli
 import YoutubePlayer from "./YoutubePlayer";
 import AutoCompleteSearchBar from "../SearchBar/AutoCompleteSearch";
 import RadioBoxBar from "./RadioBoxBar/RadioBoxBar";
-import ReportSuggestionButton from "./ReportSuggestion/ReportSuggestionButton";
-import ReportForm from "./ReportSuggestion/ReportForm";
+import ReportSuggestionButton from "./ReportSuggestionForm/ReportSuggestionButton";
+import ReportForm from "./ReportSuggestionForm/ReportForm";
 
 function MusicBox(props) {
     const imageLink = props.song.imageLink;
