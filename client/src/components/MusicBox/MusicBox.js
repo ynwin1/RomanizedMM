@@ -1,12 +1,10 @@
 import React, {useEffect, useState} from "react";
-import {Fade} from "@mui/material";
 import {useTheme} from "@mui/system";
 import AboutBox from "./AboutBox/AboutBox";
 import ExtLinksBox from "./ExternalLinksBox/ExtLinksBox";
 import LyricsBox from "./LyricsBox/LyricsBox";
 import {OverallContainer, AboutContainer, AboutTypography} from "./MusicBoxStyling";
 import YoutubePlayer from "./YoutubePlayer";
-import SearchBar from "../SearchBar/SearchBar";
 import AutoCompleteSearchBar from "../SearchBar/AutoCompleteSearch";
 import RadioBoxBar from "./RadioBoxBar/RadioBoxBar";
 import ReportSuggestionButton from "./ReportSuggestion/ReportSuggestionButton";
@@ -29,7 +27,7 @@ function MusicBox(props) {
     useEffect(() => {
         setRenderReport(false);
         setRenderYoutube(false);
-    }, [props]);
+    }, [props.song]);
 
     function enableYoutube() {
         if (renderYoutube) {

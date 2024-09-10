@@ -4,13 +4,14 @@ import {expect} from "chai";
 import sinon from "sinon";
 import {SongNameMissingError, WebhookSendError} from "../../src/utils/Exceptions.js";
 
-describe('POST /submitForm', () => {
+describe('POST Form Test', () => {
     let app;
     let formData;
     let fetchStub;
 
-    const api = "/api/submitForm"
-    const successfulSubmissionMsg = "Song requested successfully ✅. Stay tuned! 🤩"
+    const song_request_api = "/api/submitForm"
+    const song_report_api = "/api/submitReport"
+    const successfulSubmissionMsg = "Song requested successfully ✅. It may take 1-2 days, so stay tuned! 🤩"
     const failedSubmissionMsg = "Oops! there was an error 😩. Please try again! 🙏🏻"
 
     before(() => {
@@ -34,7 +35,7 @@ describe('POST /submitForm', () => {
         }
         fetchStub.resolves({ok: true});
         const resp = await request(app)
-            .post(api)
+            .post(song_request_api)
             .send({formData})
             .set('Accept', 'application/json');
 
@@ -48,7 +49,7 @@ describe('POST /submitForm', () => {
             songName: "anotherSong"
         }
         const resp = await request(app)
-            .post(api)
+            .post(song_request_api)
             .send({formData})
             .set('Accept', 'application/json');
 
@@ -63,7 +64,7 @@ describe('POST /submitForm', () => {
             details: "can't find on Youtube!"
         }
         const resp = await request(app)
-            .post(api)
+            .post(song_request_api)
             .send({formData})
             .set('Accept', 'application/json');
 
@@ -79,7 +80,7 @@ describe('POST /submitForm', () => {
         }
 
         const resp = await request(app)
-            .post(api)
+            .post(song_request_api)
             .send({formData})
             .set('Accept', 'application/json');
 
@@ -96,7 +97,7 @@ describe('POST /submitForm', () => {
         }
 
         const resp = await request(app)
-            .post(api)
+            .post(song_request_api)
             .send({formData})
             .set('Accept', 'application/json');
 
@@ -112,11 +113,45 @@ describe('POST /submitForm', () => {
         }
 
         const resp = await request(app)
-            .post(api)
+            .post(song_request_api)
             .send({formData})
             .set('Accept', 'application/json');
 
         expect(resp.status).to.equal(503);
+        expect(resp.body).to.include({ message: failedSubmissionMsg });
+    });
+
+    it ('should return 200 upon successful report submission with all fields filled', async () => {
+        fetchStub.resolves({ok: true});
+        formData = {
+            songName: "newSong",
+            artist: "newArtist",
+            report: "newReport"
+        }
+        const resp = await request(app)
+            .post(song_report_api)
+            .send({formData})
+            .set('Accept', 'application/json');
+
+        expect(resp.status).to.equal(200);
+        expect(resp.body).to.include({ message: "Report/Suggestion submitted successfully ✅. Thank you!" });
+    });
+
+    it ('should not send a report with missing report field', async () => {
+        fetchStub.rejects(new Error("Something went wrong while submitting form!"));
+
+        formData = {
+            songName: "newSong",
+            artist: "newArtist",
+            report: "",
+        }
+
+        const resp = await request(app)
+            .post(song_report_api)
+            .send({formData})
+            .set('Accept', 'application/json');
+
+        expect(resp.status).to.equal(400);
         expect(resp.body).to.include({ message: failedSubmissionMsg });
     });
 })
