@@ -1,6 +1,7 @@
 import React from 'react';
 import SettingsIcon from "@mui/icons-material/Settings";
 import FontAdjustor from "./FontAdjustor";
+import {fontSize} from "@mui/system";
 
 function LyricsSetting(props) {
 
@@ -14,7 +15,7 @@ function LyricsSetting(props) {
                               marginTop: '1rem'}}/>
             {props.showSettings &&
                 <div className="font-adjustor">
-                    <FontAdjustor setFontSize={props.setFontSize}/>
+                    <FontAdjustor fontSize={props.fontSize} setFontSize={props.setFontSize}/>
                 </div>
             }
         </div>

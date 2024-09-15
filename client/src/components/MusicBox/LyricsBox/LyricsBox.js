@@ -11,6 +11,10 @@ function LyricsBox(props) {
     const [showSettings, setShowSettings] = React.useState(true);
     const [fontSize, setFontSize] = React.useState(16);
 
+    useEffect(() => {
+        setShowSettings(false);
+    }, [props.song]);
+
     function formatLyrics(lyrics) {
         return lyrics.split('\n').map((line, index) => (
             <React.Fragment key={index}>
@@ -32,6 +36,7 @@ function LyricsBox(props) {
             <LyricsSetting
                 textColor={textColor}
                 showSettings={showSettings}
+                fontSize={fontSize}
                 setFontSize={setFontSize}
                 toggleSettings={toggleSettings}/>
             <LyricsCard textcolor={textColor}>
