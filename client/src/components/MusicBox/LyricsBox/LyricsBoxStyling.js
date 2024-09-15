@@ -6,7 +6,9 @@ export const LyricsContainer = styled(Box) ({
     display: 'flex',
     flexDirection: 'column',
     marginTop: '1rem',
-    width: '70vw'
+    width: '70vw',
+    justifyContent: 'center',
+    alignItems: 'center',
 });
 
 export const LyricsCard = styled(Card)(({textcolor}) => ({
@@ -28,11 +30,9 @@ export const LyricsTitleTypography = styled(Typography)(({textcolor}) => ({
     fontFamily:'Fugaz One', color: textcolor, fontSize: '2rem'
 }))
 
-export const LyricsTypography = styled(Typography)(({textcolor}) => ({
+export const LyricsTypography = styled(Typography)(({textcolor, fontSize}) => ({
     color: textcolor,
     fontFamily: 'Lato',
-    lineHeight: '1.8rem',
-    '@media (max-width: 768px)': {
-        fontSize: '1rem',
-    }
+    lineHeight: `${fontSize * 2}px`,
+    fontSize: `${fontSize}px`,
 }));

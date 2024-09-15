@@ -113,6 +113,19 @@
   paddingLeft: 1rem;
 }
 
+.font-adjustor {
+  margin-top: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.font-adjustor-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  gap: 0.5rem;
+}
+
 @media (max-width: 768px) {
   .youtube-player {
     width: 81vw;
