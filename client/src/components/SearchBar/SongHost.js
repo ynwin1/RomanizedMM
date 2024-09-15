@@ -57,13 +57,14 @@ import songData56 from '../../lyricsJSON/HnitPatLal.json';
 import songData57 from '../../lyricsJSON/OneDay.json';
 import songData58 from '../../lyricsJSON/APhyuYaungKaTiSakar.json';
 import songData59 from '../../lyricsJSON/NgarMaShiThawNin.json';
+import songData60 from '../../lyricsJSON/ATateMaeYawGar.json';
 
 function allSongs() {
     const combinedSongData = [
         songData1, songData2, songData3, songData4, songData5, songData6, songData7, songData8, songData9, songData10, songData11, songData12, songData13, songData14, songData15, songData16,
         songData17, songData18, songData19, songData20, songData21, songData22, songData23, songData24, songData25, songData26, songData27, songData28, songData29, songData30, songData31,
     songData32, songData33, songData34, songData35, songData36, songData37, songData38, songData39, songData40, songData41, songData42, songData43, songData44, songData45, songData46, songData47,
-    songData48, songData49, songData50, songData51, songData52, songData53, songData54, songData55, songData56, songData57, songData58, songData59];
+    songData48, songData49, songData50, songData51, songData52, songData53, songData54, songData55, songData56, songData57, songData58, songData59, songData60];
     return combinedSongData;
 }
 
