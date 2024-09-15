@@ -11,6 +11,6 @@ export const ReportButton = styled(Button)({
     padding: '0.5rem 1rem',
     margin: '1rem 1rem',
     '&:hover': {
-        backgroundColor: '#FF0000',
+        backgroundColor: '#CA0000',
     }
 });
