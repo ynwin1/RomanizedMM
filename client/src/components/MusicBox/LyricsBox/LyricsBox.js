@@ -29,7 +29,11 @@ function LyricsBox(props) {
             <LyricsTitleTypography textcolor={textColor}>
                 Lyrics
             </LyricsTitleTypography>
-            <LyricsSetting showSettings={showSettings} setFontSize={setFontSize} toggleSettings={toggleSettings}/>
+            <LyricsSetting
+                textColor={textColor}
+                showSettings={showSettings}
+                setFontSize={setFontSize}
+                toggleSettings={toggleSettings}/>
             <LyricsCard textcolor={textColor}>
                 <CardContent>
                     <LyricsTypography textcolor={textColor} fontSize={fontSize}>
