@@ -62,6 +62,7 @@ import songData61 from '../../lyricsJSON/ChitLuMike.json';
 import songData62 from '../../lyricsJSON/WhatHtarTaeKaungKin.json';
 import songData63 from '../../lyricsJSON/ToThuNgalChin.json';
 import songData64 from '../../lyricsJSON/AChitAChit.json';
+import songData65 from '../../lyricsJSON/Lawichal.json';
 
 function allSongs() {
     const combinedSongData = [
@@ -69,7 +70,7 @@ function allSongs() {
         songData17, songData18, songData19, songData20, songData21, songData22, songData23, songData24, songData25, songData26, songData27, songData28, songData29, songData30, songData31,
     songData32, songData33, songData34, songData35, songData36, songData37, songData38, songData39, songData40, songData41, songData42, songData43, songData44, songData45, songData46, songData47,
     songData48, songData49, songData50, songData51, songData52, songData53, songData54, songData55, songData56, songData57, songData58, songData59, songData60, songData61, songData62, songData63,
-    songData64];
+    songData64, songData65];
     return combinedSongData;
 }
 
