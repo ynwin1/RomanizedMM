@@ -46,14 +46,6 @@ function MusicBox(props) {
     return (
         <OverallContainer>
             <div style={{marginTop: '1rem', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
-                <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-                    <p>English</p><Switch
-                    checked={language === 'mm'}
-                    onChange={toggleLanguageMode}
-                    name="languageToggle"
-                    inputProps={{ 'aria-label': 'language switch' }}
-                /><p>မြန်မာ</p>
-                </div>
                 <AutoCompleteSearchBar />
             </div>
             <div style={{marginTop: '1rem', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
