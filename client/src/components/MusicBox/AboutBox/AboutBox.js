@@ -3,7 +3,6 @@ import CardContent from '@mui/material/CardContent';
 import {useTheme} from "@mui/system";
 import {selectTextColor} from "../../../themes/ColorSelect";
 import {AboutTypography, AboutCard} from "./AboutBoxStyling";
-import {Slide} from "@mui/material";
 
 function AboutBox(props) {
     const theme = useTheme();

@@ -10,8 +10,6 @@ import RadioBoxBar from "./RadioBoxBar/RadioBoxBar";
 import ReportSuggestionButton from "./ReportSuggestionForm/ReportSuggestionButton";
 import ReportForm from "./ReportSuggestionForm/ReportForm";
 import LanguageContext from "../../language/LanguageContext";
-import Switch from "@mui/material/Switch";
-import {Button} from "@mui/material";
 
 function MusicBox(props) {
     const imageLink = props.song.imageLink;

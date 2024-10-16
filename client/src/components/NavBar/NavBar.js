@@ -6,7 +6,6 @@ import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
 import ColorModeContext from "../../themes/ThemeContext";
 import {CustomNavBar, CustomNavButton, CustomToolBar, NavBarTypography} from "./NavBarStyling"
-import Switch from "@mui/material/Switch";
 import LanguageContext from "../../language/LanguageContext";
 import {LanguageToggler} from "../Toggler/Toggler";
 
