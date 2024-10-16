@@ -9,6 +9,8 @@ import HomePage from "./pages/HomePage";
 import MusicPage from "./pages/MusicPage";
 import { SongContext } from './SongContext';
 import AboutPage from "./pages/AboutPage";
+import LanguageContext from "./language/LanguageContext";
+import {LanguageProvider} from "./language/LanguageProvider";
 
 
 function App() {
@@ -39,19 +41,21 @@ function App() {
 
     return (
         <ColorModeContext.Provider value={colorMode}>
-            <ThemeProvider theme={theme}>
-                <Router>
-                    <div className="App">
-                        <NavBar/>
-                        <Routes>
-                            <Route path="/" element={<HomePage/>}/>
-                            <Route path="/song-request" element={<SongRequest/>}/>
-                            <Route path="/song/:songName" element={<MusicPage/>}/>
-                            <Route path="/about" element={<AboutPage/>}/>
-                        </Routes>
-                    </div>
-                </Router>
-            </ThemeProvider>
+            <LanguageProvider>
+                <ThemeProvider theme={theme}>
+                    <Router>
+                        <div className="App">
+                            <NavBar/>
+                            <Routes>
+                                <Route path="/" element={<HomePage/>}/>
+                                <Route path="/song-request" element={<SongRequest/>}/>
+                                <Route path="/song/:songName" element={<MusicPage/>}/>
+                                <Route path="/about" element={<AboutPage/>}/>
+                            </Routes>
+                        </div>
+                    </Router>
+                </ThemeProvider>
+            </LanguageProvider>
         </ColorModeContext.Provider>
     );
 }

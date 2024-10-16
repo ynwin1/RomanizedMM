@@ -3,9 +3,9 @@ import {Radio} from "@mui/material";
 import {RadioBoxCard, ControlLabel} from "./RadioBoxStyling";
 
 function RadioBoxBar(props) {
-    const burmese = "Burmese";
-    const romanized = "Romanized";
-    const meaning = "Meaning";
+    const burmese = props.lang === 'en' ? "Burmese" : "မြန်မာ";
+    const romanized = props.lang === 'en' ? "Romanized" : "ရိုမန်";
+    const meaning = props.lang === 'en' ? "Meaning" : "အဓိပ္ပာယ်";
 
     const {showRomanized, showBurmese, showMeaning, setShowRomanized, setShowBurmese, setShowMeaning} = props;
 
