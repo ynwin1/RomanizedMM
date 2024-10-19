@@ -111,7 +111,7 @@ function RequestForm() {
                         {createFormControl("artist", artistLang, formData.artist, true)}
                         {createFormControl("youtubeLink", youtubeLinkLang, formData.youtubeLink, false)}
                         {createFormControl("details", detailsLang, formData.details, false)}
-                        <CustomSubmitButton type="submit">Submit</CustomSubmitButton>
+                        <CustomSubmitButton type="submit">{submitLang}</CustomSubmitButton>
                     </form>
                 </>
             }

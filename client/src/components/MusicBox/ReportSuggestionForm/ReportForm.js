@@ -24,6 +24,7 @@ function ReportForm({ song }) {
     const songNameLang = language === "en" ? "Song Name" : "သီချင်းအမည်";
     const artistLang = language === "en" ? "Artist" : "တေးဆို";
     const reportLang = language === "en" ? "Report/Suggestions" : "အမှား/အကြံပေး";
+    const submitLang = language === "en" ? "Submit" : "တင်မည်";
 
     const [formData, setFormData] = useState(initialForm);
     const [showForm, setShowForm] = useState(true);
@@ -94,7 +95,7 @@ function ReportForm({ song }) {
                         {createFormControl("songName", songNameLang, formData.songName, false, true)}
                         {createFormControl("artist", artistLang, formData.artist, false, true)}
                         {createFormControl("report", reportLang, formData.details, true)}
-                        <CustomSubmitButton type="submit"> Submit </CustomSubmitButton>
+                        <CustomSubmitButton type="submit"> {submitLang} </CustomSubmitButton>
                     </form>
                 </>
             }
