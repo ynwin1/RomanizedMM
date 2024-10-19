@@ -6,7 +6,6 @@ export const  CustomNavBar = styled(AppBar)({
     boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
     height: '5rem',
     justifyContent: 'center',
-
 });
 
 export const CustomNavButton = styled(Button)({
@@ -16,6 +15,7 @@ export const CustomNavButton = styled(Button)({
     padding: '10px 20px',
     fontSize: '1rem',
     textTransform: 'none',
+    width: '10rem',
     '&:hover': {
         background: '#FF0000' // 'rgba(255, 105, 180, 0.80)'
     },

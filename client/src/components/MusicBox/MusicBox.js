@@ -25,7 +25,7 @@ function MusicBox(props) {
     const [renderYoutube, setRenderYoutube] = useState(false);
     const [renderReport, setRenderReport] = useState(false);
 
-    const { language, toggleLanguageMode } = useContext(LanguageContext);
+    const { language } = useContext(LanguageContext);
 
     useEffect(() => {
         setRenderReport(false);

@@ -13,7 +13,9 @@ function NavBar() {
 
     const theme = useTheme();
     const colorMode = useContext(ColorModeContext);
+
     const { language, toggleLanguageMode } = useContext(LanguageContext);
+    const requestLang = language === 'en' ? 'Request a song' : 'သီချင်းတောင်းမယ်';
 
     return (
         <div>
@@ -28,7 +30,7 @@ function NavBar() {
                         {theme.palette.mode === 'dark' ? <Brightness7Icon/> : <Brightness4Icon/>}
                     </IconButton>
                     <Link to="/song-request" style={{ color: 'inherit', textDecoration: 'inherit' }}>
-                        <CustomNavButton><NavBarTypography>Request a song</NavBarTypography></CustomNavButton>
+                        <CustomNavButton><NavBarTypography>{requestLang}</NavBarTypography></CustomNavButton>
                     </Link>
                 </CustomToolBar>
             </CustomNavBar>

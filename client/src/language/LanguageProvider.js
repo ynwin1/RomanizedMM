@@ -7,7 +7,6 @@ export const LanguageProvider = ({ children }) => {
     const toggleLanguageMode = () => {
         setLanguage(prevLanguage =>
             (prevLanguage === 'en' ? 'mm' : 'en'));
-        console.log("Language is now: " + language);
     };
 
     // Providing the current state and the function to toggle it

@@ -14,7 +14,7 @@ function AboutBox(props) {
                 <AboutTypography>{props.lang === "en" ? "Artist: " : "တေးဆို - "} {props.song.artistName}</AboutTypography>
                 <AboutTypography>{props.lang === "en" ? "Album: " : "အယ်ဘမ် - "}  {props.song.albumName}</AboutTypography>
                 <AboutTypography>{props.lang === "en" ? "Genre: " : "အမျိုးအစား - "} {props.song.genre}</AboutTypography>
-                <AboutTypography>{props.lang === "en" ? "When to listen: " : "နားထောင်လို့ အကောင်းဆုံးအချိန် - "} {props.song.whenToListen}</AboutTypography>
+                <AboutTypography>{props.lang === "en" ? "When to listen: " : "ဘယ်အချိန်နားထောင် - "} {props.song.whenToListen}</AboutTypography>
             </CardContent>
         </AboutCard>
     )
