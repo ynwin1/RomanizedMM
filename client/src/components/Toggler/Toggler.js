@@ -1,8 +1,8 @@
-import Switch from "@mui/material/Switch";
 import React, {useContext} from "react";
 import LanguageContext from "../../language/LanguageContext";
 import {selectTextColor} from "../../themes/ColorSelect";
 import {useTheme} from "@mui/system";
+import {LanguageSwitch} from "./TogglerStyling";
 
 export const LanguageToggler = () => {
     const theme = useTheme();
@@ -12,7 +12,7 @@ export const LanguageToggler = () => {
     return (
         <div style={{display: 'flex', flexDirection: 'row', marginTop:'1rem', marginRight: '2rem', justifyContent: "right", alignItems: "center"}}>
             <p style={{color: color}}>English</p>
-                <Switch
+                <LanguageSwitch
                     checked={language === 'mm'}
                     onChange={toggleLanguageMode}
                     name="languageToggle"
