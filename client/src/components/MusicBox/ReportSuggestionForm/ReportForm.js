@@ -1,8 +1,9 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import {CustomFormControl, CustomSubmitButton, SubtitleTypography} from "../../SongRequestForm/RequestFormStyling";
 import {CircularProgress, Input, InputLabel} from "@mui/material";
 import {useTheme} from "@mui/system";
 import {selectTextColor} from "../../../themes/ColorSelect";
+import LanguageContext from "../../../language/LanguageContext";
 
 function ReportForm({ song }) {
     const SERVER_URL = process.env.REACT_APP_BACKEND_URI;
@@ -16,6 +17,13 @@ function ReportForm({ song }) {
 
     const theme = useTheme();
     const textColor = selectTextColor(theme.palette.mode);
+
+    const {language} = useContext(LanguageContext);
+
+    // language based texts
+    const songNameLang = language === "en" ? "Song Name" : "သီချင်းအမည်";
+    const artistLang = language === "en" ? "Artist" : "တေးဆို";
+    const reportLang = language === "en" ? "Report/Suggestions" : "အမှား/အကြံပေး";
 
     const [formData, setFormData] = useState(initialForm);
     const [showForm, setShowForm] = useState(true);
@@ -83,9 +91,9 @@ function ReportForm({ song }) {
             { showForm &&
                 <>
                     <form onSubmit={handleSubmit}>
-                        {createFormControl("songName", "Song Name", formData.songName, false, true)}
-                        {createFormControl("artist", "Artist", formData.artist, false, true)}
-                        {createFormControl("report", "Report/Suggestions", formData.details, true)}
+                        {createFormControl("songName", songNameLang, formData.songName, false, true)}
+                        {createFormControl("artist", artistLang, formData.artist, false, true)}
+                        {createFormControl("report", reportLang, formData.details, true)}
                         <CustomSubmitButton type="submit"> Submit </CustomSubmitButton>
                     </form>
                 </>

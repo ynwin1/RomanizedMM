@@ -26,8 +26,8 @@ export const LyricsCard = styled(Card)(({textcolor}) => ({
     }
 }));
 
-export const LyricsTitleTypography = styled(Typography)(({textcolor}) => ({
-    fontFamily:'Fugaz One', color: textcolor, fontSize: '2rem'
+export const LyricsTitleTypography = styled(Typography)(({textcolor, textsize}) => ({
+    fontFamily:'Fugaz One', color: textcolor, fontSize: textsize
 }))
 
 export const LyricsTypography = styled(Typography)(({textcolor, fontSize}) => ({

@@ -1,15 +1,21 @@
-import React, {useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import CardContent from '@mui/material/CardContent';
 import {useTheme} from "@mui/system";
 import {selectTextColor} from "../../../themes/ColorSelect";
 import {LyricsCard, LyricsContainer, LyricsTitleTypography, LyricsTypography} from "./LyricsBoxStyling";
 import LyricsSetting from "../LyricsSetting/FontController/LyricsSetting";
+import LanguageContext from "../../../language/LanguageContext";
 
 function LyricsBox(props) {
     const theme = useTheme();
     const textColor = selectTextColor(theme.palette.mode);
     const [showSettings, setShowSettings] = React.useState(true);
     const [fontSize, setFontSize] = React.useState(16);
+    const {language} = useContext(LanguageContext);
+
+    // language based texts
+    const lyricsTitle = language === "en" ? "Lyrics" : "သီချင်းစာသား";
+    const titleFontSize = language === "en" ? "2rem" : "1.5rem";
 
     useEffect(() => {
         setShowSettings(false);
@@ -30,8 +36,8 @@ function LyricsBox(props) {
 
     return (
         <LyricsContainer component={"main"}>
-            <LyricsTitleTypography textcolor={textColor}>
-                Lyrics
+            <LyricsTitleTypography textcolor={textColor} textsize={titleFontSize}>
+                {lyricsTitle}
             </LyricsTitleTypography>
             <LyricsSetting
                 textColor={textColor}
