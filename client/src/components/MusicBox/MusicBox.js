@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import {useTheme} from "@mui/system";
 import AboutBox from "./AboutBox/AboutBox";
 import ExtLinksBox from "./ExternalLinksBox/ExtLinksBox";
@@ -9,6 +9,7 @@ import AutoCompleteSearchBar from "../SearchBar/AutoCompleteSearch";
 import RadioBoxBar from "./RadioBoxBar/RadioBoxBar";
 import ReportSuggestionButton from "./ReportSuggestionForm/ReportSuggestionButton";
 import ReportForm from "./ReportSuggestionForm/ReportForm";
+import LanguageContext from "../../language/LanguageContext";
 
 function MusicBox(props) {
     const imageLink = props.song.imageLink;
@@ -23,6 +24,8 @@ function MusicBox(props) {
 
     const [renderYoutube, setRenderYoutube] = useState(false);
     const [renderReport, setRenderReport] = useState(false);
+
+    const { language } = useContext(LanguageContext);
 
     useEffect(() => {
         setRenderReport(false);
@@ -40,7 +43,7 @@ function MusicBox(props) {
 
     return (
         <OverallContainer>
-            <div style={{marginTop: '1rem', width: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+            <div style={{marginTop: '1rem', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                 <AutoCompleteSearchBar />
             </div>
             <div style={{marginTop: '1rem', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
@@ -49,7 +52,7 @@ function MusicBox(props) {
             </div>
             {imageLink && <img src={imageLink} alt="albumPhoto" className="album-picture"/>}
             <AboutTypography theme={theme}>{about}</AboutTypography>
-            <AboutBox song={props.song} />
+            <AboutBox song={props.song} lang={language}/>
             <ExtLinksBox song={props.song} enableYoutube={enableYoutube}/>
             {props.song.youtubeLink && renderYoutube && <YoutubePlayer link={props.song.youtubeLink}/>}
             <RadioBoxBar
@@ -59,6 +62,7 @@ function MusicBox(props) {
                 setShowBurmese={setShowBurmese}
                 showMeaning={showMeaning}
                 setShowMeaning={setShowMeaning}
+                lang={language}
             />
             <LyricsBox
                 song={props.song}

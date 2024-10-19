@@ -10,6 +10,7 @@ export const ReportButton = styled(Button)({
     borderRadius: '1.25rem',
     padding: '0.5rem 1rem',
     margin: '1rem 1rem',
+    width: '12rem',
     '&:hover': {
         backgroundColor: '#CA0000',
     }

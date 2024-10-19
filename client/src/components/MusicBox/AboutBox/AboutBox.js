@@ -3,7 +3,6 @@ import CardContent from '@mui/material/CardContent';
 import {useTheme} from "@mui/system";
 import {selectTextColor} from "../../../themes/ColorSelect";
 import {AboutTypography, AboutCard} from "./AboutBoxStyling";
-import {Slide} from "@mui/material";
 
 function AboutBox(props) {
     const theme = useTheme();
@@ -12,10 +11,10 @@ function AboutBox(props) {
         <AboutCard>
             <CardContent sx={{textAlign: 'left', color: selectTextColor(theme.palette.mode)}}>
                 <AboutTypography sx={{paddingBottom: '2rem'}}>{props.song.songName}</AboutTypography>
-                <AboutTypography>Artist: {props.song.artistName}</AboutTypography>
-                <AboutTypography>Album:  {props.song.albumName}</AboutTypography>
-                <AboutTypography>Genre: {props.song.genre}</AboutTypography>
-                <AboutTypography>When to listen: {props.song.whenToListen}</AboutTypography>
+                <AboutTypography>{props.lang === "en" ? "Artist: " : "တေးဆို - "} {props.song.artistName}</AboutTypography>
+                <AboutTypography>{props.lang === "en" ? "Album: " : "အယ်ဘမ် - "}  {props.song.albumName}</AboutTypography>
+                <AboutTypography>{props.lang === "en" ? "Genre: " : "အမျိုးအစား - "} {props.song.genre}</AboutTypography>
+                <AboutTypography>{props.lang === "en" ? "When to listen: " : "ဘယ်အချိန်နားထောင် - "} {props.song.whenToListen}</AboutTypography>
             </CardContent>
         </AboutCard>
     )

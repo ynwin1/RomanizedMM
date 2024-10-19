@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, {useState, useEffect, useMemo, useContext} from "react";
 import { TextField } from '@mui/material';
 import { useTheme } from '@mui/system';
 import { CustomAutocomplete } from './SearchBarStyling';
 import { useNavigate } from "react-router-dom";
 import allSongs from "./SongHost";
+import LanguageContext from "../../language/LanguageContext";
 
 function AutoCompleteSearchBar() {
     const [userInput, setUserInput] = useState("");
@@ -13,6 +14,8 @@ function AutoCompleteSearchBar() {
 
     const SERVER_URL = process.env.REACT_APP_BACKEND_URI;
     const API_URL = process.env.REACT_APP_SEARCH_SONG_API;
+
+    const {language} = useContext(LanguageContext);
 
     useEffect(() => {
         loadSongs();
@@ -86,6 +89,8 @@ function AutoCompleteSearchBar() {
         return sortedFinal;
     }
 
+    const searchLang = language === 'en' ? 'Type a song title' : 'သီချင်းနာမည်ရိုက်ထည့်ပါ';
+
     return (
         <CustomAutocomplete
             options={useMemo(() => groupAndSortSongs(), [matchingSongs])}
@@ -96,7 +101,7 @@ function AutoCompleteSearchBar() {
             renderInput={(params) => (
                 <TextField
                     {...params}
-                    label="Type a song title"
+                    label={searchLang}
                     onChange={handleUserInput}
                 />
             )}

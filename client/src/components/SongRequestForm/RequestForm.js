@@ -1,8 +1,9 @@
-import React, {useState} from "react"
+import React, {useContext, useState} from "react"
 import {InputLabel, Input, CircularProgress} from "@mui/material";
 import {useTheme} from "@mui/system";
 import {selectTextColor} from "../../themes/ColorSelect";
 import {CustomFormControl, CustomSubmitButton, SubtitleTypography, TitleTypography} from "./RequestFormStyling";
+import LanguageContext from "../../language/LanguageContext";
 
 function RequestForm() {
     const SERVER_URL = process.env.REACT_APP_BACKEND_URI;
@@ -22,6 +23,19 @@ function RequestForm() {
     const [apiResponse, setApiResponse] = useState("");
     const [renderForm, setRenderForm] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
+
+    const {language} = useContext(LanguageContext);
+    // language based texts
+    const title = language === "en" ? "Request a song!" : "သီချင်းတောင်းမယ်";
+    const subTitle = language === "en" ?
+        "Do you have a song that you want to sing along, but can't find it on this website? Fill out the form below!" :
+        "ကိုယ်ရှာနေတဲ့ သီချင်း ဒီဝက်ဘက်ဆိုဒ်မှာ မရှိဘူးလား? ဒါဆို အောက်က ဖောင်ကိုဖြည့်ပြီး သီချင်းတောင်းဆိုလိုက်ပါ!"
+    const songNameLang = language === "en" ? "Song Name" : "သီချင်းအမည်";
+    const artistLang = language === "en" ? "Artist" : "တေးဆို";
+    const youtubeLinkLang = language === "en" ? "Youtube Link" : "Youtube လင့်";
+    const detailsLang = language === "en" ? "Details/Comments" : "မှတ်ချက်";
+    const submitLang = language === "en" ? "Submit" : "တင်မည်";
+
 
     function handleChange(event) {
         const {name, value} = event.target;
@@ -85,20 +99,19 @@ function RequestForm() {
     return (
         <div className = {theme.palette.mode === 'light' ? "request-form-light" : "request-form-dark"}>
             <TitleTypography textColor={textColor}>
-                Request a song!
+                {title}
             </TitleTypography>
             { renderForm &&
                 <>
                     <SubtitleTypography textColor={textColor}>
-                        Do you have a song that you want to sing along, but can't find it on this website?
-                        Fill out the form below!
+                        {subTitle}
                     </SubtitleTypography>
                     <form onSubmit={handleSubmit}>
-                        {createFormControl("songName", "Song Name", formData.songName, true)}
-                        {createFormControl("artist", "Artist", formData.artist, true)}
-                        {createFormControl("youtubeLink", "Youtube Link", formData.youtubeLink, false)}
-                        {createFormControl("details", "Details/Comments", formData.details, false)}
-                        <CustomSubmitButton type="submit">Submit</CustomSubmitButton>
+                        {createFormControl("songName", songNameLang, formData.songName, true)}
+                        {createFormControl("artist", artistLang, formData.artist, true)}
+                        {createFormControl("youtubeLink", youtubeLinkLang, formData.youtubeLink, false)}
+                        {createFormControl("details", detailsLang, formData.details, false)}
+                        <CustomSubmitButton type="submit">{submitLang}</CustomSubmitButton>
                     </form>
                 </>
             }
