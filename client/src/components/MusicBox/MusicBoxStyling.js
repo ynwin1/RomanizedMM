@@ -19,13 +19,14 @@ export const AboutContainer = styled(Box) ({
 export const AboutTypography = styled(Typography)(({theme}) => ({
     color: selectTextColor(theme.palette.mode),
     padding: '1.5rem',
-    fontFamily: 'Caveat',
+    fontFamily: 'Fira Sans',
     fontSize: '1.2rem',
     width: '60%',
     wordWrap: 'break-word',
     alignSelf: 'center',
+    lineHeight: '2rem',
     '@media (max-width: 768px)': {
         width: '80vw',
-        fontSize: '1.2rem'
+        fontSize: '1rem'
     }
 }));

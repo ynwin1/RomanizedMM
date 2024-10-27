@@ -40,6 +40,6 @@ export const CustomToolBar = styled(Toolbar)({
 })
 
 export const NavBarTypography = styled(Typography)(({theme}) => ({
-    fontFamily: 'Cormorant Garamond',
+    fontFamily: 'Fira Sans',
     color: theme.palette.mode === 'dark' ? 'white' : 'black',
 }));

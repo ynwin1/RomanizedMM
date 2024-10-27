@@ -5,7 +5,7 @@ import {selectTextColor} from "../../themes/ColorSelect";
 export const SloganTypography = styled(Typography)(({ fontSize, theme }) => ({
     color: selectTextColor(theme.palette.mode),
     textAlign: 'center',
-    fontFamily: 'Cormorant Garamond',
+    fontFamily: 'Fira Sans',
     fontSize: fontSize,
     fontStyle: 'normal',
     lineHeight: 'normal',

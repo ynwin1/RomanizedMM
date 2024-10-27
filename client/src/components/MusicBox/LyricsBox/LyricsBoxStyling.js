@@ -32,7 +32,7 @@ export const LyricsTitleTypography = styled(Typography)(({textcolor, textsize}) 
 
 export const LyricsTypography = styled(Typography)(({textcolor, fontSize}) => ({
     color: textcolor,
-    fontFamily: 'Lato',
+    fontFamily: "Fira Sans",
     lineHeight: `${fontSize * 2}px`,
     fontSize: `${fontSize}px`,
 }));

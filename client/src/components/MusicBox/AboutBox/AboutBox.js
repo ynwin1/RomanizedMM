@@ -11,10 +11,10 @@ function AboutBox(props) {
         <AboutCard>
             <CardContent sx={{textAlign: 'left', color: selectTextColor(theme.palette.mode)}}>
                 <AboutTypography sx={{paddingBottom: '2rem'}}>{props.song.songName}</AboutTypography>
-                <AboutTypography>{props.lang === "en" ? "Artist: " : "တေးဆို - "} {props.song.artistName}</AboutTypography>
-                <AboutTypography>{props.lang === "en" ? "Album: " : "အယ်ဘမ် - "}  {props.song.albumName}</AboutTypography>
-                <AboutTypography>{props.lang === "en" ? "Genre: " : "အမျိုးအစား - "} {props.song.genre}</AboutTypography>
-                <AboutTypography>{props.lang === "en" ? "When to listen: " : "ဘယ်အချိန်နားထောင် - "} {props.song.whenToListen}</AboutTypography>
+                <AboutTypography><u>{props.lang === "en" ? "Artist" : "တေးဆို"}</u>: {props.song.artistName}</AboutTypography>
+                <AboutTypography><u>{props.lang === "en" ? "Album" : "အယ်ဘမ်"}</u>: {props.song.albumName}</AboutTypography>
+                <AboutTypography><u>{props.lang === "en" ? "Genre" : "အမျိုးအစား"}</u>: {props.song.genre}</AboutTypography>
+                <AboutTypography><u>{props.lang === "en" ? "When to listen" : "ဘယ်အချိန်နားထောင်"}</u>: {props.song.whenToListen}</AboutTypography>
             </CardContent>
         </AboutCard>
     )
