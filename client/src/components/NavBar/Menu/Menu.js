@@ -28,9 +28,11 @@ function Menu() {
 
     return (
         <div>
-            <MenuIcon
-                sx={{ fontSize: 35 }}
-                onClick={() => setOpen(true)} />
+            <IconButton onClick={() => setOpen(true)}>
+                <MenuIcon
+                    sx={{ fontSize: 35 }}
+                />
+            </IconButton>
             {open && <MenuOverlay close={setOpen}/>}
         </div>
     )
@@ -48,12 +50,13 @@ function MenuOverlay(props) {
     const textColor = selectTextColor(theme.palette.mode);
     return (
         <div className="menu-overlay" style={{background: overlayColor}}>
-            <CloseIcon onClick={() => props.close(false)} sx={{fontSize: buttonSize}}/>
+            <IconButton onClick={() => props.close(false)}>
+                <CloseIcon  sx={{fontSize: buttonSize}}/>
+            </IconButton>
             <Link to="/">
-                <HomeIcon
-                    onClick={() => props.close(false)}
-                    sx={{fontSize: buttonSize, color: textColor}}
-                />
+                <IconButton onClick={() => props.close(false)}>
+                    <HomeIcon sx={{fontSize: buttonSize, color: textColor}} />
+                </IconButton>
             </Link>
             <IconButton onClick={colorMode.toggleColorMode} color="inherit">
                 {theme.palette.mode === 'dark' ? <Brightness7Icon/> : <Brightness4Icon/>}
