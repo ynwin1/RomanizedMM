@@ -97,15 +97,16 @@ function RequestForm() {
     }
 
     return (
-        <div className = {theme.palette.mode === 'light' ? "request-form-light" : "request-form-dark"}>
+        <div className = {theme.palette.mode === 'light' ? "request-form-light" : "request-form-dark"}
+            style={{marginTop: '5rem'}}>
             <TitleTypography textColor={textColor}>
                 {title}
             </TitleTypography>
+            <SubtitleTypography textColor={textColor}>
+                {subTitle}
+            </SubtitleTypography>
             { renderForm &&
                 <>
-                    <SubtitleTypography textColor={textColor}>
-                        {subTitle}
-                    </SubtitleTypography>
                     <form onSubmit={handleSubmit}>
                         {createFormControl("songName", songNameLang, formData.songName, true)}
                         {createFormControl("artist", artistLang, formData.artist, true)}

@@ -19,7 +19,7 @@ export const AboutCard = styled(Card)(({theme}) => ({
 }));
 
 export const AboutTypography = styled(Typography) ({
-    fontFamily: 'Lato',
+    fontFamily: 'Fira Sans',
     lineHeight: '2rem',
     '@media (max-width: 768px)': {
         fontSize: '1rem',

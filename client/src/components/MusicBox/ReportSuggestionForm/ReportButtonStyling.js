@@ -2,7 +2,7 @@ import {Button} from "@mui/material";
 import {styled} from "@mui/system";
 
 export const ReportButton = styled(Button)({
-    fontFamily: 'Lato',
+    fontFamily: 'Fira Sans',
     fontSize: '1rem',
     fontWeight: 'bold',
     color: 'white',
