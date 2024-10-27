@@ -1,6 +1,7 @@
 import React, {useContext, useEffect, useState} from "react";
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
+import HomeIcon from '@mui/icons-material/Home';
 import {IconButton} from '@mui/material';
 import Brightness4Icon from '@mui/icons-material/Brightness4';
 import Brightness7Icon from '@mui/icons-material/Brightness7';
@@ -42,15 +43,28 @@ function MenuOverlay(props) {
     const { language } = useContext(LanguageContext);
     const requestLang = language === 'en' ? 'Request a song' : 'သီချင်းတောင်းမယ်';
     const overlayColor = theme.palette.mode === "dark" ? "black" : "white";
+
+    const buttonSize = 30;
+    const textColor = selectTextColor(theme.palette.mode);
     return (
         <div className="menu-overlay" style={{background: overlayColor}}>
-            <CloseIcon onClick={() => props.close(false)} sx={{fontSize: 30}}/>
+            <CloseIcon onClick={() => props.close(false)} sx={{fontSize: buttonSize}}/>
+            <Link to="/">
+                <HomeIcon
+                    onClick={() => props.close(false)}
+                    sx={{fontSize: buttonSize, color: textColor}}
+                />
+            </Link>
             <IconButton onClick={colorMode.toggleColorMode} color="inherit">
                 {theme.palette.mode === 'dark' ? <Brightness7Icon/> : <Brightness4Icon/>}
             </IconButton>
             <LanguageToggler />
             <Link to="/song-request" style={{ color: 'inherit', textDecoration: 'inherit' }}>
-                <CustomNavButton><NavBarTypography>{requestLang}</NavBarTypography></CustomNavButton>
+                <CustomNavButton onClick={() => props.close(false)}>
+                    <NavBarTypography>
+                        {requestLang}
+                    </NavBarTypography>
+                </CustomNavButton>
             </Link>
         </div>
     )
