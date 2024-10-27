@@ -101,11 +101,11 @@ function RequestForm() {
             <TitleTypography textColor={textColor}>
                 {title}
             </TitleTypography>
+            <SubtitleTypography textColor={textColor}>
+                {subTitle}
+            </SubtitleTypography>
             { renderForm &&
                 <>
-                    <SubtitleTypography textColor={textColor}>
-                        {subTitle}
-                    </SubtitleTypography>
                     <form onSubmit={handleSubmit}>
                         {createFormControl("songName", songNameLang, formData.songName, true)}
                         {createFormControl("artist", artistLang, formData.artist, true)}

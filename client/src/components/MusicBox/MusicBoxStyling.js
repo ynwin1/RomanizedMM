@@ -24,7 +24,7 @@ export const AboutTypography = styled(Typography)(({theme}) => ({
     width: '60%',
     wordWrap: 'break-word',
     alignSelf: 'center',
-    lineHeight: '2rem',
+    lineHeight: '2.2rem',
     '@media (max-width: 768px)': {
         width: '80vw',
         fontSize: '1rem'
