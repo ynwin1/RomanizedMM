@@ -1,28 +1,37 @@
 import {styled} from "@mui/system";
 import {AppBar, Button, Toolbar, Typography} from "@mui/material";
 
-export const  CustomNavBar = styled(AppBar)({
-    background: "linear-gradient(91deg, #6A1B9A 0.47%, #0B3D91 33.58%, #2E1C89 52.2%, #4B0082 66.08%, #FF1493 99.51%) no-repeat", // theme.palette.mode === 'light' ? '#000000':'#FFFFFF', //`linear-gradient(90deg, #434343 0%, #202020 53.2%, #000 100%)`
-    boxShadow: '0px 4px 4px 0px rgba(0, 0, 0, 0.25)',
+export const  CustomNavBar = styled(AppBar)(({theme}) => ({
+    background: theme.palette.mode === 'dark' ? 'black' : 'white',
     height: '5rem',
     justifyContent: 'center',
-});
+    boxShadow: 'none',
+    color: theme.palette.mode === 'dark' ? 'white' : 'black',
+}));
 
-export const CustomNavButton = styled(Button)({
-    borderRadius: '1rem',
-    background: '#000080', //'rgba(220, 20, 60, 0.80)'
-    boxShadow: '2px 4px 8px 0px rgba(51, 51, 51, 0.30)',
-    padding: '10px 20px',
-    fontSize: '1rem',
-    textTransform: 'none',
-    width: '10rem',
-    '&:hover': {
-        background: '#FF0000' // 'rgba(255, 105, 180, 0.80)'
+export const CustomNavButton = styled(Button)(({theme}) => ({
+    fontSize: '16px',
+    letterSpacing: '2px',
+    textDecoration: 'none',
+    color: theme.palette.mode === 'dark' ? 'white' : 'black',
+    cursor: 'pointer',
+    border: '3px solid',
+    padding: '0.25em 0.5em',
+    boxShadow: '1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px',
+    position: 'relative',
+    userSelect: 'none',
+    WebkitUserSelect: 'none',
+    touchAction: 'manipulation',
+    '&:active': {
+        boxShadow: '0px 0px 0px 0px',
+        top: '5px',
+        left: '5px',
     },
-    '@media (max-width:768px)': {
-        padding: '8px 14px',
+    '@media (min-width: 768px)': {
+        padding: '0.25em 0.75em',
+
     },
-});
+}));
 
 export const CustomToolBar = styled(Toolbar)({
     justifyContent: "space-between",
@@ -30,10 +39,7 @@ export const CustomToolBar = styled(Toolbar)({
     flexDirection: 'row'
 })
 
-export const NavBarTypography = styled(Typography)({
-    fontFamily: "'Pacifico', cursive",
-    color: '#FFFFFF',
-    '@media (max-width:768px)': {
-        fontSize: '1rem',
-    },
-});
+export const NavBarTypography = styled(Typography)(({theme}) => ({
+    fontFamily: 'Cormorant Garamond',
+    color: theme.palette.mode === 'dark' ? 'white' : 'black',
+}));

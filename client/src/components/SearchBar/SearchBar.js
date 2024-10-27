@@ -11,7 +11,7 @@ function SearchBar() {
     return (
         <div className="searchBar">
             <SloganTypography fontSize="2.5rem" theme={theme}> Sing Myanmar, Globally! </SloganTypography>
-            <SloganTypography fontSize="1rem" sx={{fontFamily: 'Fugaz One'}}>
+            <SloganTypography fontSize="1.5rem">
                 {slogan}
             </SloganTypography>
             <AutoCompleteSearchBar />
