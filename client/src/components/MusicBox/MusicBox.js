@@ -43,7 +43,7 @@ function MusicBox(props) {
 
     return (
         <OverallContainer>
-            <div style={{marginTop: '1rem', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
+            <div style={{marginTop: '5rem', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>
                 <AutoCompleteSearchBar />
             </div>
             <div style={{marginTop: '1rem', width: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center'}}>

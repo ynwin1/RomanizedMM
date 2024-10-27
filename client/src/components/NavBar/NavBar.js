@@ -8,6 +8,7 @@ import ColorModeContext from "../../themes/ThemeContext";
 import {CustomNavBar, CustomNavButton, CustomToolBar, NavBarTypography} from "./NavBarStyling"
 import LanguageContext from "../../language/LanguageContext";
 import {LanguageToggler} from "../Toggler/Toggler";
+import Menu from "./Menu/Menu";
 
 function NavBar() {
 
@@ -26,15 +27,9 @@ function NavBar() {
                             RomanizedMM
                         </NavBarTypography>
                     </Link>
-                    <IconButton onClick={colorMode.toggleColorMode} color="inherit">
-                        {theme.palette.mode === 'dark' ? <Brightness7Icon/> : <Brightness4Icon/>}
-                    </IconButton>
-                    <Link to="/song-request" style={{ color: 'inherit', textDecoration: 'inherit' }}>
-                        <CustomNavButton><NavBarTypography>{requestLang}</NavBarTypography></CustomNavButton>
-                    </Link>
+                    <Menu/>
                 </CustomToolBar>
             </CustomNavBar>
-            <LanguageToggler/>
         </div>
     )
 }

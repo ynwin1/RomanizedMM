@@ -10,7 +10,7 @@ export const LanguageToggler = () => {
 
     const { language, toggleLanguageMode } = useContext(LanguageContext);
     return (
-        <div style={{display: 'flex', flexDirection: 'row', marginTop:'1rem', marginRight: '2rem', justifyContent: "right", alignItems: "center"}}>
+        <div style={{display: 'flex', flexDirection: 'row', justifyContent: "right", alignItems: "center"}}>
             <p style={{color: color}}>English</p>
                 <LanguageSwitch
                     checked={language === 'mm'}

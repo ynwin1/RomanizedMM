@@ -97,7 +97,8 @@ function RequestForm() {
     }
 
     return (
-        <div className = {theme.palette.mode === 'light' ? "request-form-light" : "request-form-dark"}>
+        <div className = {theme.palette.mode === 'light' ? "request-form-light" : "request-form-dark"}
+            style={{marginTop: '5rem'}}>
             <TitleTypography textColor={textColor}>
                 {title}
             </TitleTypography>

@@ -5,8 +5,12 @@ export const  CustomNavBar = styled(AppBar)(({theme}) => ({
     background: theme.palette.mode === 'dark' ? 'black' : 'white',
     height: '5rem',
     justifyContent: 'center',
+    alignItems: 'space-between',
     boxShadow: 'none',
     color: theme.palette.mode === 'dark' ? 'white' : 'black',
+    position: 'fixed',
+    top: 0,
+    zIndex: 100
 }));
 
 export const CustomNavButton = styled(Button)(({theme}) => ({
