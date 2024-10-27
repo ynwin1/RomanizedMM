@@ -5,12 +5,14 @@ import {selectTextColor} from "../../themes/ColorSelect";
 export const SloganTypography = styled(Typography)(({ fontSize, theme }) => ({
     color: selectTextColor(theme.palette.mode),
     textAlign: 'center',
-    fontFamily: 'Pacifico',
+    fontFamily: 'Fira Sans',
     fontSize: fontSize,
     fontStyle: 'normal',
-    fontWeight: '400',
     lineHeight: 'normal',
-    padding: '1rem'
+    padding: '1rem',
+    '@media (max-width: 768px)': {
+        fontSize: `calc(${fontSize} / 1.5)`,
+    }
 }))
 
 export const CustomAutocomplete = styled(Autocomplete)(({theme}) => ({

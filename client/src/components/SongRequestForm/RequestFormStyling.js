@@ -17,14 +17,14 @@ export const CustomSubmitButton = styled(Button)(({theme}) => ({
 }));
 
 export const TitleTypography = styled(Typography)(({textColor}) => ({
-    fontFamily: 'Fugaz One',
+    fontFamily: 'Fira Sans',
     fontSize: '3rem',
     color: textColor,
     marginBottom: '2rem'
 }));
 
 export const SubtitleTypography = styled(Typography)(({textColor}) => ({
-    fontFamily: 'Fugaz One',
+    fontFamily: 'Fira Sans',
     fontSize: '1rem',
     color: textColor,
     marginBottom: '1rem'
