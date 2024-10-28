@@ -15,6 +15,10 @@ export const QuizCard = styled(Card)({
     paddingBottom: '2rem',
     paddingLeft: '1rem',
     paddingRight: '1rem',
+    '@media (max-width: 768px)': {
+        width: '80vw',
+        height: 'auto'
+    }
 });
 
 export const QuizButton = styled(Button)({
