@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import MusicBox from "../components/MusicBox/MusicBox";
 import Footer from "../components/Footer/Footer";
 import {Helmet} from "react-helmet";
+import PopUpQuiz from "../components/PopUpQuiz/PopUpQuiz";
 
 const SERVER_URL = process.env.REACT_APP_BACKEND_URI;
 const API_URL = process.env.REACT_APP_SEARCH_SONG_API;
@@ -38,6 +39,7 @@ function MusicPage() {
                 />
                 <link rel="canonical" href={fullURL}/>
             </Helmet>
+            <PopUpQuiz/>
             <MusicBox song={song} />
             <Footer />
         </div>
