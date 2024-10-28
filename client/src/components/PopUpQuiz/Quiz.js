@@ -1,8 +1,11 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {QuizButton, QuizCard} from "./QuizStyling";
 import allSongs from "../SearchBar/SongHost";
 import CloseIcon from "@mui/icons-material/Close";
+import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import {IconButton} from "@mui/material";
+import {Link} from "react-router-dom";
+import HomeIcon from "@mui/icons-material/Home";
 
 const SONG_COUNT = 1;
 function selectRandomSongs(number) {
@@ -15,7 +18,30 @@ function selectRandomSongs(number) {
     return randomSongs;
 }
 
+export function AnswerCard(props) {
+    return (
+        <QuizCard>
+            <IconButton onClick={() => props.setQuiz(false)} sx={{marginTop: '1rem'}}>
+                <CloseIcon sx={{fontSize: '30px', color: 'white'}}/>
+            </IconButton>
+            <img src={props.song.image} alt={props.song.songName} style={{width: '30%', height: 'auto'}}/>
+            <h2>{props.guess ? `Correct ✅` : `Wrong ❎`}</h2>
+            {!props.guess && <h3>{`You selected ${props.song.burmese[props.guess.index]}`}</h3>}
+            <h3>{`The correct lyrics is ${props.correctAnswer}`}</h3>
+            <h3>{`Listen to ${props.song.songName} by ${props.song.artistName} now!`}</h3>
+            <Link to={`/song/${props.trimmedSongName}`}
+                  style={{ fontSize: '20px', color: 'inherit', textDecoration: 'inherit' }}
+            >
+                <PlayCircleIcon sx={{fontSize: '20px', color: 'white'}}/>
+            </Link>
+        </QuizCard>
+    );
+}
+
 export function GuessTheLyrics(props) {
+    const [showAnswer, setShowAnswer] = React.useState(false);
+    const [guess, setGuess] = React.useState(false);
+
     // select a random song from the database (from lyricsJSON)
     const randomSongs = selectRandomSongs(SONG_COUNT);
     const chosenSong = randomSongs[0];
@@ -36,6 +62,8 @@ export function GuessTheLyrics(props) {
 
     // lyrics to be used as question
     const songName = chosenSong.songName;
+    // remove spaces and join them
+    const trimmedSongName = songName.split('(')[0].trim().split(" ").join("");
     const artistName = chosenSong.artistName;
     const RomLyricsQuestion = `${romanizedLyrics[randomRomIndex - 1]}\n__________\n${romanizedLyrics[randomRomIndex + 1]}`;
     const BurLyricsQuestion = `${burmeseLyrics[randomBurIndex - 1]}\n__________\n${burmeseLyrics[randomBurIndex + 1]}`;
@@ -69,21 +97,51 @@ export function GuessTheLyrics(props) {
     RomOptions.sort(() => Math.random() - 0.5);
     BurOptions.sort(() => Math.random() - 0.5);
 
+    const correctRomAnswer = `${romanizedLyrics[randomRomIndex - 1]}\n${romanizedLyrics[randomRomIndex]}\n${romanizedLyrics[randomRomIndex + 1]}`;
+    const correctBurAnswer = `${burmeseLyrics[randomBurIndex - 1]}\n${burmeseLyrics[randomBurIndex]}\n${burmeseLyrics[randomBurIndex + 1]}`;
+
+    function revealAnswer(option) {
+        console.log("Setting answer");
+        setShowAnswer(true);
+        setGuess(option.correct);
+    }
+
     // NOTE: Only burmese options for now
     return (
         <div className="quiz-container">
-            <QuizCard>
-                <IconButton onClick={() => props.setQuiz(false)} sx={{marginTop: '1rem'}}>
-                    <CloseIcon sx={{fontSize: '30px', color: 'white'}}/>
-                </IconButton>
-                <h2>Guess the Lyrics</h2>
-                <h3>{BurLyricsQuestion}</h3>
-                {BurOptions.map((option, index) => (
-                    <QuizButton key={index}>
-                        {burmeseLyrics[option.index]}
-                    </QuizButton>
-                ))}
-            </QuizCard>
+            {showAnswer ?
+                <QuizCard>
+                    <IconButton onClick={() => props.setQuiz(false)} sx={{marginTop: '1rem'}}>
+                        <CloseIcon sx={{fontSize: '30px', color: 'white'}}/>
+                    </IconButton>
+                    <img src={chosenSong.imageLink} alt={songName}
+                         style={{width: '30%', height: 'auto',
+                             borderRadius: '80px', borderColor: 'white', borderWidth: '2px', borderStyle: 'solid'}}/>
+                    <h2>{guess ? `Correct ✅` : `Wrong ❎`}</h2>
+                    {!guess && <h3>{`You selected ${burmeseLyrics[guess.index]}`}</h3>}
+                    <h3>{correctBurAnswer}</h3>
+                    <h3>{`Listen to ${songName} by ${artistName}`}</h3>
+                    <Link to={`/song/${trimmedSongName}`}
+                          >
+                        <IconButton>
+                            <PlayCircleIcon sx={{fontSize: '40px', color: 'white'}} />
+                        </IconButton>
+                    </Link>
+                </QuizCard>
+                :
+                <QuizCard>
+                    <IconButton onClick={() => props.setQuiz(false)} sx={{marginTop: '1rem'}}>
+                        <CloseIcon sx={{fontSize: '30px', color: 'white'}}/>
+                    </IconButton>
+                    <h2>Guess the Lyrics</h2>
+                    <h3>{BurLyricsQuestion}</h3>
+                    {BurOptions.map((option, index) => (
+                        <QuizButton key={index} onClick={() => revealAnswer(option)}>
+                            {burmeseLyrics[option.index]}
+                        </QuizButton>
+                    ))}
+                </QuizCard>
+            }
         </div>
     );
 }
