@@ -44,7 +44,7 @@ function PopUpQuiz() {
     //     const currentTime = new Date().getTime();
     //
     //     if (!lastVisit || currentTime - lastVisit > timeThreshold) {
-    //         setShowPopUp(true);
+    //         setShowQuiz(true);
     //         localStorage.setItem('lastVisit', currentTime.toString());
     //     }
     // }, []);

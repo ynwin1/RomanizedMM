@@ -74,7 +74,7 @@ export function GuessTheLyrics(props) {
         <div className="quiz-container">
             <QuizCard>
                 <IconButton onClick={() => props.setQuiz(false)} sx={{marginTop: '1rem'}}>
-                    <CloseIcon  sx={{fontSize: '30px', color: 'white'}}/>
+                    <CloseIcon sx={{fontSize: '30px', color: 'white'}}/>
                 </IconButton>
                 <h2>Guess the Lyrics</h2>
                 <h3>{BurLyricsQuestion}</h3>
