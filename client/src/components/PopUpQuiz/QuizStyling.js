@@ -19,12 +19,18 @@ export const QuizCard = styled(Card)({
     borderColor: 'white',
     borderWidth: '2px',
     borderStyle: 'solid',
+    animation: 'fadeIn 1s ease-in-out',
+
     '@media (max-width: 768px)': {
         width: '70vw',
         height: 'auto',
         fontSize: '0.8rem',
         paddingBottom: '1rem'
-    }
+    },
+    '@keyframes fadeIn': {
+        from: { opacity: 0 },
+        to: { opacity: 1 }
+    },
 
 });
 

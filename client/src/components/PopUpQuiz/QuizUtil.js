@@ -68,6 +68,7 @@ export function QuizQuestion(props) {
                     {props.lyrics[option.index]}
                 </QuizButton>
             ))}
+            <p>* Romanized & Meaning Coming Soon!</p>
         </QuizCard>
     )
 }
@@ -90,7 +91,6 @@ export function QuizAnswer(props) {
                                     left: '50%',
                                     transform: 'translate(-50%, -50%)',
                                     fontSize: '60px',
-                                    color: 'white',
                                     opacity: '0.8'
                                 }}>
                         <PlayCircleIcon sx={{ fontSize: '60px', color: 'white' }} />
@@ -104,6 +104,7 @@ export function QuizAnswer(props) {
             </div>
             <h2>{props.guess ? `Correct ✅` : `Wrong ❎`}</h2>
             <h3>{props.correctAnswer}</h3>
+            <p>* Guess the lyrics every 6 hours</p>
         </QuizCard>
     )
 }
