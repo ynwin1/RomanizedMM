@@ -4,7 +4,7 @@ import Card from "@mui/material/Card";
 import {Button} from "@mui/material";
 
 export const QuizCard = styled(Card)({
-    width: '50vw',
+    width: '40vw',
     height: 'auto',
     backgroundColor: 'rgb(0, 0, 0, 0.8)',
     color: 'white',
@@ -20,8 +20,9 @@ export const QuizCard = styled(Card)({
     borderWidth: '2px',
     borderStyle: 'solid',
     '@media (max-width: 768px)': {
-        width: '80vw',
-        height: 'auto'
+        width: '70vw',
+        height: 'auto',
+        fontSize: '0.8rem'
     }
 
 });

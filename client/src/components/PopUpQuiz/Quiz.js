@@ -1,13 +1,14 @@
-import React, {useEffect} from "react";
-import {QuizButton, QuizCard} from "./QuizStyling";
+import React, { useState, useRef } from "react";
+import { QuizButton, QuizCard } from "./QuizStyling";
 import allSongs from "../SearchBar/SongHost";
 import CloseIcon from "@mui/icons-material/Close";
 import PlayCircleIcon from '@mui/icons-material/PlayCircle';
-import {IconButton} from "@mui/material";
-import {Link} from "react-router-dom";
+import { IconButton } from "@mui/material";
+import { Link } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 
 const SONG_COUNT = 1;
+
 function selectRandomSongs(number) {
     const songs = allSongs();
     const randomSongs = [];
@@ -23,6 +24,7 @@ function Question() {
     this.options = [];
     this.correctAnswer = "";
 }
+
 function questionProcessingGTL(song, lyrics) {
     const quizQ = new Question();
     let quesIndex = Math.floor(Math.random() * (lyrics.length - 2)) + 1;
@@ -38,7 +40,8 @@ function questionProcessingGTL(song, lyrics) {
         let randomOptionIndex = Math.floor(Math.random() * lyrics.length);
         // criteria on selecting wrong options
         while (quizQ.options.some(option => option.index === randomOptionIndex) &&
-            randomOptionIndex !== quesIndex - 1 && randomOptionIndex !== quesIndex + 1) {
+        randomOptionIndex !== quesIndex - 1 && randomOptionIndex !== quesIndex + 1 ||
+            lyrics[randomOptionIndex].trim() === "") {
             randomOptionIndex = Math.floor(Math.random() * lyrics.length);
         }
         quizQ.options.push({ index: randomOptionIndex, correct: false });
@@ -52,21 +55,18 @@ function questionProcessingGTL(song, lyrics) {
 
 export function GuessTheLyrics(props) {
     // NOTE: Only burmese options for now
-    const [showAnswer, setShowAnswer] = React.useState(false);
-    const [guess, setGuess] = React.useState(false);
+    const [showAnswer, setShowAnswer] = useState(false);
+    const [guess, setGuess] = useState(false);
 
-    // select a random song from the database (from lyricsJSON)
-    const chosenSong = selectRandomSongs(SONG_COUNT)[0];
-    // extract random lyrics from the chosen song
-    const burmeseLyrics = chosenSong.burmese.split('\n');
-
-    // process the question
-    const question = questionProcessingGTL(chosenSong, burmeseLyrics);
+    // useRef to store the selected song and question
+    const chosenSongRef = useRef(selectRandomSongs(SONG_COUNT)[0]);
+    const burmeseLyricsRef = useRef(chosenSongRef.current.burmese.split('\n'));
+    const questionRef = useRef(questionProcessingGTL(chosenSongRef.current, burmeseLyricsRef.current));
 
     // extract song name and artist name
-    const songName = chosenSong.songName;
+    const songName = chosenSongRef.current.songName;
     const trimmedSongName = songName.split('(')[0].trim().split(" ").join("");
-    const artistName = chosenSong.artistName;
+    const artistName = chosenSongRef.current.artistName;
 
     function revealAnswer(option) {
         setShowAnswer(true);
@@ -78,33 +78,33 @@ export function GuessTheLyrics(props) {
         <div className="quiz-container">
             {showAnswer ?
                 <QuizCard>
-                    <IconButton onClick={() => props.setQuiz(false)} sx={{marginTop: '1rem'}}>
-                        <CloseIcon sx={{fontSize: '30px', color: 'white'}}/>
+                    <IconButton onClick={() => props.setQuiz(false)} sx={{ marginTop: '1rem', marginBottom: '1rem' }}>
+                        <CloseIcon sx={{ fontSize: '30px', color: 'white' }} />
                     </IconButton>
-                    <img src={chosenSong.imageLink} alt={songName}
-                         style={{width: '30%', height: 'auto',
-                             borderRadius: '80px', borderColor: 'white', borderWidth: '2px', borderStyle: 'solid'}}/>
+                    <img src={chosenSongRef.current.imageLink} alt={songName}
+                         style={{
+                             width: '20%', height: 'auto',
+                             borderRadius: '100px', borderColor: 'white', borderWidth: '2px', borderStyle: 'solid'
+                         }} />
                     <h2>{guess ? `Correct ✅` : `Wrong ❎`}</h2>
-                    {!guess && <h3>{`You selected ${burmeseLyrics[guess.index]}`}</h3>}
-                    <h3>{question.correctAnswer}</h3>
+                    <h3>{questionRef.current.correctAnswer}</h3>
                     <h3>{`Listen to ${songName} by ${artistName}`}</h3>
-                    <Link to={`/song/${trimmedSongName}`}
-                          >
+                    <Link to={`/song/${trimmedSongName}`}>
                         <IconButton>
-                            <PlayCircleIcon sx={{fontSize: '40px', color: 'white'}} />
+                            <PlayCircleIcon sx={{ fontSize: '40px', color: 'white' }} />
                         </IconButton>
                     </Link>
                 </QuizCard>
                 :
                 <QuizCard>
-                    <IconButton onClick={() => props.setQuiz(false)} sx={{marginTop: '1rem'}}>
-                        <CloseIcon sx={{fontSize: '30px', color: 'white'}}/>
+                    <IconButton onClick={() => props.setQuiz(false)} sx={{ marginTop: '1rem' }}>
+                        <CloseIcon sx={{ fontSize: '30px', color: 'white' }} />
                     </IconButton>
                     <h2>Guess the Lyrics</h2>
-                    <h3>{question.question}</h3>
-                    {question.options.map((option, index) => (
+                    <h3>{questionRef.current.question}</h3>
+                    {questionRef.current.options.map((option, index) => (
                         <QuizButton key={index} onClick={() => revealAnswer(option)}>
-                            {burmeseLyrics[option.index]}
+                            {burmeseLyricsRef.current[option.index]}
                         </QuizButton>
                     ))}
                 </QuizCard>
