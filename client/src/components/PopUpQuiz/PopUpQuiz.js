@@ -3,7 +3,7 @@ import {GuessTheLyrics, GuessTheSong} from "./Quiz";
 
 function PopUpQuiz() {
     const [showQuiz, setShowQuiz] = useState(false);
-    const timeThreshold = 1000 * 60 * 60 * 6; // 12 hours
+    const timeThreshold = 1000 * 60 * 60 * 6; // 6 hours
 
     // random number between 0 and 1 - TO BE USED LATER
     // const random = Math.random();
