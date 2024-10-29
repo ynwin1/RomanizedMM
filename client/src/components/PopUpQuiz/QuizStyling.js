@@ -22,7 +22,8 @@ export const QuizCard = styled(Card)({
     '@media (max-width: 768px)': {
         width: '70vw',
         height: 'auto',
-        fontSize: '0.8rem'
+        fontSize: '0.8rem',
+        paddingBottom: '1rem'
     }
 
 });

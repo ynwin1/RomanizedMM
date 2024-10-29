@@ -39,7 +39,7 @@ function questionProcessingGTL(song, lyrics) {
     for (let i = 0; i < 3; i++) {
         let randomOptionIndex = Math.floor(Math.random() * lyrics.length);
         // criteria on selecting wrong options
-        while (quizQ.options.some(option => option.index === randomOptionIndex) &&
+        while (quizQ.options.some(option => lyrics[option.index].toLowerCase() === lyrics[randomOptionIndex].toLowerCase()) &&
         randomOptionIndex !== quesIndex - 1 && randomOptionIndex !== quesIndex + 1 ||
             lyrics[randomOptionIndex].trim() === "") {
             randomOptionIndex = Math.floor(Math.random() * lyrics.length);
@@ -90,8 +90,8 @@ export function GuessTheLyrics(props) {
                     <h3>{questionRef.current.correctAnswer}</h3>
                     <h3>{`Listen to ${songName} by ${artistName}`}</h3>
                     <Link to={`/song/${trimmedSongName}`}>
-                        <IconButton>
-                            <PlayCircleIcon sx={{ fontSize: '40px', color: 'white' }} />
+                        <IconButton onClick={() => props.setQuiz(false)}>
+                            <PlayCircleIcon sx={{ fontSize: '60px', color: 'white' }} />
                         </IconButton>
                     </Link>
                 </QuizCard>
