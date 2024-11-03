@@ -39,7 +39,6 @@ function MusicPage() {
                 />
                 <link rel="canonical" href={fullURL}/>
             </Helmet>
-            <PopUpQuiz/>
             <MusicBox song={song} />
             <Footer />
         </div>
