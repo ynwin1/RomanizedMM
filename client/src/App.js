@@ -7,9 +7,7 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import ColorModeContext from "./themes/ThemeContext";
 import HomePage from "./pages/HomePage";
 import MusicPage from "./pages/MusicPage";
-import { SongContext } from './SongContext';
 import AboutPage from "./pages/AboutPage";
-import LanguageContext from "./language/LanguageContext";
 import {LanguageProvider} from "./language/LanguageProvider";
 
 

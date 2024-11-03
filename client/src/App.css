@@ -113,7 +113,7 @@
 
 .form-input {
   width: 50vw;
-  paddingLeft: 1rem;
+  padding-left: 1rem;
 }
 
 .font-adjustor {
@@ -180,7 +180,7 @@
     right: 2rem;
     width: 200px;
     height: 113px;
-    zIndex: 1000;
+    z-index: 1000;
   }
 
     .form-input {
