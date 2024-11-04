@@ -2,9 +2,13 @@ import createApp from "../../src/app.js";
 import { agent as request } from 'supertest';
 import {expect} from "chai";
 import sinon from "sinon";
+import {MongoMemoryServer} from "mongodb-memory-server";
+import mongoose from "mongoose";
 import {SongNameMissingError, WebhookSendError} from "../../src/utils/Exceptions.js";
+import SongRequest from "../../src/model/SongRequest.js";
 
-describe('POST Form Test', () => {
+describe('Form TestSuite', () => {
+    let mongoServer;
     let app;
     let formData;
     let fetchStub;
@@ -14,8 +18,22 @@ describe('POST Form Test', () => {
     const successfulSubmissionMsg = "Song requested successfully ✅. It may take 1-2 days, so stay tuned! 🤩"
     const failedSubmissionMsg = "Oops! there was an error 😩. Please try again! 🙏🏻"
 
-    before(() => {
+    before(async () => {
         app = createApp();
+
+        // Mongo setup
+        mongoServer = await MongoMemoryServer.create();
+        const mongoURI = (await mongoServer).getUri();
+        await mongoose.connect(mongoURI);
+
+        try {
+            await SongRequest.create([
+                { songName: "song1", artist: "artist1", youtubeLink: "youtubeLink1", details: "details1"},
+                { songName: "song2", artist: "artist2", youtubeLink: "youtubeLink2", details: "details2"}
+            ]);
+        } catch (e) {
+            console.error("Error setting up song request test data");
+        }
     })
 
     beforeEach(() => {
@@ -26,7 +44,12 @@ describe('POST Form Test', () => {
         fetchStub.restore();
     })
 
-    it ('should return 200 upon successful form submission with all fields filled', async () => {
+    after(async () => {
+        await mongoose.connection.close();
+        await mongoServer.stop();
+    })
+
+    it ('should return 201 upon successful form submission with all fields filled', async () => {
         formData = {
             songName: "newSong",
             artist: "newArtist",
@@ -39,28 +62,38 @@ describe('POST Form Test', () => {
             .send({formData})
             .set('Accept', 'application/json');
 
-        expect(resp.status).to.equal(200);
+        // check if formData is in the database
+        const songRequest = await SongRequest.findOne({ songName: "newSong" });
+        expect(songRequest).to.not.be.null;
+
+        expect(resp.status).to.equal(201);
         expect(resp.body).to.include({ message: successfulSubmissionMsg });
     });
 
-    it ('should return 200 upon successful form submission with only songName filled', async () => {
+    it ('should return 201 upon successful form submission with only songName & artist filled', async () => {
         fetchStub.resolves({ok: true});
         formData = {
-            songName: "anotherSong"
+            songName: "anotherSong",
+            artist: "anotherArtist"
         }
         const resp = await request(app)
             .post(song_request_api)
             .send({formData})
             .set('Accept', 'application/json');
 
-        expect(resp.status).to.equal(200);
+        // check if formData is in the database
+        const songRequest = await SongRequest.findOne({ songName: "anotherSong" });
+        expect(songRequest).to.not.be.null;
+
+        expect(resp.status).to.equal(201);
         expect(resp.body).to.include({ message: successfulSubmissionMsg });
     });
 
-    it ('should return 200 upon successful form submission with only some fields filled', async () => {
+    it ('should return 201 upon successful form submission with only some fields filled', async () => {
         fetchStub.resolves({ok: true});
         formData = {
-            songName: "anotherSong",
+            songName: "anotherSong1",
+            artist: "anotherArtist1",
             details: "can't find on Youtube!"
         }
         const resp = await request(app)
@@ -68,11 +101,15 @@ describe('POST Form Test', () => {
             .send({formData})
             .set('Accept', 'application/json');
 
-        expect(resp.status).to.equal(200);
+        // check if formData is in the database
+        const songRequest = await SongRequest.findOne({ songName: "anotherSong1" });
+        expect(songRequest).to.not.be.null;
+
+        expect(resp.status).to.equal(201);
         expect(resp.body).to.include({ message: successfulSubmissionMsg });
     });
 
-    it ('should return 400 on a failed form submission with missing song name', async () => {
+    it ('should return 400 on a failed form submission with missing required fields', async () => {
         fetchStub.rejects(new SongNameMissingError("Something went wrong while submitting form!"));
 
         formData = {
@@ -83,6 +120,9 @@ describe('POST Form Test', () => {
             .post(song_request_api)
             .send({formData})
             .set('Accept', 'application/json');
+
+        const songRequest = await SongRequest.findOne({ details: "I forgot the song name!" });
+        expect(songRequest).to.be.null;
 
         expect(resp.status).to.equal(400);
         expect(resp.body).to.include({ message: failedSubmissionMsg });
@@ -101,15 +141,18 @@ describe('POST Form Test', () => {
             .send({formData})
             .set('Accept', 'application/json');
 
+        const songRequest = await SongRequest.findOne({ songName: "newDay" });
+        expect(songRequest).to.be.null;
+
         expect(resp.status).to.equal(500);
         expect(resp.body).to.include({ message: failedSubmissionMsg });
     });
 
-    it ('should return 503 on a failed form submission with webhook failure', async () => {
+    it ('should return 500 on a failed form submission with webhook failure', async () => {
         fetchStub.rejects(new WebhookSendError("Something went wrong while submitting form!"));
 
         formData = {
-            songName: "anotherSong"
+            songName: "discordSong"
         }
 
         const resp = await request(app)
@@ -117,9 +160,14 @@ describe('POST Form Test', () => {
             .send({formData})
             .set('Accept', 'application/json');
 
-        expect(resp.status).to.equal(503);
+        const songRequest = await SongRequest.findOne({ songName: "discordSong" });
+        expect(songRequest).to.be.null;
+
+        expect(resp.status).to.equal(500);
         expect(resp.body).to.include({ message: failedSubmissionMsg });
     });
+
+    // REPORT TESTS
 
     it ('should return 200 upon successful report submission with all fields filled', async () => {
         fetchStub.resolves({ok: true});
