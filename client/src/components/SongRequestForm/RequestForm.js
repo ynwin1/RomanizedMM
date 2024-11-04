@@ -1,28 +1,34 @@
-import React, {useContext, useState} from "react"
+import React, {useContext, useState, useEffect} from "react"
 import {InputLabel, Input, CircularProgress} from "@mui/material";
 import {useTheme} from "@mui/system";
 import {selectTextColor} from "../../themes/ColorSelect";
 import {CustomFormControl, CustomSubmitButton, SubtitleTypography, TitleTypography} from "./RequestFormStyling";
 import LanguageContext from "../../language/LanguageContext";
+import RequestQueue from "./RequestQueue";
+
+const initialForm = {
+    songName: '',
+    artist: '',
+    youtubeLink: '',
+    details: ''
+}
 
 function RequestForm() {
     const SERVER_URL = process.env.REACT_APP_BACKEND_URI;
-    const API_URL = process.env.REACT_APP_SUBMIT_FORM_API;
-
-    const initialForm = {
-        songName: '',
-        artist: '',
-        youtubeLink: '',
-        details: ''
-    }
+    const CREATE_FORM_URL = process.env.REACT_APP_SUBMIT_FORM_API;
+    const GET_REQUESTS_URL = process.env.REACT_APP_GET_SONG_REQUESTS_API;
 
     const theme = useTheme();
     const textColor = selectTextColor(theme.palette.mode);
 
+    // form data
     const [formData, setFormData] = useState(initialForm);
     const [apiResponse, setApiResponse] = useState("");
     const [renderForm, setRenderForm] = useState(true);
     const [isLoading, setIsLoading] = useState(false);
+
+    // song requests
+    const [songRequests, setSongRequests] = useState([]);
 
     const {language} = useContext(LanguageContext);
     // language based texts
@@ -36,6 +42,9 @@ function RequestForm() {
     const detailsLang = language === "en" ? "Details/Comments" : "မှတ်ချက်";
     const submitLang = language === "en" ? "Submit" : "တင်မည်";
 
+    useEffect(() => {
+        fetchRequests();
+    });
 
     function handleChange(event) {
         const {name, value} = event.target;
@@ -44,12 +53,28 @@ function RequestForm() {
             [name]: value
         }))
     }
+    
+    async function fetchRequests() {
+        try {
+            const response = await fetch(SERVER_URL + GET_REQUESTS_URL, {
+                method: 'GET',
+                headers: {'Content-Type': 'application/json'}
+            });
+            const data = await response.json();
+            if (!response.ok) {
+                throw new Error(`${data.message}`);
+            }
+            setSongRequests(data);
+        } catch (e) {
+            console.error(e.message);
+        }
+    }
 
     async function submitForm() {
         try {
             setIsLoading(true);
             console.log(`Data to be sent - ${JSON.stringify({formData})}`)
-            const response = await fetch(SERVER_URL + API_URL, {
+            const response = await fetch(SERVER_URL + CREATE_FORM_URL, {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({formData}),
@@ -113,6 +138,7 @@ function RequestForm() {
                         {createFormControl("details", detailsLang, formData.details, false)}
                         <CustomSubmitButton type="submit">{submitLang}</CustomSubmitButton>
                     </form>
+                    {songRequests.length > 0 && <RequestQueue songRequests={songRequests}/>}
                 </>
             }
             { !renderForm &&

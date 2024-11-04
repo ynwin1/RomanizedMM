@@ -50,7 +50,7 @@ router.post("/submitForm", async (req, res) => {
     }
 })
 
-router.get("/songRequests", async (req, res) => {
+router.get("/songrequests", async (req, res) => {
     try {
         const songRequests = await SongRequest.find();
         res.status(200).json(songRequests);
