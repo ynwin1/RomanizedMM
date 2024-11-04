@@ -33,3 +33,12 @@
 .form-response {
     padding: 1rem;
 }
+
+@media (max-width: 768px) {
+    .request-form-light {
+        margin-top: 5rem;
+    }
+    .request-form-dark {
+        margin-top: 5rem;
+    }
+}
