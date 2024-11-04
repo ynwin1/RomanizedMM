@@ -3,31 +3,33 @@ import { useParams } from "react-router-dom";
 import MusicBox from "../components/MusicBox/MusicBox";
 import Footer from "../components/Footer/Footer";
 import {Helmet} from "react-helmet";
-import PopUpQuiz from "../components/PopUpQuiz/PopUpQuiz";
 
 const SERVER_URL = process.env.REACT_APP_BACKEND_URI;
 const API_URL = process.env.REACT_APP_SEARCH_SONG_API;
 
 function MusicPage() {
     const { songName } = useParams();
-    const song = require(`../lyricsJSON/${songName}.json`);
-    // const [song, setSong] = useState(null);
+    const [song, setSong] = useState(null);
 
-    // for when user directly navigates to a song page/refreshes
-    // useEffect(() => {
-    //     // add space after every capital letter in song name
-    //     const songNameFormatted = songName.replace(/([A-Z])/g, ' $1').trim();
-    //     fetchSongData(songNameFormatted).then(data => setSong(data));
-    // }, [songName]);
+    useEffect(() => {
+        const songNameFormatted = formatSongName(songName);
+        fetchSongData(songNameFormatted).then(data => setSong(data));
+    }, [songName]);
 
-    // return null while waiting for song data (nothing really happens)
-    // if (!song) {
-    //     return null;
-    // }
+    if (!song) {
+        return null;
+    }
 
-    const songNameSplit = song.songName.split('(')[0];
-    // Remove space from song name and rejoin them
-    const fullURL = `https://www.romanizedmm.com/song/${songNameSplit.split(" ").join("")}`;
+    const songNameSplit = song.songName.split('(')[0].split(" ").join("");
+    const fullURL = generateFullURL(songNameSplit);
+
+    function formatSongName(name) {
+        return name.replace(/([A-Z])/g, ' $1').trim();
+    }
+
+    function generateFullURL(name) {
+        return `https://www.romanizedmm.com/song/${songNameSplit}`;
+    }
 
     return (
         <div>
@@ -62,5 +64,11 @@ async function fetchSongData(songName) {
         console.log(`Error while fetching song data - ${e.message}`);
     }
 }
+
+// previous fetch style
+// const song = require(`../lyricsJSON/${songName}.json`);
+// const songNameSplit = song.songName.split('(')[0];
+// // Remove space from song name and rejoin them
+// const fullURL = `https://www.romanizedmm.com/song/${songNameSplit.split(" ").join("")}`;
 
 export default MusicPage;
