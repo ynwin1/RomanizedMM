@@ -9,27 +9,33 @@ const API_URL = process.env.REACT_APP_SEARCH_SONG_API;
 
 function MusicPage() {
     const { songName } = useParams();
-    const [song, setSong] = useState(null);
 
-    useEffect(() => {
-        const songNameFormatted = formatSongName(songName);
-        fetchSongData(songNameFormatted).then(data => setSong(data));
-    }, [songName]);
+    // previous fetch style
+    const song = require(`../lyricsJSON/${songName}.json`);
+    const songNameSplit = song.songName.split('(')[0];
+    // Remove space from song name and rejoin them
+    const fullURL = `https://www.romanizedmm.com/song/${songNameSplit.split(" ").join("")}`;
 
-    if (!song) {
-        return null;
-    }
-
-    const songNameSplit = song.songName.split('(')[0].split(" ").join("");
-    const fullURL = generateFullURL(songNameSplit);
-
-    function formatSongName(name) {
-        return name.replace(/([A-Z])/g, ' $1').trim();
-    }
-
-    function generateFullURL(name) {
-        return `https://www.romanizedmm.com/song/${songNameSplit}`;
-    }
+    // API Song Fetch
+    // const [song, setSong] = useState(null);
+    // useEffect(() => {
+    //     const songNameFormatted = formatSongName(songName);
+    //     fetchSongData(songNameFormatted).then(data => setSong(data));
+    // }, [songName]);
+    //
+    // if (!song) {
+    //     return null;
+    // }
+    //
+    // const songNameSplit = song.songName.split('(')[0].split(" ").join("");
+    // const fullURL = generateFullURL(songNameSplit);
+    // function formatSongName(name) {
+    //     return name.replace(/([A-Z])/g, ' $1').trim();
+    // }
+    //
+    // function generateFullURL(name) {
+    //     return `https://www.romanizedmm.com/song/${songNameSplit}`;
+    // }
 
     return (
         <div>
@@ -65,10 +71,6 @@ async function fetchSongData(songName) {
     }
 }
 
-// previous fetch style
-// const song = require(`../lyricsJSON/${songName}.json`);
-// const songNameSplit = song.songName.split('(')[0];
-// // Remove space from song name and rejoin them
-// const fullURL = `https://www.romanizedmm.com/song/${songNameSplit.split(" ").join("")}`;
+
 
 export default MusicPage;

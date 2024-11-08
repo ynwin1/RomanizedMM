@@ -19,17 +19,17 @@ function AutoCompleteSearchBar() {
 
     useEffect(() => {
         try {
-            fetchSongs();
+            loadSongs();
         } catch (e) {
             console.log("Could not load songs from the database");
         }
-    });
+    }, []);
 
     // temporary measure to load all songs
-    // function loadSongs() {
-    //     const combinedSongData = allSongs();
-    //     setMatchingSongs(combinedSongData);
-    // }
+    function loadSongs() {
+        const combinedSongData = allSongs();
+        setMatchingSongs(combinedSongData);
+    }
 
     async function fetchSongs() {
         try {
