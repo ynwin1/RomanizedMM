@@ -77,7 +77,7 @@ import songData76 from '../../lyricsJSON/PhanTharNanTaw.json';
 import songData77 from '../../lyricsJSON/TaGalLohMyar.json';
 import songData78 from '../../lyricsJSON/AYinLoBawaMyoYoukChinTal.json';
 import songData79 from '../../lyricsJSON/December.json';
-import songData80 from '../../lyricsJSON/PanTwayNaeWai.json.json';
+import songData80 from '../../lyricsJSON/PanTwayNaeWai.json';
 
 function allSongs() {
     const combinedSongData = [
