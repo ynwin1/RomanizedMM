@@ -47,6 +47,14 @@ function MusicPage() {
                 />
                 <link rel="canonical" href={fullURL}/>
             </Helmet>
+            <div className="notification">
+                <h1>
+                    In a few days/weeks, a new version of RomanizedMM will be released. The URL to access www.romanizedmm.com will remain the same.
+                </h1>
+                <h1>
+                    It is possible that you may not see us on search engines (Google, Bing) for weeks to months due to indexing. I will try my best to get this site visible as soon as possible.
+                </h1>
+            </div>
             <MusicBox song={song} />
             <Footer />
         </div>

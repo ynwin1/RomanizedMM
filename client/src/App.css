@@ -160,6 +160,31 @@
   overflow: hidden;
 }
 
+.notification {
+  margin-top: 5rem;
+  background-color: cadetblue; /* Light background for contrast */
+  padding: 5px 5px; /* Spacing inside the box */
+  border-radius: 5px; /* Rounded corners */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+  font-family: 'Arial', sans-serif; /* Clean font */
+  color: white; /* Neutral text color */
+}
+
+.notification h1 {
+  font-size: 16px; /* Slightly larger than body text */
+  line-height: 1.5; /* Comfortable line spacing */
+  margin: 10px 0; /* Space between headings */
+}
+
+.notification h1:first-of-type {
+  font-weight: bold; /* Highlight the first heading */
+  color: white; /* Match the accent color */
+}
+
+.notification h1:last-of-type {
+  font-weight: normal; /* Slightly less emphasis for subsequent text */
+}
+
 @media (max-width: 768px) {
   .youtube-player {
     width: 81vw;
