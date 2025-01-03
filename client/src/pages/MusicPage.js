@@ -54,6 +54,9 @@ function MusicPage() {
                 <h1>
                     It is possible that you may not see us on search engines (Google, Bing) for weeks to months due to indexing. I will try my best to get this site visible as soon as possible.
                 </h1>
+                <h1>
+                    <a href="https://romanizedmmnext.onrender.com/en"><u>Peek at the new version here. It may take a while to load due to inactivity. Feedback is welcomed!</u></a>.
+                </h1>
             </div>
             <MusicBox song={song} />
             <Footer />
