@@ -62,4 +62,15 @@ render the song of their choice. There are three media streams available, with Y
 
 The user is also able to navigate to the Song Request page, where they can submit a song they want to sing. 
 
+## Statistics (As of 05/20/2025)
+
+- 2300 Users Monthly
+- 7500 Views Monthly
+- 12k Users Overall
+- 36k Views Overall
+- 207k Impressions In Total
+- Users From 80+ Countries
+
+
+
 
